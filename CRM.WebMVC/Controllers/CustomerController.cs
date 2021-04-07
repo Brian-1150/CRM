@@ -51,5 +51,13 @@ namespace CRM.WebMVC.Controllers
             var model = service.GetCustomers();
             return View(model);
         }
+        //GET:  Customer Details
+        public ActionResult Details(int id)
+        {
+            var svc = NewCustomerService();
+            var model = svc.GetCustomerByID(id);
+
+            return View(model);
+        }
     }
 }

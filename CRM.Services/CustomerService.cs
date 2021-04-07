@@ -66,5 +66,26 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
+        public CustomerDetail GetCustomerByID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Customers
+                    .Single(e => e.CustomerID == id);
+                return
+                    new CustomerDetail
+                    {
+                        CustomerID = entity.CustomerID,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        PhoneNumber = entity.PhoneNumber,
+                        Email = entity.Email,
+                        City = entity.City,
+                        InitialDateOfService = entity.InitialDateOfService
+                    };
+            }
+        }
     }
 }

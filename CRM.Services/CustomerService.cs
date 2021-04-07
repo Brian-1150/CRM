@@ -18,6 +18,29 @@ namespace CRM.Services
 
         }
 
+        public bool CreateCustomer(CustomerCreate model)
+        {
+            var entity = new Customer()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                StreetAddress = model.StreetAddress,
+                City = model.City,
+                StateOfPerson = model.StateOfPerson,
+                InitialDateOfService = DateTimeOffset.Now,
+                StatusOfCustomer = CustomerStatus.Prospect  //new Customer gets set to prospect by default
+                
+
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Customers.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public IEnumerable<CustomerListItem> GetCustomers()
         {
             using (var ctx = new ApplicationDbContext())

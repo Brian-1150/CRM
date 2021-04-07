@@ -14,7 +14,8 @@ namespace CRM.Data
         public virtual CalendarEvent CalendarEvent { get; set; }
         public virtual ICollection<CalendarEvent> CalendarEvents { get; set; }
         public DateTimeOffset InitialDateOfService { get; set; }
-
+        public CustomerStatus StatusOfCustomer { get; set; }
+        //add Estimate prop ticket # 1
     }
-    public enum Status { Prospect, Active, Inactive}
+    public enum CustomerStatus { Prospect, Active, Inactive}
 }

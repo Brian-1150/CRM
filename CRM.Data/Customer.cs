@@ -13,6 +13,7 @@ namespace CRM.Data
         public int CustomerID { get; set; }
         public virtual CalendarEvent CalendarEvent { get; set; }
         public virtual ICollection<CalendarEvent> CalendarEvents { get; set; }
+        public DateTimeOffset InitialDateOfService { get; set; }
 
     }
     public enum Status { Prospect, Active, Inactive}

@@ -1,15 +1,13 @@
-﻿using CRM.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRM.Models
+namespace CRM.Models.Employee
 {
-    public class CustomerCreate : Person
+    public class EmployeeCreate
     {
-        
-        
+
     }
 }

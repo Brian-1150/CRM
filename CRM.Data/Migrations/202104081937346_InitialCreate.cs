@@ -12,10 +12,15 @@ namespace CRM.Data.Migrations
                 c => new
                     {
                         CustomerID = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(),
+                        InitialDateOfContact = c.DateTimeOffset(nullable: false, precision: 7),
+                        StatusOfCustomer = c.Int(nullable: false),
+                        FirstName = c.String(nullable: false),
                         LastName = c.String(),
                         PhoneNumber = c.String(),
                         Email = c.String(),
+                        StreetAddress = c.String(),
+                        City = c.String(),
+                        StateOfPerson = c.Int(nullable: false),
                         CalendarEvent_CalEventID = c.Long(),
                     })
                 .PrimaryKey(t => t.CustomerID)

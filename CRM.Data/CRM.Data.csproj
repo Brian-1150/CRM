@@ -56,22 +56,11 @@
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202104070043198_InitialCreate.cs" />
-    <Compile Include="Migrations\202104070043198_InitialCreate.Designer.cs">
-      <DependentUpon>202104070043198_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070132031_InitialMigration.cs" />
-    <Compile Include="Migrations\202104070132031_InitialMigration.Designer.cs">
-      <DependentUpon>202104070132031_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070527151_AddAttributesToValidateEmailAndPhone.cs" />
-    <Compile Include="Migrations\202104070527151_AddAttributesToValidateEmailAndPhone.Designer.cs">
-      <DependentUpon>202104070527151_AddAttributesToValidateEmailAndPhone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070542410_RemoveDefaultINState.cs" />
-    <Compile Include="Migrations\202104070542410_RemoveDefaultINState.Designer.cs">
-      <DependentUpon>202104070542410_RemoveDefaultINState.cs</DependentUpon>
+    <Compile Include="Migrations\202104081937346_InitialCreate.cs" />
+    <Compile Include="Migrations\202104081937346_InitialCreate.Designer.cs">
+      <DependentUpon>202104081937346_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
@@ -82,17 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104070043198_InitialCreate.resx">
-      <DependentUpon>202104070043198_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070132031_InitialMigration.resx">
-      <DependentUpon>202104070132031_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070527151_AddAttributesToValidateEmailAndPhone.resx">
-      <DependentUpon>202104070527151_AddAttributesToValidateEmailAndPhone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070542410_RemoveDefaultINState.resx">
-      <DependentUpon>202104070542410_RemoveDefaultINState.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104081937346_InitialCreate.resx">
+      <DependentUpon>202104081937346_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

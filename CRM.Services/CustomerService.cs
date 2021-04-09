@@ -29,7 +29,7 @@ namespace CRM.Services
                 StreetAddress = model.StreetAddress,
                 City = model.City,
                 StateOfPerson = model.StateOfPerson,
-                InitialDateOfService = DateTimeOffset.Now,
+                InitialDateOfContact = DateTimeOffset.Now,
                 StatusOfCustomer = CustomerStatus.Prospect  //new Customer gets set to prospect by default
                 
 
@@ -58,8 +58,9 @@ namespace CRM.Services
                                   LastName = e.LastName,
                                   PhoneNumber = e.PhoneNumber,
                                   Email = e.Email,
+                                  StreetAddress = e.StreetAddress,
                                   City = e.City,
-                                  InitialDateOfService = e.InitialDateOfService
+                                  InitialDateOfContact = e.InitialDateOfContact
 
                               }
                    );
@@ -82,10 +83,53 @@ namespace CRM.Services
                         LastName = entity.LastName,
                         PhoneNumber = entity.PhoneNumber,
                         Email = entity.Email,
+                        StreetAddress = entity.StreetAddress,
                         City = entity.City,
-                        InitialDateOfService = entity.InitialDateOfService
+                        StateOfPerson = entity.StateOfPerson,
+                        StatusOfCustomer = entity.StatusOfCustomer,
+                        InitialDateOfContact = entity.InitialDateOfContact,
+                        IsOnDoNotContactList = entity.IsOnDoNotContactList
+                        
+
                     };
             }
         }
+        public bool UpdateCustomer( CustomerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Customers
+                    .Single(e => e.CustomerID == model.CustomerID);
+
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.PhoneNumber = model.PhoneNumber;
+                entity.Email = model.Email;
+                entity.StreetAddress = model.StreetAddress;
+                entity.City = model.City;
+                entity.StateOfPerson = model.StateOfPerson;
+                entity.StatusOfCustomer = model.StatusOfCustomer;
+
+
+                    return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool DeleteCustomer(CustomerDelete model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Customers
+                    .Single(e => e.CustomerID == model.CustomerID);
+
+                entity.IsOnDoNotContactList = model.IsOnDoNotContactList;
+                entity.StatusOfCustomer = model.StatusOfCustomer;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
     }
 }

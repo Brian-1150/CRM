@@ -10,7 +10,8 @@ namespace CRM.Models
     public class CustomerDetail : Person
     {
         public int CustomerID { get; set; }
-        
-        public DateTimeOffset InitialDateOfService { get; set; }
+        public CustomerStatus StatusOfCustomer { get; set; }
+        public DateTimeOffset InitialDateOfContact { get; set; }
+        public bool IsOnDoNotContactList { get; set; }
     }
 }

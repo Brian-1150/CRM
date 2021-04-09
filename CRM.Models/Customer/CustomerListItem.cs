@@ -24,6 +24,6 @@ namespace CRM.Models
         public string City { get; set; }
 
         public PersonState StateOfPerson { get; set; }
-        public DateTimeOffset InitialDateOfService { get; set; }
+        public DateTimeOffset InitialDateOfContact { get; set; }
     }
 }

@@ -11,6 +11,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerID)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
@@ -57,26 +64,32 @@
         <dd>
             @Html.DisplayFor(model => model.City)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.CustomerID)
+            @Html.DisplayNameFor(model => model.StateOfPerson)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CustomerID)
+            @Html.DisplayFor(model => model.StateOfPerson)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusOfCustomer)
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusOfCustomer)
         </dd>
 
+
         <dt>
-            @Html.DisplayNameFor(model => model.InitialDateOfService)
+            @Html.DisplayNameFor(model => model.InitialDateOfContact)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InitialDateOfService)
+            @Html.DisplayFor(model => model.InitialDateOfContact)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

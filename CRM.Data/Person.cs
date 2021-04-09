@@ -27,6 +27,7 @@ namespace CRM.Data
 
         [Display(Name = "State")]
         public PersonState StateOfPerson { get; set; }
+        
     }
     public enum PersonState
     {

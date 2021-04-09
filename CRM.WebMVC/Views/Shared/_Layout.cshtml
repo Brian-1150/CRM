@@ -38,10 +38,19 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+    @*attempt to remove autofill from ALL editorFor boxes  ticket #19 *@
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+    $('#HTML.EditorFor').attr('autocomplete', 'off');
+    });
+
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

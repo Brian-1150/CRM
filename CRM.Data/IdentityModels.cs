@@ -32,7 +32,7 @@ namespace CRM.Data
             return new ApplicationDbContext();
         }
         public DbSet<Customer> Customers { get; set; }
-
+        public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

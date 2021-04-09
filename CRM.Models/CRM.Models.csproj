@@ -60,6 +60,9 @@
     <Compile Include="Customer\CustomerListItem.cs" />
     <Compile Include="Customer\CustomerDelete.cs" />
     <Compile Include="Employee\EmployeeCreate.cs" />
+    <Compile Include="Employee\EmployeeDetail.cs" />
+    <Compile Include="Employee\EmployeeEdit.cs" />
+    <Compile Include="Employee\EmployeeListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextColor.cs" />
   </ItemGroup>

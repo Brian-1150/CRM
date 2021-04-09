@@ -13,5 +13,7 @@ namespace CRM.Data
         public int EmployeeID { get; set; }
         public bool Current { get; set; }
         public DateTimeOffset HireDate { get; set; }
+        public virtual CalendarEvent CalendarEvent { get; set; }
+        public virtual ICollection<CalendarEvent> CalendarEvents { get; set; }
     }
 }

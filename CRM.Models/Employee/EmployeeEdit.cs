@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace CRM.Models.Employee
 {
-    public class EmployeeCreate : Person
+    public class EmployeeEdit : Person
     {
+        public int EmployeeID { get; set; }
         public DateTimeOffset HireDate { get; set; }
-        public new PersonState StateOfPerson { get; set; } = PersonState.IN;
+        public bool Current { get; set; }
     }
 }

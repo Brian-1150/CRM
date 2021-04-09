@@ -23,7 +23,9 @@ namespace CRM.WebMVC.Controllers
         //GET:  CreateCustomer View
         public ActionResult Create()
         {
-            return View();
+            var model = new CustomerCreate();
+            return View(model);
+            //passing in model so it will default to PersonState.INDIANA
         }
 
         [HttpPost]
@@ -40,7 +42,7 @@ namespace CRM.WebMVC.Controllers
                 TempData["SaveResult"] = " Customer was successfully added to database! ";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Note could not be created.");
+            ModelState.AddModelError("", "Customer could not be created.");
 
             return View(model);
         }

@@ -78,7 +78,9 @@ namespace CRM.Services
                     StreetAddress = entity.StreetAddress,
                     City = entity.City,
                     StateOfPerson = entity.StateOfPerson,
-                    Current = entity.Current
+                    Current = entity.Current,
+                    HireDate = entity.HireDate
+                    
                 };
 
             }

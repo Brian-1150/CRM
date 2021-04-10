@@ -39,18 +39,18 @@
         </footer>
     </div>
     @*attempt to remove autofill from ALL editorFor boxes  ticket #19 *@
-    <script type="text/javascript">
-    $(document).ready(function()
-    {
-    $('#HTML.EditorFor').attr('autocomplete', 'off');
-    });
-
-    </script>
+   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({ maxDate: "+1d" }); //Restrict hire date to no further in future than tomorrow
+            //jqueryUI docementation
+        });
+    </script>
 </body>
 </html>

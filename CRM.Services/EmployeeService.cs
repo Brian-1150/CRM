@@ -101,6 +101,11 @@ namespace CRM.Services
                 entity.City = model.City;
                 entity.StateOfPerson = model.StateOfPerson;
                 entity.Current = model.Current;
+                entity.HireDate = model.HireDate;
+
+
+
+
 
                 return ctx.SaveChanges() > 0;
             }

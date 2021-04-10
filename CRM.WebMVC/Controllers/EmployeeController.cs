@@ -72,6 +72,7 @@ namespace CRM.WebMVC.Controllers
                 StreetAddress = detail.StreetAddress,
                 City = detail.City,
                 StateOfPerson = detail.StateOfPerson,
+               HireDate = detail.HireDate,
                 Current = detail.Current
             };
             return View(model);

@@ -47,7 +47,7 @@ namespace CRM.WebMVC.Controllers
         {
             var service = NewEmployeeService();
             var model = service.GetEmployees();
-            return View();
+            return View(model);
         }
         //GET:  Employee Details
         public ActionResult Details(int id)

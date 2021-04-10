@@ -285,6 +285,8 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Current.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

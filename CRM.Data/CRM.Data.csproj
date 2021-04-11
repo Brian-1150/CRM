@@ -56,13 +56,31 @@
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202104110255455_AfterDeleteDB.cs" />
+    <Compile Include="Migrations\202104110255455_AfterDeleteDB.Designer.cs">
+      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.cs" />
+    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.Designer.cs">
+      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202104110255455_AfterDeleteDB.resx">
+      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104110308226_ChangeToDateTimeOffset.resx">
+      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

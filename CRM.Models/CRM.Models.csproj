@@ -54,12 +54,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerCreate.cs" />
+    <Compile Include="CalendarEvent\CalendarEventCreate.cs" />
+    <Compile Include="CalendarEvent\CalendarEventListItem.cs" />
+    <Compile Include="Customer\CustomerCreate.cs" />
+    <Compile Include="Customer\CustomerDetail.cs" />
+    <Compile Include="Customer\CustomerEdit.cs" />
+    <Compile Include="Customer\CustomerListItem.cs" />
+    <Compile Include="Customer\CustomerDelete.cs" />
+    <Compile Include="Employee\EmployeeCreate.cs" />
+    <Compile Include="Employee\EmployeeDetail.cs" />
+    <Compile Include="Employee\EmployeeEdit.cs" />
+    <Compile Include="Employee\EmployeeListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRM.Data\CRM.Data.csproj">
+      <Project>{A1B7ABEF-5B49-4B8F-A6FA-9D21A37B3C9A}</Project>
+      <Name>CRM.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

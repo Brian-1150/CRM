@@ -1,0 +1,23 @@
+﻿
+@model bool
+<span id="active">
+    @if (Model == true)
+    {
+        @Html.Encode("Current Employee")
+    }
+</span>
+<span id="inactive">
+    @if (Model == false)
+    {
+        @Html.Encode("Previous Employee")
+    }
+
+</span>
+    <style>
+        #active {
+            background-color: green;
+        }
+        #inactive{
+            background-color:red;
+        }
+    </style>

@@ -3,10 +3,30 @@ namespace CRM.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class AfterDeleteDB : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.CalendarEvent",
+                c => new
+                    {
+                        CalEventID = c.Long(nullable: false, identity: true),
+                        CustomerID = c.Int(nullable: false),
+                        Location = c.String(),
+                        EmployeeID = c.Int(nullable: false),
+                        Start = c.DateTimeOffset(nullable: false, precision: 7),
+                        End = c.DateTimeOffset(nullable: false, precision: 7),
+                        Title = c.String(),
+                        ColorOfEvent = c.Int(nullable: false),
+                        Details = c.String(),
+                    })
+                .PrimaryKey(t => t.CalEventID)
+                .ForeignKey("dbo.Customer", t => t.CustomerID, cascadeDelete: true)
+                .ForeignKey("dbo.Employee", t => t.EmployeeID, cascadeDelete: true)
+                .Index(t => t.CustomerID)
+                .Index(t => t.EmployeeID);
+            
             CreateTable(
                 "dbo.Customer",
                 c => new
@@ -14,6 +34,7 @@ namespace CRM.Data.Migrations
                         CustomerID = c.Int(nullable: false, identity: true),
                         InitialDateOfContact = c.DateTimeOffset(nullable: false, precision: 7),
                         StatusOfCustomer = c.Int(nullable: false),
+                        IsOnDoNotContactList = c.Boolean(nullable: false),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(),
                         PhoneNumber = c.String(),
@@ -21,22 +42,25 @@ namespace CRM.Data.Migrations
                         StreetAddress = c.String(),
                         City = c.String(),
                         StateOfPerson = c.Int(nullable: false),
-                        CalendarEvent_CalEventID = c.Long(),
                     })
-                .PrimaryKey(t => t.CustomerID)
-                .ForeignKey("dbo.CalendarEvent", t => t.CalendarEvent_CalEventID)
-                .Index(t => t.CalendarEvent_CalEventID);
+                .PrimaryKey(t => t.CustomerID);
             
             CreateTable(
-                "dbo.CalendarEvent",
+                "dbo.Employee",
                 c => new
                     {
-                        CalEventID = c.Long(nullable: false, identity: true),
-                        Customer_CustomerID = c.Int(),
+                        EmployeeID = c.Int(nullable: false, identity: true),
+                        Current = c.Boolean(nullable: false),
+                        HireDate = c.DateTimeOffset(nullable: false, precision: 7),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(),
+                        PhoneNumber = c.String(),
+                        Email = c.String(),
+                        StreetAddress = c.String(),
+                        City = c.String(),
+                        StateOfPerson = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.CalEventID)
-                .ForeignKey("dbo.Customer", t => t.Customer_CustomerID)
-                .Index(t => t.Customer_CustomerID);
+                .PrimaryKey(t => t.EmployeeID);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -116,21 +140,22 @@ namespace CRM.Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
-            DropForeignKey("dbo.CalendarEvent", "Customer_CustomerID", "dbo.Customer");
-            DropForeignKey("dbo.Customer", "CalendarEvent_CalEventID", "dbo.CalendarEvent");
+            DropForeignKey("dbo.CalendarEvent", "EmployeeID", "dbo.Employee");
+            DropForeignKey("dbo.CalendarEvent", "CustomerID", "dbo.Customer");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.CalendarEvent", new[] { "Customer_CustomerID" });
-            DropIndex("dbo.Customer", new[] { "CalendarEvent_CalEventID" });
+            DropIndex("dbo.CalendarEvent", new[] { "EmployeeID" });
+            DropIndex("dbo.CalendarEvent", new[] { "CustomerID" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
-            DropTable("dbo.CalendarEvent");
+            DropTable("dbo.Employee");
             DropTable("dbo.Customer");
+            DropTable("dbo.CalendarEvent");
         }
     }
 }

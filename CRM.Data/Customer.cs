@@ -11,7 +11,7 @@ namespace CRM.Data
     {
         [Key]
         public int CustomerID { get; set; }
-        public virtual CalendarEvent CalendarEvent { get; set; }
+        
         public virtual ICollection<CalendarEvent> CalendarEvents { get; set; }
         public DateTimeOffset InitialDateOfContact { get; set; }
         public CustomerStatus StatusOfCustomer { get; set; }

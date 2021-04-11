@@ -16,20 +16,20 @@ namespace CRM.Data
   public  class CalendarEvent
     {
         [Key]
-        public long CalEventID { get; set; }
+        public int CalEventID { get; set; }
+
         [ForeignKey(nameof(Customer))]
-        public int CustmerID { get; set; }
+        public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
         
-        public string Location { get
-            { return Customer.StreetAddress; } }
+        public string Location { get; set; }
 
         [ForeignKey(nameof(Employee))]
         public int EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
         
         public DateTimeOffset Start { get; set; }
-        public DateTimeOffset End { get; set; }
+        public DateTimeOffset? End { get; set; }
         public string Title { get; set; }
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }

@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalendarEvent\CalendarEventCreate.cs" />
+    <Compile Include="CalendarEvent\CalendarEventListItem.cs" />
     <Compile Include="Customer\CustomerCreate.cs" />
     <Compile Include="Customer\CustomerDetail.cs" />
     <Compile Include="Customer\CustomerEdit.cs" />

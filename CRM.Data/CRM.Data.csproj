@@ -58,13 +58,13 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202104081937346_InitialCreate.cs" />
-    <Compile Include="Migrations\202104081937346_InitialCreate.Designer.cs">
-      <DependentUpon>202104081937346_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202104110255455_AfterDeleteDB.cs" />
+    <Compile Include="Migrations\202104110255455_AfterDeleteDB.Designer.cs">
+      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels.cs" />
-    <Compile Include="Migrations\202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels.Designer.cs">
-      <DependentUpon>202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels.cs</DependentUpon>
+    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.cs" />
+    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.Designer.cs">
+      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
@@ -75,11 +75,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104081937346_InitialCreate.resx">
-      <DependentUpon>202104081937346_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104110255455_AfterDeleteDB.resx">
+      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels.resx">
-      <DependentUpon>202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104110308226_ChangeToDateTimeOffset.resx">
+      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

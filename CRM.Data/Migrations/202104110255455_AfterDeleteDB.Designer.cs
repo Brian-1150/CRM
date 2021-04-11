@@ -7,18 +7,18 @@ namespace CRM.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels : IMigrationMetadata
+    public sealed partial class AfterDeleteDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AfterDeleteDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104100629478_ChangeToDateTimeFromDateTimeOffsetForEmployeeDataAndModels"; }
+            get { return "202104110255455_AfterDeleteDB"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

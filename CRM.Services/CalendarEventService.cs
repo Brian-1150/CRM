@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models;
 using CRM.Models.CalendarEvent;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,17 @@ namespace CRM.Services
             _userId = userId;
         }
 
+
+        public CalendarEventCreate CalendarEventCreateView()
+        {
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            //foreach(var cust in listOfCustomers)
+            //{
+
+            //}
+
+            return new CalendarEventCreate { ListOfCustomers = listOfCustomers };
+        }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
             Customer customer = _custService.GetCustomerFromDB(model.CustomerID);

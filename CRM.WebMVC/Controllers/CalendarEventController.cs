@@ -21,7 +21,10 @@ namespace CRM.WebMVC.Controllers
         //CREATE
         public ActionResult Create()
         {
-            return View();
+            var service = NewCalEventService();
+            var model = service.CalendarEventCreateView();
+            
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

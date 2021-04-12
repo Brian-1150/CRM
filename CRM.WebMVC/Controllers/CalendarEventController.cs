@@ -46,5 +46,13 @@ namespace CRM.WebMVC.Controllers
             var model = service.GetCalendarEvents();
             return View(model);
         }
+        //READ:  Event Details
+        public ActionResult Details(int id)
+        {
+            var svc = NewCalEventService();
+            var model = svc.GetEventById(id);
+
+            return View(model);
+        }
     }
 }

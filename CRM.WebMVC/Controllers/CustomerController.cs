@@ -58,7 +58,7 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Details(int id)
         {
             var svc = NewCustomerService();
-            var model = svc.GetCustomerByID(id);
+            var model = svc.GetCustomerDetailByID(id);
 
             return View(model);
         }
@@ -69,7 +69,7 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Edit(int id)
         {
             var service = NewCustomerService();
-            var detail = service.GetCustomerByID(id);
+            var detail = service.GetCustomerDetailByID(id);
             var model = new CustomerEdit
             {
                 CustomerID = detail.CustomerID,
@@ -112,7 +112,7 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Delete(int id)
         {
             var service = NewCustomerService();
-            var detail = service.GetCustomerByID(id);
+            var detail = service.GetCustomerDetailByID(id);
             var model = new CustomerDelete
             {
                 CustomerID = detail.CustomerID,

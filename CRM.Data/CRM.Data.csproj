@@ -66,6 +66,14 @@
     <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.Designer.cs">
       <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104120417076_UpdateLocationProp.cs" />
+    <Compile Include="Migrations\202104120417076_UpdateLocationProp.Designer.cs">
+      <DependentUpon>202104120417076_UpdateLocationProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104120421292_AnotherEditOFLocation.cs" />
+    <Compile Include="Migrations\202104120421292_AnotherEditOFLocation.Designer.cs">
+      <DependentUpon>202104120421292_AnotherEditOFLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104110308226_ChangeToDateTimeOffset.resx">
       <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120417076_UpdateLocationProp.resx">
+      <DependentUpon>202104120417076_UpdateLocationProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120421292_AnotherEditOFLocation.resx">
+      <DependentUpon>202104120421292_AnotherEditOFLocation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

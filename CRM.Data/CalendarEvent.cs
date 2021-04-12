@@ -21,8 +21,20 @@ namespace CRM.Data
         [ForeignKey(nameof(Customer))]
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
-        
+
         public string Location { get; set; }
+
+        //private string _location;
+        //public string Location
+        //{
+        //    get { return _location; }
+        //    set
+        //    {
+        //        if (Customer.StreetAddress != null)
+        //            _location = Customer.StreetAddress;
+        //    }
+        //}
+
 
         [ForeignKey(nameof(Employee))]
         public int EmployeeID { get; set; }

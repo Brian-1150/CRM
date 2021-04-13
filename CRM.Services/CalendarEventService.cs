@@ -35,8 +35,20 @@ namespace CRM.Services
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
             Customer customer = _custService.GetCustomerFromDB(model.CustomerID);
+            
+                //var testing = ctx.Customers.Single(x => x.CustomerID == model.CustomerID);
+                //if(testing is null)
+                //{
 
-            DateTimeOffset? endDefault;
+                //}
+                //ctx.Customers.Find(model.CustomerID);
+                //ctx.Customers.Where(x => x.CustomerID == model.CustomerID);
+                //var t = ctx.Customers.SingleOrDefault(c => c.CustomerID == model.CustomerID);
+                //if(t is null)
+                //{
+                //    return false;
+                //}
+                DateTimeOffset? endDefault;
             if (model.End != null)
                 endDefault = model.End;
             else endDefault = model.Start.AddDays(1);

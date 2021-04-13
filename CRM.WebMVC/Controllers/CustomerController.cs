@@ -34,6 +34,7 @@ namespace CRM.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
+
             //have EnumDropDownList default to have IN selected, but still be editable ** Ticket#15
             //model.StateOfPerson = Data.PersonState.IN;
             var service = NewCustomerService();
@@ -70,6 +71,7 @@ namespace CRM.WebMVC.Controllers
         {
             var service = NewCustomerService();
             var detail = service.GetCustomerDetailByID(id);
+            
             var model = new CustomerEdit
             {
                 CustomerID = detail.CustomerID,

@@ -17,7 +17,7 @@ namespace CRM.Data
     {
         // May have zero or one Job
         // IF it has a job, need to access the customer info from it to set location
-        // IF it has a job, need to adjust color based on Employee that it on the job
+        // IF it has a job, need to adjust color based on Employee that is on the job
         [Key]
         public int CalEventID { get; set; }
         public virtual Job Job { get; set; }

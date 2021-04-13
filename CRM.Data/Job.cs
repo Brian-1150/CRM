@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace CRM.Data
 {
-   public  class Job
+    public class Job
     {
         // MUST be tied to one calendar event
         // MUST be tied to one employee
         // MUST be tied to one customer
-
-        [Key, ForeignKey(nameof(CalendarEvent))]
-        
+        //[Key, ForeignKey(nameof(CalendarEvent))]
+        [Key]
         public int JobID { get; set; }
+
+        [ForeignKey(nameof(CalendarEvent))]
+        public int CalendarEventID { get; set; }
+        public virtual CalendarEvent CalendarEvent { get; set; }
 
         [ForeignKey(nameof(Customer))]
         public int CustomerID { get; set; }
@@ -34,7 +37,6 @@ namespace CRM.Data
         public int? InvoiceID { get; set; }
         public virtual Invoice Invoice { get; set; }
 
-        [ForeignKey(nameof(EmployeePay))]
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
     }

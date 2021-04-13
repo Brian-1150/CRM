@@ -22,13 +22,15 @@ namespace CRM.Services
 
         public CalendarEventCreate CalendarEventCreateView()
         {
+            // ref a broken method:  List<Customer> listOfCustObj = _custService.GetCustomerFromDB();
+
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-            //foreach(var cust in listOfCustomers)
-            //{
 
-            //}
-
-            return new CalendarEventCreate { ListOfCustomers = listOfCustomers };
+            return new CalendarEventCreate
+            {
+                ListOfCustomers = listOfCustomers,
+                Start = DateTimeOffset.Now //to prevent default date in datepicker starting at 1/1/0001
+            };
         }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {

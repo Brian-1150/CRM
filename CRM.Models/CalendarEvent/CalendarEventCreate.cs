@@ -12,7 +12,6 @@ namespace CRM.Models.CalendarEvent
     {
         
 
-        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
         public int CustomerID { get; set; }
 
         public int EmployeeID { get; set; }
@@ -25,6 +24,19 @@ namespace CRM.Models.CalendarEvent
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
 
+        [Display(Name ="Choose the customer")]
+        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
+        private List<string> _listOfCustNames { get; set; }
+        public virtual ICollection<string> ListOfCustomerNames
+        {
+            set
+            {
 
+                foreach (var item in ListOfCustomers)
+                    _listOfCustNames.Add(item.LastName);
+            }
+            get { return _listOfCustNames; }
+        }
+       
     }
 }

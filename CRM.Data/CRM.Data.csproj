@@ -58,6 +58,8 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="Job.cs" />
     <Compile Include="Migrations\202104110255455_AfterDeleteDB.cs" />
     <Compile Include="Migrations\202104110255455_AfterDeleteDB.Designer.cs">
       <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
@@ -75,6 +77,7 @@
       <DependentUpon>202104120421292_AnotherEditOFLocation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

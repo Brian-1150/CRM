@@ -24,21 +24,11 @@ namespace CRM.Data
 
         public string Location { get; set; }
 
-        //private string _location;
-        //public string Location
-        //{
-        //    get { return _location; }
-        //    set
-        //    {
-        //        if (Customer.StreetAddress != null)
-        //            _location = Customer.StreetAddress;
-        //    }
-        //}
-
-
         [ForeignKey(nameof(Employee))]
         public int? EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
+
+        public virtual Job Job { get; set; }
         
         public DateTimeOffset Start { get; set; }
         public DateTimeOffset? End { get; set; }

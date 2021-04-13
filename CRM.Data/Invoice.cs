@@ -21,7 +21,7 @@ namespace CRM.Data
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public HashSet<Job> Jobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
         public double  InvoiceAmount { get; set; }
 
         public bool Paid { get; set; }

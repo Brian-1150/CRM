@@ -13,7 +13,10 @@ namespace CRM.Data
         // MUST be tied to one calendar event
         // MUST be tied to one employee
         // MUST be tied to one customer
+
         //[Key, ForeignKey(nameof(CalendarEvent))]
+
+
         [Key]
         public int JobID { get; set; }
 

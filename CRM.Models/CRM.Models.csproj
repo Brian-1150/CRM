@@ -66,6 +66,7 @@
     <Compile Include="Employee\EmployeeDetail.cs" />
     <Compile Include="Employee\EmployeeEdit.cs" />
     <Compile Include="Employee\EmployeeListItem.cs" />
+    <Compile Include="Invoice\InvoiceCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextColor.cs" />
   </ItemGroup>
@@ -78,6 +79,10 @@
       <Project>{A1B7ABEF-5B49-4B8F-A6FA-9D21A37B3C9A}</Project>
       <Name>CRM.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Job\" />
+    <Folder Include="Paycheck\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

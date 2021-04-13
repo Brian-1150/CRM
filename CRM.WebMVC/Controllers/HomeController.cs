@@ -15,14 +15,14 @@ namespace CRM.WebMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This is a CRM and scheduler app designed for small service based businesses";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "We want to hear from you.  Please feel free to reach out with questions or feedback";
 
             return View();
         }

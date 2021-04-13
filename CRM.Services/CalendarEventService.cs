@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models;
 using CRM.Models.CalendarEvent;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,28 @@ namespace CRM.Services
     public class CalendarEventService
     {
         private readonly Guid _userId;
+        private CustomerService _custService = new CustomerService();
 
         public CalendarEventService(Guid userId)
         {
             _userId = userId;
         }
 
+
+        public CalendarEventCreate CalendarEventCreateView()
+        {
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            //foreach(var cust in listOfCustomers)
+            //{
+
+            //}
+
+            return new CalendarEventCreate { ListOfCustomers = listOfCustomers };
+        }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
+            Customer customer = _custService.GetCustomerFromDB(model.CustomerID);
+
             DateTimeOffset? endDefault;
             if (model.End != null)
                 endDefault = model.End;
@@ -26,7 +41,7 @@ namespace CRM.Services
             var entity = new CalendarEvent()
             {
                 CustomerID = model.CustomerID,
-                
+                Location = customer.StreetAddress,
                 EmployeeID = model.EmployeeID,
                 Start = model.Start,
                 End = endDefault,
@@ -40,7 +55,7 @@ namespace CRM.Services
                 ctx.CalendarEvents.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
-            
+
         }
 
         public IEnumerable<CalendarEventListItem> GetCalendarEvents()
@@ -66,7 +81,32 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
+
+        public CalendarEventDetail GetEventById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .CalendarEvents
+                    .Single(e => e.CalEventID == id);
+                return
+                    new CalendarEventDetail
+                    {
+                        CalEventID = entity.CalEventID,
+                        CustomerID = entity.CustomerID,
+                        EmployeeID = entity.EmployeeID,
+                        Start = entity.Start,
+                        End = entity.End,
+                        Details = entity.Details,
+                        Location = entity.Location,
+                        Title = entity.Title,
+                        ColorOfEvent = entity.ColorOfEvent
+                    };
+            }
+        }
     }
-
-
 }
+
+
+

@@ -10,12 +10,13 @@ namespace CRM.Models.CalendarEvent
 {
     public class CalendarEventCreate
     {
+        
 
-
-        [Required]
+        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
         public int CustomerID { get; set; }
 
         public int EmployeeID { get; set; }
+        public virtual Customer Customer { get; set; }
 
         [Required]
         public DateTimeOffset Start { get; set; }
@@ -23,6 +24,7 @@ namespace CRM.Models.CalendarEvent
         public string Title { get; set; }
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
+
 
     }
 }

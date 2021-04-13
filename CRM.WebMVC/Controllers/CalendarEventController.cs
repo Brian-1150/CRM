@@ -21,7 +21,10 @@ namespace CRM.WebMVC.Controllers
         //CREATE
         public ActionResult Create()
         {
-            return View();
+            var service = NewCalEventService();
+            var model = service.CalendarEventCreateView();
+            
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -44,6 +47,14 @@ namespace CRM.WebMVC.Controllers
         {
             var service = NewCalEventService();
             var model = service.GetCalendarEvents();
+            return View(model);
+        }
+        //READ:  Event Details
+        public ActionResult Details(int id)
+        {
+            var svc = NewCalEventService();
+            var model = svc.GetEventById(id);
+
             return View(model);
         }
     }

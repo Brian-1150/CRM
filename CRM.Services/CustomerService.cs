@@ -12,6 +12,7 @@ namespace CRM.Services
     {
         private readonly Guid _userId;
 
+        public CustomerService() { }
         public CustomerService(Guid userId)
         {
             _userId = userId;
@@ -31,7 +32,7 @@ namespace CRM.Services
                 StateOfPerson = model.StateOfPerson,
                 InitialDateOfContact = DateTimeOffset.Now,
                 StatusOfCustomer = CustomerStatus.Prospect  //new Customer gets set to prospect by default
-                
+
 
             };
             using (var ctx = new ApplicationDbContext())
@@ -40,6 +41,8 @@ namespace CRM.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+
 
         public IEnumerable<CustomerListItem> GetCustomers()
         {
@@ -67,7 +70,7 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
-        public CustomerDetail GetCustomerByID(int id)
+        public CustomerDetail GetCustomerDetailByID(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -89,12 +92,12 @@ namespace CRM.Services
                         StatusOfCustomer = entity.StatusOfCustomer,
                         InitialDateOfContact = entity.InitialDateOfContact,
                         IsOnDoNotContactList = entity.IsOnDoNotContactList
-                        
+
 
                     };
             }
         }
-        public bool UpdateCustomer( CustomerEdit model)
+        public bool UpdateCustomer(CustomerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -112,7 +115,7 @@ namespace CRM.Services
                 entity.StatusOfCustomer = model.StatusOfCustomer;
 
 
-                    return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == 1;
             }
         }
         public bool DeleteCustomer(CustomerDelete model)
@@ -128,6 +131,20 @@ namespace CRM.Services
                 entity.StatusOfCustomer = model.StatusOfCustomer;
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //Helper Methods
+
+        internal Customer GetCustomerFromDB(int customerID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Customers
+                    .Single(e => e.CustomerID == customerID);
+                return entity;
             }
         }
 

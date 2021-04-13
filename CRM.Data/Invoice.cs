@@ -8,6 +8,10 @@ namespace CRM.Data
 {
     public class Invoice
     {
-        public int PayCheckID { get; set; }
+
+        // One or many Jobs
+        // Only one customer
+        // Zero Employee
+        public int InvoiceID { get; set; }
     }
 }

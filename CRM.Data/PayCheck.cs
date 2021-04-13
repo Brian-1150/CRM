@@ -8,6 +8,9 @@ namespace CRM.Data
 {
    public class PayCheck
     {
+        // Many Jobs
+        // Only 1 Employee
+        // Zero Customer
         public int PayCheckID { get; set; }
     }
 }

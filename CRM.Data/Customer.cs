@@ -9,6 +9,8 @@ namespace CRM.Data
 {
     public class Customer: Person
     {
+        //Tied to many CalEvents, JObs, and invoices
+
         [Key]
         public int CustomerID { get; set; }
         

@@ -10,6 +10,10 @@ namespace CRM.Data
 {
    public  class Job
     {
+        // MUST be tied to one calendar event
+        // MUST be tied to one employee
+        // MUST be tied to one customer
+
         [Key, ForeignKey(nameof(CalendarEvent))]
         
         public int JobID { get; set; }
@@ -30,7 +34,7 @@ namespace CRM.Data
         public int? InvoiceID { get; set; }
         public virtual Invoice Invoice { get; set; }
 
-        [ForeignKey(nameof())]
+        [ForeignKey(nameof(EmployeePay))]
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
     }

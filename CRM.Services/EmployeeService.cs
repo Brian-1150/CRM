@@ -12,6 +12,7 @@ namespace CRM.Services
     {
         private readonly Guid _userId;
 
+        public EmployeeService() { }
         public EmployeeService(Guid userId)
         {
             _userId = userId;

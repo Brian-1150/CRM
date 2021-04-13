@@ -51,7 +51,10 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('input[type=datetime]').datepicker({ maxDate: "+1d" }); //Restrict hire date to no further in future than tomorrow
+            $('input[type=datetime]').datepicker(
+                {
+                    dateFormat: "M/d/yy",
+                    }); //  { maxDate: "+1d" } Restrict hire date to no further in future than tomorrow
             //jqueryUI docementation
         });
     </script>

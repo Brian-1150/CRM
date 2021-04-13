@@ -37,7 +37,7 @@ namespace CRM.Data
 
 
         [ForeignKey(nameof(Employee))]
-        public int EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
         
         public DateTimeOffset Start { get; set; }

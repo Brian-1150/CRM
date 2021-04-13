@@ -1,6 +1,7 @@
 ﻿using CRM.Data;
 using CRM.Models;
 using CRM.Models.CalendarEvent;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CRM.Services
     {
         private readonly Guid _userId;
         private CustomerService _custService = new CustomerService();
-
+        private EmployeeService _empService = new EmployeeService();
         public CalendarEventService(Guid userId)
         {
             _userId = userId;
@@ -22,13 +23,14 @@ namespace CRM.Services
 
         public CalendarEventCreate CalendarEventCreateView()
         {
+           
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-            //foreach(var cust in listOfCustomers)
-            //{
-
-            //}
-
-            return new CalendarEventCreate { ListOfCustomers = listOfCustomers };
+            List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
+            return new CalendarEventCreate
+            {
+                ListOfCustomers = listOfCustomers,
+                ListOfEmployees = listOfEmployees
+            };
         }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {

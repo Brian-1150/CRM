@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,10 +13,9 @@ namespace CRM.Models.CalendarEvent
     {
         
 
-        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
         public int CustomerID { get; set; }
 
-        public int EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
         public virtual Customer Customer { get; set; }
 
         [Required]
@@ -25,6 +25,11 @@ namespace CRM.Models.CalendarEvent
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
 
+        [Display(Name ="Choose the customer")]
+        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
+
+        [Display(Name = "Choose the employee")]
+        public virtual ICollection<EmployeeListItem> ListOfEmployees { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CRM.Data;
 using CRM.Models;
 using CRM.Models.CalendarEvent;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CRM.Services
     {
         private readonly Guid _userId;
         private CustomerService _custService = new CustomerService();
-
+        private EmployeeService _empService = new EmployeeService();
         public CalendarEventService(Guid userId)
         {
             _userId = userId;
@@ -22,14 +23,13 @@ namespace CRM.Services
 
         public CalendarEventCreate CalendarEventCreateView()
         {
-            // ref a broken method:  List<Customer> listOfCustObj = _custService.GetCustomerFromDB();
-
+           
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-
+            List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
             return new CalendarEventCreate
             {
                 ListOfCustomers = listOfCustomers,
-                Start = DateTimeOffset.Now //to prevent default date in datepicker starting at 1/1/0001
+                ListOfEmployees = listOfEmployees
             };
         }
         public bool CreateCalendarEvent(CalendarEventCreate model)

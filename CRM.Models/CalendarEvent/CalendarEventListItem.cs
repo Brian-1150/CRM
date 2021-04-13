@@ -18,7 +18,7 @@ namespace CRM.Models.CalendarEvent
         public string Location { get; set; }
         
                 
-        public int EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
       
 
         public DateTimeOffset Start { get; set; }

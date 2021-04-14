@@ -10,14 +10,12 @@ namespace CRM.Models.Invoice
 {
     public class InvoiceCreate
     {
-
-
         public int CustomerID { get; set; }
 
 
         [Display(Name = "Choose the customer")]
 
         public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
-        public virtual ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<JobListItem> Jobs { get; set; }
     }
 }

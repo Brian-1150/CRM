@@ -27,15 +27,19 @@ namespace CRM.Data
 
         [Display(Name = "State")]
         public PersonState StateOfPerson { get; set; }
-        public string FullName { get{
+        public string FullName
+        {
+            get
+            {
                 return FirstName + " " + LastName;
             }
 
 
-    }
-    public enum PersonState
-    {
+        }
+        public enum PersonState
+        {
 
-        AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UM, UT, VA, VI, VT, WA, WI, WV, WY
+            AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UM, UT, VA, VI, VT, WA, WI, WV, WY
+        }
     }
 }

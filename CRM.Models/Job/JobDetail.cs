@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CRM.Data;
+using CRM.Models.CalendarEvent;
+using CRM.Models.Employee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +13,10 @@ namespace CRM.Models.Job
     {
         public int JobID { get; set; }
 
-        public int CalendarEventID { get; set; }
+        public CalendarEventDetail CalendarEvent_Detail { get; set; } //Access to the date and calendarId
 
-        public int CustomerID { get; set; }
-        
-
-        public int EmployeeID { get; set; }
+        public EmployeeDetail  Employee_Detail { get; set; } // Access to Full name and ID and other details
+        public CustomerDetail Customer_Detail { get; set; } //Access to Full Name and ID and other details
         
 
         public int? PayCheckID { get; set; }

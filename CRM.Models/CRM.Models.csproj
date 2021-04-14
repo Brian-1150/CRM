@@ -68,7 +68,9 @@
     <Compile Include="Employee\EmployeeListItem.cs" />
     <Compile Include="Invoice\InvoiceCreate.cs" />
     <Compile Include="Job\JobCreate.cs" />
+    <Compile Include="Job\JobDelete.cs" />
     <Compile Include="Job\JobDetail.cs" />
+    <Compile Include="Job\JobEdit.cs" />
     <Compile Include="Job\JobListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextColor.cs" />

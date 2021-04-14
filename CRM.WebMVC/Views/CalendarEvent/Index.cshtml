@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CalEventID)
+            @Html.DisplayNameFor(model => model.CalendarEventID)
         </th>
         
         <th>
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CalEventID)
+            @Html.DisplayFor(modelItem => item.CalendarEventID)
         </td>
         
         <td>
@@ -46,7 +46,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { id = item.CalEventID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CalendarEventID }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>

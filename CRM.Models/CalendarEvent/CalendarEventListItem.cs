@@ -10,7 +10,7 @@ namespace CRM.Models.CalendarEvent
     public class CalendarEventListItem
     {
 
-        public int CalEventID { get; set; }
+        public int CalendarEventID { get; set; }
         public int JobID { get; set; }
         public string Location { get; set; }
 

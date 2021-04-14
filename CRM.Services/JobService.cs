@@ -1,5 +1,6 @@
 ﻿using CRM.Data;
 using CRM.Models;
+using CRM.Models.CalendarEvent;
 using CRM.Models.Employee;
 using CRM.Models.Job;
 using System;
@@ -15,21 +16,25 @@ namespace CRM.Services
         private readonly Guid _userId;
         private CustomerService _custService = new CustomerService();
         private EmployeeService _empService = new EmployeeService();
+        private CalendarEventService _calEventService = new CalendarEventService();
+
         public JobService(Guid userId)
         {
             _userId = userId;
         }
 
 
-        public JobCreate JobCreateView()
+        public JobCreate GetJobCreateView()
         {
 
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
             List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
+            List<CalendarEventListItem> listOfCalEvents = _calEventService.GetAvailableCalEvents();
             return new JobCreate
             {
                 ListOfCustomers = listOfCustomers,
-                ListOfEmployees = listOfEmployees
+                ListOfEmployees = listOfEmployees,
+                ListOfCalEvents = listOfCalEvents
             };
         }
         public bool CreateJob(JobCreate model)
@@ -43,6 +48,7 @@ namespace CRM.Services
                 EmployeeID = model.EmployeeID,
                 CustomerCharge = model.CustomerCharge,
                 EmployeePay = model.EmployeePay,
+                JobID = model.CalendarEventID
 
             };
             using (var ctx = new ApplicationDbContext())

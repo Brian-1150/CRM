@@ -1,4 +1,5 @@
-﻿using CRM.Models.Employee;
+﻿using CRM.Models.CalendarEvent;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,6 @@ namespace CRM.Models.Job
 
         [Display(Name = "Choose the employee")]
         public virtual ICollection<EmployeeListItem> ListOfEmployees { get; set; }
-
+        public virtual ICollection<CalendarEventListItem> ListOfCalEvents { get; set; }
     }
 }

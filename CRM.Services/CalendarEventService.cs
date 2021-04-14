@@ -15,6 +15,8 @@ namespace CRM.Services
         private readonly Guid _userId;
         private CustomerService _custService = new CustomerService();
         private EmployeeService _empService = new EmployeeService();
+
+        public CalendarEventService() { }
         public CalendarEventService(Guid userId)
         {
             _userId = userId;
@@ -57,6 +59,8 @@ namespace CRM.Services
 
         }
 
+
+
         public IEnumerable<CalendarEventListItem> GetCalendarEvents()
         {
             var tempList = new List<CalendarEventListItem>();
@@ -70,7 +74,7 @@ namespace CRM.Services
                         e =>
                         new CalendarEventListItem
                         {
-                            CalEventID = e.CalEventID,                            
+                            CalendarEventID = e.CalEventID,
                             Location = e.Location,
                             Start = e.Start,
                             End = e.End,
@@ -117,6 +121,30 @@ namespace CRM.Services
                         Title = entity.Title,
                         ColorOfEvent = entity.ColorOfEvent
                     };
+            }
+        }
+
+        //Helper Methods
+
+        internal List<CalendarEventListItem> GetAvailableCalEvents()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .CalendarEvents
+                    .Where(e => e.Job == null)
+                    .Select(
+                        e =>
+                        new CalendarEventListItem
+                        {
+                            CalendarEventID = e.CalEventID,
+                            Location = e.Location,
+                            Start = e.Start,
+                            End = e.End,
+                            ColorOfEvent = e.ColorOfEvent
+                        });
+                return query.ToList();
             }
         }
     }

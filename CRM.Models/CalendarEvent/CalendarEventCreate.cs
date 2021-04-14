@@ -25,11 +25,7 @@ namespace CRM.Models.CalendarEvent
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
 
-        [Display(Name ="Choose the customer")]
-        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
-
-        [Display(Name = "Choose the employee")]
-        public virtual ICollection<EmployeeListItem> ListOfEmployees { get; set; }
+       
 
     }
 }

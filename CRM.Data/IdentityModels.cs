@@ -34,6 +34,10 @@ namespace CRM.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<CalendarEvent> CalendarEvents { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<PayCheck> PayChecks { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

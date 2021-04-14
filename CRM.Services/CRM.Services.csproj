@@ -57,6 +57,7 @@
     <Compile Include="CalendarEventService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="JobService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

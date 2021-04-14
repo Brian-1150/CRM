@@ -9,7 +9,7 @@ namespace CRM.Models.CalendarEvent
 {
    public class CalendarEventDetail
     {
-
+        
         public int CalEventID { get; set; }
 
        

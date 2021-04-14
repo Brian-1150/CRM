@@ -14,13 +14,8 @@ namespace CRM.Data
         // MUST be tied to one employee
         // MUST be tied to one customer
 
-        //[Key, ForeignKey(nameof(CalendarEvent))]
+        [Key, ForeignKey(nameof(CalendarEvent))]
 
-
-        [Key]
-        public int JobID { get; set; }
-
-        [ForeignKey(nameof(CalendarEvent))]
         public int CalendarEventID { get; set; }
         public virtual CalendarEvent CalendarEvent { get; set; }
 
@@ -34,7 +29,7 @@ namespace CRM.Data
 
         [ForeignKey(nameof(PayCheck))]
         public int? PayCheckID { get; set; }
-        public virtual PayCheck Paycheck { get; set; }
+        public virtual PayCheck PayCheck { get; set; }
 
         [ForeignKey(nameof(Invoice))]
         public int? InvoiceID { get; set; }
@@ -42,5 +37,11 @@ namespace CRM.Data
 
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
+        private int _jobID { get; set; }
+        public int JobID
+        {
+            set { _jobID = CalendarEventID; }
+            get { return _jobID; }
+        }
     }
 }

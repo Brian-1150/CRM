@@ -20,7 +20,7 @@ namespace CRM.Data
         public int EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
 
-        public HashSet<Job> Jobs { get; set; }
+        public virtual IEnumerable<Job> Jobs { get; set; }
         public double PayCheckAmount { get; set; }
 
         public bool Paid { get; set; }

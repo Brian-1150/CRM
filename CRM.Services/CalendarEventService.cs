@@ -23,18 +23,16 @@ namespace CRM.Services
 
         public CalendarEventCreate CalendarEventCreateView()
         {
-           
-            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-            List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
+
             return new CalendarEventCreate
-            {
-                ListOfCustomers = listOfCustomers,
-                ListOfEmployees = listOfEmployees
+
+            //ticket #22
+            {//remove unnecessary call to method to return view.  Method has been changed
             };
         }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
-            Customer customer = _custService.GetCustomerFromDB(model.CustomerID);
+
 
             DateTimeOffset? endDefault;
             if (model.End != null)
@@ -42,9 +40,8 @@ namespace CRM.Services
             else endDefault = model.Start.AddDays(1);
             var entity = new CalendarEvent()
             {
-                CustomerID = model.CustomerID,
-                Location = customer.StreetAddress,
-                EmployeeID = model.EmployeeID,
+
+                Location = model.Location,
                 Start = model.Start,
                 End = endDefault,
                 Title = model.Title,
@@ -62,6 +59,7 @@ namespace CRM.Services
 
         public IEnumerable<CalendarEventListItem> GetCalendarEvents()
         {
+            var tempList = new List<CalendarEventListItem>();
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
@@ -72,15 +70,31 @@ namespace CRM.Services
                         e =>
                         new CalendarEventListItem
                         {
-                            CalEventID = e.CalEventID,
-                            CustomerID = e.CustomerID,
+                            CalEventID = e.CalEventID,                            
                             Location = e.Location,
-                            EmployeeID = e.EmployeeID,
                             Start = e.Start,
                             End = e.End,
                             ColorOfEvent = e.ColorOfEvent
                         });
                 return query.ToArray();
+                //tempList.Add((CalendarEventListItem)query);
+
+                //var query2 = ctx
+                //    .CalendarEvents
+                //    .Where(e => e.Job.CalendarEventID == e.CalEventID)
+                //    .Select(
+                //        e =>
+                //        new CalendarEventListItem
+                //        {
+                //            CalEventID = e.CalEventID,
+                //            JobID = e.Job.JobID,
+                //            Location = e.Location,
+                //            Start = e.Start,
+                //            End = e.End,
+                //            ColorOfEvent = e.ColorOfEvent
+                //        });
+                //tempList.Add((CalendarEventListItem)query);
+                //return tempList;
             }
         }
 
@@ -96,8 +110,6 @@ namespace CRM.Services
                     new CalendarEventDetail
                     {
                         CalEventID = entity.CalEventID,
-                        CustomerID = entity.CustomerID,
-                        EmployeeID = entity.EmployeeID,
                         Start = entity.Start,
                         End = entity.End,
                         Details = entity.Details,

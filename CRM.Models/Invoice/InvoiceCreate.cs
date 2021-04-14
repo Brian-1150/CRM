@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models.Job;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

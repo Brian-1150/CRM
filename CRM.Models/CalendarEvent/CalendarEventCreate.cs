@@ -11,12 +11,9 @@ namespace CRM.Models.CalendarEvent
 {
     public class CalendarEventCreate
     {
-        
 
-        public int CustomerID { get; set; }
 
-        public int? EmployeeID { get; set; }
-        public virtual Customer Customer { get; set; }
+        public string Location { get; set; }
 
         [Required]
         public DateTimeOffset Start { get; set; }

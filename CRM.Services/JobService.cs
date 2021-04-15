@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Data.Deleted;
 using CRM.Models;
 using CRM.Models.CalendarEvent;
 using CRM.Models.Employee;
@@ -127,6 +128,40 @@ namespace CRM.Services
                 entity.CustomerCharge = model.CustomerCharge;
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteJob(JobListItem model)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entityToDelete =
+                    ctx
+                    .Jobs
+                    .Find(model.JobID);
+
+                var copyOfDeletedEntity = new JobDeleted
+                {
+                    JobID = entityToDelete.JobID,
+                    CalendarEventID = entityToDelete.CalendarEventID,
+                    CustomerID = entityToDelete.CustomerID,
+                    EmployeeID = entityToDelete.EmployeeID,
+                    EmployeePay = entityToDelete.EmployeePay,
+                    CustomerCharge = entityToDelete.CustomerCharge
+                };
+                ctx.JobsDeleted.Add(copyOfDeletedEntity);
+                if(ctx.SaveChanges() == 1)
+                {
+                    ctx.Jobs.Remove(entityToDelete);
+                return ctx.SaveChanges() == 1;
+                }
+                return false;
+                    
+
+               
+
             }
         }
     }

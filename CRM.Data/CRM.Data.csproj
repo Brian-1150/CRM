@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Deleted\JobDeleted.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Invoice.cs" />

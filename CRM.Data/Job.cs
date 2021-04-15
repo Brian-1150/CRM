@@ -37,11 +37,12 @@ namespace CRM.Data
 
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
-        private int _jobID { get; set; }
+    
         public int JobID { get; set; }
 
-            //the following strategy did not work.
-        //{
+
+        //the following strategy did not work.
+        //{    private int _jobID { get; set; }
         //    set { _jobID = CalendarEventID; }
         //    get { return _jobID; }
         //}

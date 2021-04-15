@@ -24,16 +24,16 @@ namespace CRM.WebMVC.Controllers
             }
             catch (ArgumentNullException e)
             {
-               
+
                 return null;
 
                 throw;
             }
-           
+
         }
 
         //CREATE
-         public ActionResult Create()
+        public ActionResult Create()
         {
             var service = NewJobServcie();
             if (service is null)
@@ -50,9 +50,10 @@ namespace CRM.WebMVC.Controllers
                 return View(model);
             var service = NewJobServcie();
             if (service.CreateJob(model))
-            { TempData["SaveResult"] = "Event Added";
+            {
+                TempData["SaveResult"] = "Event Added";
                 return RedirectToAction("Index");
-                            }
+            }
             ModelState.AddModelError("", "Job create failed");
             return View(model);
         }
@@ -73,7 +74,7 @@ namespace CRM.WebMVC.Controllers
             var model = service.GetJobByID(id);
             return View(model);
         }
-       
+
         //UPDATE: 
         public ActionResult Edit(int id)
         {
@@ -84,7 +85,7 @@ namespace CRM.WebMVC.Controllers
                 TempData["message"] = "Job may not be edited once it has been added to invoice or paycheck";
                 return RedirectToAction("Index");
             }
-                
+
             EmployeeListItem[] listOfEmployees = _empSvc.GetEmployees().ToArray();
             var model = new JobEdit
             {
@@ -120,5 +121,47 @@ namespace CRM.WebMVC.Controllers
             ModelState.AddModelError("", "JOb info could not be updated");
             return View(model);
         }
+
+        //DELETE
+        public ActionResult Delete(int id)
+        {
+            var service = NewJobServcie();
+            var detail = service.GetJobByID(id);
+            var model = new JobListItem
+            {
+                JobID = detail.JobID,
+                CalendarEventID = detail.CalendarEventID,
+                CustomerID = detail.CustomerID,
+                EmployeeID = detail.EmployeeID,
+                EmployeePay = detail.EmployeePay,
+                CustomerCharge = detail.CustomerCharge,
+                PayCheckID = detail.PayCheckID,
+                InvoiceID = detail.InvoiceID
+                            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, JobListItem model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            if (model.JobID != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+
+            }
+            var service = NewJobServcie();
+            if (service.DeleteJob(model))
+            {
+                TempData["SaveResult"] = "Job info was deleted successfully!";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "JOb  could not be deleted");
+            return View(model);
+        }
     }
+
+
+    
 }

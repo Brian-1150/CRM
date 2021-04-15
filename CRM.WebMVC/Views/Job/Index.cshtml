@@ -5,7 +5,9 @@
 }
 
 <h2>Index</h2>
-
+<div class="alert-danger">
+    @TempData["message"]
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -38,38 +40,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CalendarEventID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PayCheckID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeePay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerCharge)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { id = item.JobID }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalendarEventID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayCheckID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeePay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerCharge)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.JobID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.JobID }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>

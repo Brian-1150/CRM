@@ -113,5 +113,21 @@ namespace CRM.Services
                     };
             }
         }
+
+        public bool UpdateJob(JobEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Jobs
+                    .Find(model.JobID);
+
+                entity.EmployeeID = model.EmployeeID;
+                entity.EmployeePay = model.EmployeePay;
+                entity.CustomerCharge = model.CustomerCharge;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

@@ -123,42 +123,24 @@ namespace CRM.WebMVC.Controllers
         }
 
         //DELETE
+        [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var service = NewJobServcie();
-            var detail = service.GetJobByID(id);
-            var model = new JobListItem
-            {
-                JobID = detail.JobID,
-                CalendarEventID = detail.CalendarEventID,
-                CustomerID = detail.CustomerID,
-                EmployeeID = detail.EmployeeID,
-                EmployeePay = detail.EmployeePay,
-                CustomerCharge = detail.CustomerCharge,
-                PayCheckID = detail.PayCheckID,
-                InvoiceID = detail.InvoiceID
-                            };
+             
+            var model = service.GetJobByID(id);
             return View(model);
         }
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, JobListItem model)
+        public ActionResult DeleteJob(int id)
         {
-            if (!ModelState.IsValid) return View(model);
-            if (model.JobID != id)
-            {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
-
-            }
             var service = NewJobServcie();
-            if (service.DeleteJob(model))
-            {
-                TempData["SaveResult"] = "Job info was deleted successfully!";
-                return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("", "JOb  could not be deleted");
-            return View(model);
+            service.DeleteJob(id);
+            TempData["SaveResult"] = "Your Job was deleted";
+
+            return RedirectToAction("Index");
         }
     }
 

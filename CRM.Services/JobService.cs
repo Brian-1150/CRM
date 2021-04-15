@@ -131,7 +131,7 @@ namespace CRM.Services
             }
         }
 
-        public bool DeleteJob(JobListItem model)
+        public bool DeleteJob(int id)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -140,7 +140,7 @@ namespace CRM.Services
                 var entityToDelete =
                     ctx
                     .Jobs
-                    .Find(model.JobID);
+                    .Find(id);
 
                 var copyOfDeletedEntity = new JobDeleted
                 {

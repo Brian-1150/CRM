@@ -34,10 +34,11 @@ namespace CRM.WebMVC.Controllers
             return View(model);
         }
 
-        // GET: Invoice
+        // READ: List of Invoices
         public ActionResult Index()
         {
-            return View();
+            var model = _svc.GetInvoices();
+            return View(model);
         }
     }
 }

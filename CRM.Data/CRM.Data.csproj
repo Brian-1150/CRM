@@ -64,22 +64,6 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="Migrations\202104110255455_AfterDeleteDB.cs" />
-    <Compile Include="Migrations\202104110255455_AfterDeleteDB.Designer.cs">
-      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.cs" />
-    <Compile Include="Migrations\202104110308226_ChangeToDateTimeOffset.Designer.cs">
-      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104120417076_UpdateLocationProp.cs" />
-    <Compile Include="Migrations\202104120417076_UpdateLocationProp.Designer.cs">
-      <DependentUpon>202104120417076_UpdateLocationProp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104120421292_AnotherEditOFLocation.cs" />
-    <Compile Include="Migrations\202104120421292_AnotherEditOFLocation.Designer.cs">
-      <DependentUpon>202104120421292_AnotherEditOFLocation.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -88,20 +72,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104110255455_AfterDeleteDB.resx">
-      <DependentUpon>202104110255455_AfterDeleteDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104110308226_ChangeToDateTimeOffset.resx">
-      <DependentUpon>202104110308226_ChangeToDateTimeOffset.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104120417076_UpdateLocationProp.resx">
-      <DependentUpon>202104120417076_UpdateLocationProp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104120421292_AnotherEditOFLocation.resx">
-      <DependentUpon>202104120421292_AnotherEditOFLocation.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

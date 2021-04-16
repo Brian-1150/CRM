@@ -11,6 +11,8 @@ namespace CRM.Data.Deleted
     {
        
         [Key]
+
+        public int DeletedJobID { get; set; }
         public int JobID { get; set; }
 
         public int CalendarEventID { get; set; }

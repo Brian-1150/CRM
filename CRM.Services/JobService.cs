@@ -119,7 +119,7 @@ namespace CRM.Services
 
                         CustomerID = entity.CustomerID,
                         CustomerFullName = entity.Customer.FullName,
-                        CustomerFullAddress = entity.Customer.FullName,
+                        CustomerFullAddress = entity.Customer.FullAddress,
                         EmployeeID = entity.EmployeeID,
                         EmployeeFullName = entity.Employee.FullName,
 

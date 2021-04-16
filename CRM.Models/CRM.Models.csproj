@@ -70,6 +70,7 @@
     <Compile Include="Employee\EmployeeEdit.cs" />
     <Compile Include="Employee\EmployeeListItem.cs" />
     <Compile Include="Invoice\InvoiceCreate.cs" />
+    <Compile Include="Invoice\InvoiceEdit.cs" />
     <Compile Include="Invoice\InvoiceListItem.cs" />
     <Compile Include="Job\JobCreate.cs" />
     <Compile Include="Job\JobDelete.cs" />

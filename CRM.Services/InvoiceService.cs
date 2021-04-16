@@ -28,7 +28,8 @@ namespace CRM.Services
         {
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
             ICollection<JobListItem> listOfJobs = (ICollection<JobListItem>)_jobService.GetJobs();
-
+            //create filter for list of jobs to display as option for adding to invoice
+            //ticket # 27
             return new InvoiceCreate
             {
                 ListOfCustomers = listOfCustomers,
@@ -73,7 +74,7 @@ namespace CRM.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                
+
                 var query =
                     ctx
                     .Invoices
@@ -92,44 +93,65 @@ namespace CRM.Services
             }
         }
 
-
-        //Helper Methods
-
-        private List<int> GetJobIDs(int id)
+        public InvoiceListItem GetInvoiceByID(int id)
         {
-            List<int> jobIDs = new List<int>();
+            List<int> jobIDs = GetJobIDs(id);
             using (var ctx = new ApplicationDbContext())
             {
-                foreach( var job in ctx.Jobs)
-                {
-                    if (job.InvoiceID == id)
-                    jobIDs.Add(job.JobID);
-                }
-                return jobIDs;
-            }
-        }
+                var entity =
+                    ctx
+                    .Invoices
+                    .Single(e => e.InvoiceID == id);
 
-        private void AddForeignKeyValueToJob(InvoiceCreate model)
-        {
-            int invoiceId = GetInvoiceId();
-            using (var ctx = new ApplicationDbContext())
+                return
+                    new InvoiceListItem
+                    {
+                        InvoiceID = id,
+                        CustomerID = entity.CustomerID,
+                        JobIDs = jobIDs,
+                        InvoiceAmount = entity.InvoiceAmount,
+                        Paid = entity.Paid
+                    };
+            }
+
+        }
+            //Helper Methods
+
+            private List<int> GetJobIDs(int id)
             {
-                for (int i = 0; i < model.ListOfSelectedJobs.Count; i++)
+                List<int> jobIDs = new List<int>();
+                using (var ctx = new ApplicationDbContext())
                 {
-                    var entity = ctx.Jobs.Find(model.ListOfSelectedJobs.ElementAt(i));
-                    entity.InvoiceID = invoiceId;
-                    ctx.SaveChanges();
-
+                    foreach (var job in ctx.Jobs)
+                    {
+                        if (job.InvoiceID == id)
+                            jobIDs.Add(job.JobID);
+                    }
+                    return jobIDs;
                 }
             }
-        }
 
-        private int GetInvoiceId()
-        {
-            List<InvoiceListItem> tempList = GetInvoices().ToList();
-            return tempList.Last().InvoiceID;
-            
-            
+            private void AddForeignKeyValueToJob(InvoiceCreate model)
+            {
+                int invoiceId = GetInvoiceId();
+                using (var ctx = new ApplicationDbContext())
+                {
+                    for (int i = 0; i < model.ListOfSelectedJobs.Count; i++)
+                    {
+                        var entity = ctx.Jobs.Find(model.ListOfSelectedJobs.ElementAt(i));
+                        entity.InvoiceID = invoiceId;
+                        ctx.SaveChanges();
+
+                    }
+                }
+            }
+
+            private int GetInvoiceId()
+            {
+                List<InvoiceListItem> tempList = GetInvoices().ToList();
+                return tempList.Last().InvoiceID;
+
+
+            }
         }
     }
-}

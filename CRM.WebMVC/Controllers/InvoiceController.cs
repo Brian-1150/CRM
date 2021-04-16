@@ -40,5 +40,12 @@ namespace CRM.WebMVC.Controllers
             var model = _svc.GetInvoices();
             return View(model);
         }
+
+        //Invoice Detials
+        public ActionResult Details(int id)
+        {
+            var model = _svc.GetInvoiceByID(id);
+            return View(model);
+        }
     }
 }

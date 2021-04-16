@@ -3,6 +3,7 @@ using CRM.Data.Deleted;
 using CRM.Models;
 using CRM.Models.CalendarEvent;
 using CRM.Models.Employee;
+using CRM.Models.Invoice;
 using CRM.Models.Job;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace CRM.Services
         private EmployeeService _empService = new EmployeeService();
         private CalendarEventService _calEventService = new CalendarEventService();
 
+        public JobService()  {   }
         public JobService(Guid userId)
         {
             _userId = userId;
@@ -38,6 +40,20 @@ namespace CRM.Services
                 ListOfCalEvents = listOfCalEvents
             };
         }
+
+        //internal void AddForeignKeyValue(InvoiceCreate model)
+        //{
+        //    for (int i = 0; i < model.ListOfSelectedJobs.Count; i++)
+        //    {
+        //        using (var ctx = new ApplicationDbContext())
+        //        {
+        //            var entity =
+        //            ctx.Jobs.Find(model.ListOfSelectedJobs.ElementAt(i));
+        //            entity.InvoiceID = model.
+        //        }
+        //    }
+        //}
+
         public bool CreateJob(JobCreate model)
         {
 

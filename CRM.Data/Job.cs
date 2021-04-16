@@ -15,7 +15,8 @@ namespace CRM.Data
         // MUST be tied to one customer
 
         [Key, ForeignKey(nameof(CalendarEvent))]
-        //Program breaks if no CalEvent is chosen.  Do I need [Required] att
+        //Program breaks if no CalEvent is chosen.  Do I need [Required] attribute
+        //Ticket # 25
         public int CalendarEventID { get; set; }
         public virtual CalendarEvent CalendarEvent { get; set; }
 

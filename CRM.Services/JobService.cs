@@ -20,7 +20,7 @@ namespace CRM.Services
         private EmployeeService _empService = new EmployeeService();
         private CalendarEventService _calEventService = new CalendarEventService();
 
-        public JobService()  {   }
+        public JobService() { }
         public JobService(Guid userId)
         {
             _userId = userId;
@@ -168,17 +168,43 @@ namespace CRM.Services
                     CustomerCharge = entityToDelete.CustomerCharge
                 };
                 ctx.JobsDeleted.Add(copyOfDeletedEntity);
-                if(ctx.SaveChanges() == 1)
+                if (ctx.SaveChanges() == 1)
                 {
                     ctx.Jobs.Remove(entityToDelete);
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
                 }
                 return false;
-                    
-
-               
 
             }
         }
+
+
+        //Helper Mehtods
+        //public IEnumerable<int> GetJobs(int id)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //            .Jobs
+        //            .Where(e => e.InvoiceID == id)
+        //            .Select(
+        //                e =>
+        //                new JobListItem
+        //                {
+        //                    JobID = e.JobID,
+        //                    CalendarEventID = e.CalendarEventID,
+        //                    CustomerID = e.CustomerID,
+        //                    EmployeeID = e.EmployeeID,
+        //                    EmployeePay = e.EmployeePay,
+        //                    CustomerCharge = e.CustomerCharge,
+        //                    PayCheckID = e.PayCheckID,
+        //                    InvoiceID = e.InvoiceID
+        //                });
+        //        return query.ToArray();
+        //    }
+        //}
+
+
     }
 }

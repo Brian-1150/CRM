@@ -54,6 +54,9 @@
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/chosen.jquery.min.js"></script>
     <script type="text/javascript">
+        $(function () { $('.drop').chosen(); });
+    </script>
+    <script type="text/javascript">
 
         $(document).ready(function () {
             $('input[type=datetime]').datepicker(

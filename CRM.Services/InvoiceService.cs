@@ -93,6 +93,11 @@ namespace CRM.Services
             }
         }
 
+        public bool UpdateInvoice(InvoiceEdit model)
+        {
+            throw new NotImplementedException();
+        }
+
         public InvoiceListItem GetInvoiceByID(int id)
         {
             List<int> jobIDs = GetJobIDs(id);
@@ -117,7 +122,7 @@ namespace CRM.Services
         }
             //Helper Methods
 
-            private List<int> GetJobIDs(int id)
+            public List<int> GetJobIDs(int id)
             {
                 List<int> jobIDs = new List<int>();
                 using (var ctx = new ApplicationDbContext())
@@ -130,8 +135,21 @@ namespace CRM.Services
                     return jobIDs;
                 }
             }
+        public List<int> GetJobIDs(int customerID, int invoiceID)
+        {
+            List<int> jobIDs = new List<int>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                foreach (var job in ctx.Jobs)
+                {
+                    if (job.CustomerID == customerID && (job.InvoiceID is null || job.InvoiceID == invoiceID))
+                        jobIDs.Add(job.JobID);
+                }
+                return jobIDs;
+            }
+        }
 
-            private void AddForeignKeyValueToJob(InvoiceCreate model)
+        private void AddForeignKeyValueToJob(InvoiceCreate model)
             {
                 int invoiceId = GetInvoiceId();
                 using (var ctx = new ApplicationDbContext())

@@ -13,9 +13,9 @@ namespace CRM.Models.Employee
         public int EmployeeID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
-        
+               
         public string PhoneNumber { get; set; }
+
         [UIHint("Current")]
         public bool Current { get; set; }
 

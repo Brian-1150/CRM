@@ -5,6 +5,7 @@ using CRM.Models.CalendarEvent;
 using CRM.Models.Employee;
 using CRM.Models.Invoice;
 using CRM.Models.Job;
+using CRM.Models.Paycheck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +85,30 @@ namespace CRM.Services
                     ctx
                     .Jobs
                     .Where(e => e.JobID >= 0)
+                    .Select(
+                        e =>
+                        new JobListItem
+                        {
+                            JobID = e.JobID,
+                            CalendarEventID = e.CalendarEventID,
+                            CustomerID = e.CustomerID,
+                            EmployeeID = e.EmployeeID,
+                            EmployeePay = e.EmployeePay,
+                            CustomerCharge = e.CustomerCharge,
+                            PayCheckID = e.PayCheckID,
+                            InvoiceID = e.InvoiceID
+                        });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<JobListItem> GetJobs(int empID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Jobs
+                    .Where(e => e.EmployeeID == empID)
                     .Select(
                         e =>
                         new JobListItem

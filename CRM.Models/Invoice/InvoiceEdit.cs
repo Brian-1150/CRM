@@ -11,11 +11,11 @@ namespace CRM.Models.Invoice
     public class InvoiceEdit
     {
         public int InvoiceID { get; set; }
-       
+
         public int CustomerID { get; set; }
-       
+
         [Display(Name = "Jobs Currently on Invoice")]
-        public virtual ICollection<int> ListOfJobsOnInvoice { get; set; }
+        public List<int> ListOfJobsOnInvoice { get; set; } = new List<int>();
 
         [Display(Name = "Add/Remove as necessary to override jobs on this invoice.")]
         public List<int> ListOfJobsAvailable { get; set; }

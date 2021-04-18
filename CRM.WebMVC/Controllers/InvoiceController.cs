@@ -75,6 +75,8 @@ namespace CRM.WebMVC.Controllers
             };
             return View(model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, InvoiceEdit model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -83,13 +85,13 @@ namespace CRM.WebMVC.Controllers
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
             }
-            
-            if (_svc.UpdateInvoice(model))
+            List<int> listOfJobsOnInvoice = _svc.GetJobIDs(id); //grab the same list again as in the Get EditView because it is not passing through properly to this Post method
+            if (_svc.UpdateInvoice(model, listOfJobsOnInvoice))  
             {
                 TempData["SaveResult"] = "Job info was updated successfully!";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "JOb info could not be updated");
+            ModelState.AddModelError("", "Job info could not be updated");
             return View(model);
         }
     }

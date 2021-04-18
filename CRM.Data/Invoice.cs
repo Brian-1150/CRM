@@ -23,7 +23,7 @@ namespace CRM.Data
 
         public virtual ICollection<Job> Jobs { get; set; }
         public double  InvoiceAmount { get; set; }
-
+        public string AdjustmentNotes { get; set; }
         public bool Paid { get; set; }
 
     }

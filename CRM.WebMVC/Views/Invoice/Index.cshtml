@@ -5,7 +5,12 @@
 }
 
 <h2>Index</h2>
-
+<div class="alert-danger">
+    @TempData["message"]
+</div>
+<div class="alert-success">
+    @TempData["SaveResult"]
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

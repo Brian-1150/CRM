@@ -18,7 +18,7 @@ namespace CRM.Models.Invoice
         public List<int> ListOfJobsOnInvoice { get; set; } = new List<int>();
 
         [Display(Name = "Add/Remove as necessary to override jobs on this invoice.")]
-        public List<int> ListOfJobsAvailable { get; set; }
+        public List<int> ListOfJobsAvailable { get; set; } = new List<int>();
 
         [Display(Name ="Current invoice total.  Click save to see new total.")]
         [DataType(DataType.Currency)]

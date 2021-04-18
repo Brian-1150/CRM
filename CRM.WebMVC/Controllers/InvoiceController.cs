@@ -91,8 +91,9 @@ namespace CRM.WebMVC.Controllers
                 TempData["SaveResult"] = "Job info was updated successfully!";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Job info could not be updated");
-            return View(model);
+            ModelState.AddModelError("", "Job info could not be updated.  If you do not wish to make changes, return back to list");
+            TempData["message"] = "Edits were not saved to database.  Perhaps you did not make changes to any of the fields";
+            return RedirectToAction("Index");
         }
     }
 }

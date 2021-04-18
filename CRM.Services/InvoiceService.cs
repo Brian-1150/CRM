@@ -122,14 +122,15 @@ namespace CRM.Services
             
             double invoiceAmount = 0;
             using (var ctx = new ApplicationDbContext())
-            {
-                for (int i = 0; i < model.ListOfJobsAvailable.Count; i++)
+            {   if (model.ListOfJobsAvailable != null)
                 {
-                    invoiceAmount +=
-                       ctx.Jobs.Find(model.ListOfJobsAvailable.ElementAt(i))
-                       .CustomerCharge;
+                    for (int i = 0; i < model.ListOfJobsAvailable.Count; i++)
+                    {
+                        invoiceAmount +=
+                           ctx.Jobs.Find(model.ListOfJobsAvailable.ElementAt(i))
+                           .CustomerCharge;
+                    }
                 }
-
                 var entity = ctx
                     .Invoices
                     .Find(model.InvoiceID);
@@ -138,7 +139,7 @@ namespace CRM.Services
                 entity.AdjustmentNotes = model.AdjustmentNotes;
                 entity.Paid = model.Paid;  // make "mark paid" option in list view.  ticket # 28
                 if (ctx.SaveChanges() == 1)
-                {
+                { 
                     AddForeignKeyValueToJob(model, listOfJobsOnInvoice);
                     return true;
                 }

@@ -15,36 +15,24 @@ namespace CRM.Data
     }
   public  class CalendarEvent
     {
+        // May have zero or one Job
+        // IF it has a job, need to access the customer info from it to set location
+        // IF it has a job, need to adjust color based on Employee that is on the job
         [Key]
         public int CalEventID { get; set; }
-
-        [ForeignKey(nameof(Customer))]
-        public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
-
+        public virtual Job Job { get; set; }
         public string Location { get; set; }
-
-        //private string _location;
-        //public string Location
-        //{
-        //    get { return _location; }
-        //    set
-        //    {
-        //        if (Customer.StreetAddress != null)
-        //            _location = Customer.StreetAddress;
-        //    }
-        //}
-
-
-        [ForeignKey(nameof(Employee))]
-        public int? EmployeeID { get; set; }
-        public virtual Employee Employee { get; set; }
-        
         public DateTimeOffset Start { get; set; }
         public DateTimeOffset? End { get; set; }
         public string Title { get; set; }
-        public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
+        public EventColor ColorOfEvent { get; set; }
+
+      
+
+
+
+        
 
 
 

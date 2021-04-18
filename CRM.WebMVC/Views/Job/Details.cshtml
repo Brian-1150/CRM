@@ -1,0 +1,106 @@
+﻿@model CRM.Models.Job.JobDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalendarEventID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalendarEventID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFullAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFullAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayCheckID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayCheckID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeePay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeePay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerCharge)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JobID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

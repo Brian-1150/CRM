@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CRM.Models.Invoice.InvoiceListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="alert-danger">
+    @TempData["message"]
+</div>
+<div class="alert-success">
+    @TempData["SaveResult"]
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerID)
+    </td>
+    
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Paid)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })
+    </td>
+</tr>
+}
+
+</table>

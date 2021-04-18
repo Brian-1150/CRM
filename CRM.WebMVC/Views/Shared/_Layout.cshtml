@@ -6,8 +6,9 @@
     <title>@ViewBag.Title - My CRM App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
     @Styles.Render("~/Content/themes/base/css")
-
+<link href="~/Content/chosen.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -28,7 +29,10 @@
                     <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
                     <li>@Html.ActionLink("CalEvent", "Index", "CalendarEvent")</li>
-                    
+                    <li>@Html.ActionLink("Jobs", "Index", "Job")</li>
+                    <li>@Html.ActionLink("Invoice", "Index", "Invoice")</li>
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,19 +46,23 @@
         </footer>
     </div>
     @*attempt to remove autofill from ALL editorFor boxes  ticket #19 *@
-   
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () { $('.drop').chosen(); });
+    </script>
     <script type="text/javascript">
 
         $(document).ready(function () {
             $('input[type=datetime]').datepicker(
                 {
                     dateFormat: "M/d/yy",
-                    }); //  { maxDate: "+1d" } Restrict hire date to no further in future than tomorrow
+                }); //  { maxDate: "+1d" } Restrict hire date to no further in future than tomorrow
             //jqueryUI docementation
         });
     </script>

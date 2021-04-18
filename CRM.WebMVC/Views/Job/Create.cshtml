@@ -1,0 +1,77 @@
+﻿@model CRM.Models.Job.JobCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>JobCreate</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ListOfCustomers, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CustomerID, new SelectList(Model.ListOfCustomers, "CustomerID", "LastName"), htmlAttributes: new { @class = "form-control drop" })
+                @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+            <div class="form-group">
+                @Html.LabelFor(model => model.ListOfEmployees, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+             
+                        @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.ListOfEmployees, "EmployeeID", "LastName"), htmlAttributes: new { @class = "form-control drop" })
+                        @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+         
+                </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ListOfCalEvents, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CalendarEventID, new SelectList(Model.ListOfCalEvents, "CalendarEventID", "CalendarEventID"), htmlAttributes: new { @class = "form-control drop"})
+                @Html.ValidationMessageFor(model => model.CalendarEventID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerCharge, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerCharge, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerCharge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeePay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeePay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeePay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function () { $('.drop').chosen(); });
+</script>
+}
+
+

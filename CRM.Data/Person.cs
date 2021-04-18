@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace CRM.Data
 {
+    public enum PersonState
+    {
+
+        AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UM, UT, VA, VI, VT, WA, WI, WV, WY
+    }
     abstract public class Person
     {
         [Display(Name = "First Name")]
@@ -27,11 +32,26 @@ namespace CRM.Data
 
         [Display(Name = "State")]
         public PersonState StateOfPerson { get; set; }
-        
-    }
-    public enum PersonState
-    {
 
-        AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UM, UT, VA, VI, VT, WA, WI, WV, WY
+        [DataType(DataType.PostalCode)]
+        public int ZipCode { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+
+
+        }
+
+        public string FullAddress
+        {
+            get
+            {
+                return StreetAddress + "\n" + City + " " + StateOfPerson + " " + ZipCode;
+            }
+
+        }
     }
 }

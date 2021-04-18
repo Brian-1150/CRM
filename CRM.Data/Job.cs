@@ -13,10 +13,11 @@ namespace CRM.Data
         // MUST be tied to one calendar event
         // MUST be tied to one employee
         // MUST be tied to one customer
-        [Key]
-        public int JobID { get; set; }
 
-        [ForeignKey(nameof(CalendarEvent))]
+        [Key, ForeignKey(nameof(CalendarEvent))]
+        //Program breaks if no CalEvent is chosen.  Do I need [Required] attribute
+        //Ticket # 25
+
         public int CalendarEventID { get; set; }
         public virtual CalendarEvent CalendarEvent { get; set; }
 
@@ -30,7 +31,8 @@ namespace CRM.Data
 
         [ForeignKey(nameof(PayCheck))]
         public int? PayCheckID { get; set; }
-        public virtual PayCheck Paycheck { get; set; }
+
+        public virtual PayCheck PayCheck { get; set; }
 
         [ForeignKey(nameof(Invoice))]
         public int? InvoiceID { get; set; }
@@ -38,5 +40,14 @@ namespace CRM.Data
 
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
+    
+        public int JobID { get; set; }
+
+        //the following strategy did not work.
+        //{    private int _jobID { get; set; }
+        //    set { _jobID = CalendarEventID; }
+        //    get { return _jobID; }
+        //}
+
     }
 }

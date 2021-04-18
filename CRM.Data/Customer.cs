@@ -9,10 +9,16 @@ namespace CRM.Data
 {
     public class Customer: Person
     {
+        //Tied to many CalEvents, JObs, and invoices
+
         [Key]
         public int CustomerID { get; set; }
         
         public virtual ICollection<CalendarEvent> CalendarEvents { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
+
+
         public DateTimeOffset InitialDateOfContact { get; set; }
         public CustomerStatus StatusOfCustomer { get; set; }
         //add Estimate prop ticket # 1

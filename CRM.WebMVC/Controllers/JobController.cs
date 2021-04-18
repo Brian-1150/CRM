@@ -126,6 +126,7 @@ namespace CRM.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
+            //prevent delete if job has FK of invoice or paycheck ticket # 29
             var service = NewJobServcie();
              
             var model = service.GetJobByID(id);

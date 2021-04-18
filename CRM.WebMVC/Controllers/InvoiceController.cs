@@ -95,5 +95,12 @@ namespace CRM.WebMVC.Controllers
             TempData["message"] = "Edits were not saved to database.  Perhaps you did not make changes to any of the fields";
             return RedirectToAction("Index");
         }
+
+        [ActionName("Delete")]
+        public ActionResult NoDelete()
+        {
+            TempData["message"] = "You may not delete an invoice. Just remove assocaited jobs to zero out the balance.";
+            return RedirectToAction("Index");
+        }
     }
 }

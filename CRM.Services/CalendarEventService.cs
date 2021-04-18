@@ -35,8 +35,7 @@ namespace CRM.Services
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
 
-
-            DateTimeOffset? endDefault;
+                DateTimeOffset? endDefault;
             if (model.End != null)
                 endDefault = model.End;
             else endDefault = model.Start.AddDays(1);

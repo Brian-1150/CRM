@@ -30,12 +30,10 @@ namespace CRM.Services
         }
         public PayCheckCreate GetInvoiceCreateView(int? employeeID)
         {
-
             List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
-            List<JobListItem> listOfJobs = new List<JobListItem>();
             if (employeeID.HasValue)
             {
-                listOfJobs = _jobService.GetJobs((int)employeeID).ToList();
+                List<JobListItem> listOfJobs = _jobService.GetJobs((int)employeeID).ToList();
 
                 return new PayCheckCreate
                 {
@@ -54,7 +52,7 @@ namespace CRM.Services
             {
                 PayCheckAmount = payCheckAmount,
                 EmployeeID = model.EmployeeID,
-                AdjustmentNotes =  new StringBuilder(" ")
+                AdjustmentNotes = new StringBuilder(" ")
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -92,7 +90,26 @@ namespace CRM.Services
             }
         }
 
-
+        public PayCheckListItem GetPayCheckByID(int id)
+        {
+            List<int> jobIDs = GetJobIDs(id);
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .PayChecks
+                    .Single(e => e.PayCheckID == id);
+                return new PayCheckListItem
+                {
+                    PayCheckID = entity.PayCheckID,
+                    EmployeeID = entity.EmployeeID,
+                    PayCheckAmount = entity.PayCheckAmount,
+                    JobIDs = jobIDs,
+                    AdjustmentNotes = entity.AdjustmentNotes,
+                    Paid = entity.Paid
+                };
+            }
+        }
 
         //Helper Methods
 
@@ -128,6 +145,19 @@ namespace CRM.Services
                          .EmployeePay;
                 }
                 return payCheckAmount;
+            }
+        }
+        public List<int> GetJobIDs(int id)
+        {
+            List<int> jobIDs = new List<int>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                foreach (var job in ctx.Jobs)
+                {
+                    if (job.PayCheckID == id)
+                        jobIDs.Add(job.JobID);
+                }
+                return jobIDs;
             }
         }
     }

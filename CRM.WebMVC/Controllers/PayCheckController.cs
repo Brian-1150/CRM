@@ -30,7 +30,6 @@ namespace CRM.WebMVC.Controllers
                     EmployeeID = (int)employeeID,
                     ListOfSelectedJobs = listOfSelectedJobs,
 
-
                 };
                 _svc.CreatePayCheck(model);
 
@@ -42,14 +41,18 @@ namespace CRM.WebMVC.Controllers
 
         }
 
-
-
-
         // READ: List
         public ActionResult Index()
         {
             var model = _svc.GetPayChecks();
             return View(model);
         }
+
+        //Paycheck Details
+        public ActionResult Details(int id)
+        {
+            return View(_svc.GetPayCheckByID(id));
+        }
+
     }
 }

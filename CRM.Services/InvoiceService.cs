@@ -28,7 +28,7 @@ namespace CRM.Services
         {
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
             ICollection<JobListItem> listOfJobs = (ICollection<JobListItem>)_jobService.GetJobs();
-            //create filter for list of jobs to display as option for adding to invoice
+            //create filter for list of jobs to display as option for adding to invoice *see paycheck to mimic strategy
             //ticket # 27
             return new InvoiceCreate
             {
@@ -92,8 +92,6 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
-
-
 
         public InvoiceListItem GetInvoiceByID(int id)
         {

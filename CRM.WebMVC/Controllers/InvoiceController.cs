@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
+    [Authorize]
     public class InvoiceController : Controller
     {
         private InvoiceService _svc = new InvoiceService();

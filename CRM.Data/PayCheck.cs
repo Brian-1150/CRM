@@ -22,7 +22,7 @@ namespace CRM.Data
 
         public virtual IEnumerable<Job> Jobs { get; set; }
         public double PayCheckAmount { get; set; }
-        public StringBuilder  AdjustmentNotes { get; set; }
+        public StringBuilder AdjustmentNotes { get; set; }
         public bool Paid { get; set; }
 
 

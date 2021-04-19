@@ -21,10 +21,24 @@ namespace CRM.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int? employeeID, int? jobID)
+        public ActionResult Create(int? employeeID, List<int> listOfSelectedJobs)
         {
+            if (employeeID.HasValue && listOfSelectedJobs != null)
+            {
+                var model = new PayCheckCreate
+                {
+                    EmployeeID = (int)employeeID,
+                    ListOfSelectedJobs = listOfSelectedJobs,
 
-            return View(_svc.GetInvoiceCreateView(employeeID));          
+
+                };
+                _svc.CreatePayCheck(model);
+
+                TempData["SaveResult"] = "Event Added";
+                return RedirectToAction("Index");
+
+            }
+            return View(_svc.GetInvoiceCreateView(employeeID));
 
         }
 

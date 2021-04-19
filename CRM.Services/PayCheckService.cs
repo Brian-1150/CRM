@@ -54,6 +54,7 @@ namespace CRM.Services
             {
                 PayCheckAmount = payCheckAmount,
                 EmployeeID = model.EmployeeID,
+                AdjustmentNotes =  new StringBuilder(" ")
             };
             using (var ctx = new ApplicationDbContext())
             {

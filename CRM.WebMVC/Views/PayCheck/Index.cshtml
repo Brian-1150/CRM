@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CRM.Models.Paycheck.PayCheckListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PayCheckID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayCheckAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayCheckID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayCheckAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PayCheckID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PayCheckID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PayCheckID })
+        </td>
+    </tr>
+}
+
+</table>

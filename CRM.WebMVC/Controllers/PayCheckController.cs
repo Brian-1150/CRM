@@ -23,6 +23,7 @@ namespace CRM.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(int? employeeID, int? jobID)
         {
+
             return View(_svc.GetInvoiceCreateView(employeeID));          
 
         }
@@ -30,10 +31,11 @@ namespace CRM.WebMVC.Controllers
 
 
 
-        // GET: PayCheck
+        // READ: List
         public ActionResult Index()
         {
-            return View();
+            var model = _svc.GetPayChecks();
+            return View(model);
         }
     }
 }

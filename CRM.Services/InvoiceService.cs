@@ -61,7 +61,7 @@ namespace CRM.Services
                 ctx.Invoices.Add(entity);
                 saved = (ctx.SaveChanges() == 1);
             }
-            if (saved is true)
+            if (saved)
             {
                 AddForeignKeyValueToJob(model);
                 return true;
@@ -205,7 +205,7 @@ namespace CRM.Services
             }
         }
 
-        private int GetInvoiceId()
+        internal int GetInvoiceId()
         {
             List<InvoiceListItem> tempList = GetInvoices().ToList();
             return tempList.Last().InvoiceID;

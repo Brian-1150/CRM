@@ -47,7 +47,7 @@ namespace CRM.Services
         public bool CreatePayCheck(PayCheckCreate model)
         {
             bool saved;
-            double payCheckAmount = GetInvoiceAmount(model.ListOfSelectedJobs);
+            double payCheckAmount = GetPayCheckAmount(model.ListOfSelectedJobs);
             var entity = new PayCheck
             {
                 PayCheckAmount = payCheckAmount,
@@ -111,6 +111,29 @@ namespace CRM.Services
             }
         }
 
+        public bool UpdatePayCheck(PayCheckEdit model, List<int> listOfJobsOnPayCheck)
+        {
+            double payCheckAmount = 0;
+            if (model.ListOfJobsAvailable != null)  //ListOfJobsAvailable prop carries the selections made by user at edit view
+            {
+                payCheckAmount = GetPayCheckAmount((List<int>)model.ListOfJobsAvailable);
+            }
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.PayChecks.Find(model.PayCheckID);
+                entity.PayCheckAmount = payCheckAmount + model.Adjustments;
+                entity.AdjustmentNotes.Append("\n" + DateTime.Now.ToShortDateString() + model.AdjustmentNotes);
+                entity.Paid = model.Paid;
+                if (ctx.SaveChanges() == 1)
+                {
+                    AddForeignKeyValueToJob(model, listOfJobsOnPayCheck);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         //Helper Methods
 
         private void AddForeignKeyValueToJob(PayCheckCreate model)
@@ -127,13 +150,44 @@ namespace CRM.Services
                 }
             }
         }
+
+        private void AddForeignKeyValueToJob(PayCheckEdit model, List<int> listOfJobsOnPayCheck)
+        {
+            RemoveForeignKeyValueFromJobFirst(listOfJobsOnPayCheck);
+            if (model.ListOfJobsAvailable != null)
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    for (int i = 0; i < model.ListOfJobsAvailable.Count; i++)
+                    {
+                        var entity = ctx.Jobs.Find(model.ListOfJobsAvailable.ElementAt(i));
+                        entity.PayCheckID = model.PayCheckID;
+                        ctx.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private void RemoveForeignKeyValueFromJobFirst(List<int> listOfJobsOnPayCheck)
+        {
+           using (var ctx = new ApplicationDbContext())
+            {
+                for (int i =0; i < listOfJobsOnPayCheck.Count; i++)
+                {
+                    var entity = ctx.Jobs.Find(listOfJobsOnPayCheck.ElementAt(i));
+                    entity.PayCheckID = null;
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
         internal int GetPayCheckID()
         {
             List<PayCheckListItem> tempList = GetPayChecks().ToList();
             return tempList.Last().PayCheckID;
         }
 
-        private double GetInvoiceAmount(List<int> listOfSelectedJobs)
+        private double GetPayCheckAmount(List<int> listOfSelectedJobs)
         {
             double payCheckAmount = 0;
             using (var ctx = new ApplicationDbContext())
@@ -155,6 +209,19 @@ namespace CRM.Services
                 foreach (var job in ctx.Jobs)
                 {
                     if (job.PayCheckID == id)
+                        jobIDs.Add(job.JobID);
+                }
+                return jobIDs;
+            }
+        }
+        public List<int> GetJobIDs(int empID, int payCheckID)
+        {
+            List<int> jobIDs = new List<int>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                foreach (var job in ctx.Jobs)
+                {
+                    if (job.EmployeeID == empID && (job.PayCheckID is null || job.PayCheckID == payCheckID))
                         jobIDs.Add(job.JobID);
                 }
                 return jobIDs;

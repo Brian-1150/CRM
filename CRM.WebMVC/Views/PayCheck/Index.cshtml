@@ -5,7 +5,12 @@
 }
 
 <h2>Index</h2>
-
+<div class="alert-danger">
+    @TempData["message"]
+</div>
+<div class="alert-success">
+    @TempData["SaveResult"]
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -26,26 +31,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PayCheckID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PayCheckAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paid)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.PayCheckID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.PayCheckID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PayCheckID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayCheckID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayCheckAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paid)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PayCheckID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PayCheckID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PayCheckID })
+            </td>
+        </tr>
+    }
 
 </table>

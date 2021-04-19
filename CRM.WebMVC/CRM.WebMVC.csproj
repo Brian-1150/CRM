@@ -421,6 +421,7 @@
     <Content Include="Views\PayCheck\Create.cshtml" />
     <Content Include="Views\PayCheck\Index.cshtml" />
     <Content Include="Views\PayCheck\Details.cshtml" />
+    <Content Include="Views\PayCheck\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

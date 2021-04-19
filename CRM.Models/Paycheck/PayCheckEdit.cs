@@ -13,10 +13,10 @@ namespace CRM.Models.Paycheck
         public int EmployeeID { get; set; }
 
         [Display(Name = "Jobs Currenlty on PayCheck")]
-        public virtual ICollection<int> ListOfJobsOnPayCheck { get; set; }
+        public virtual ICollection<int> ListOfJobsOnPayCheck { get; set; } = new List<int>();
 
         [Display(Name = "Add/Remove as necessary to override jobs on this paycheck.")]
-        public virtual ICollection<int> ListOfJobsAvailable { get; set; }
+        public virtual ICollection<int> ListOfJobsAvailable { get; set; } = new List<int>();
 
         [Display(Name = "Current paycheck total.  Click save to see new total."), DataType(DataType.Currency)]
         public double PayCheckAmount { get; set; }

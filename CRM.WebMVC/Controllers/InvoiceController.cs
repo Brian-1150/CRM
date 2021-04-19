@@ -53,7 +53,7 @@ namespace CRM.WebMVC.Controllers
         //UPDATE: 
         public ActionResult Edit(int id)
         {
-           
+
             var detail = _svc.GetInvoiceByID(id);
             if (detail.Paid)
             {
@@ -71,8 +71,6 @@ namespace CRM.WebMVC.Controllers
                 CustomerID = detail.CustomerID,
                 InvoiceAmount = detail.InvoiceAmount,
                 Paid = detail.Paid
-                
-
             };
             return View(model);
         }
@@ -87,12 +85,12 @@ namespace CRM.WebMVC.Controllers
                 return View(model);
             }
             List<int> listOfJobsOnInvoice = _svc.GetJobIDs(id); //grab the same list again as in the Get EditView because it is not passing through properly to this Post method
-            if (_svc.UpdateInvoice(model, listOfJobsOnInvoice))  
+            if (_svc.UpdateInvoice(model, listOfJobsOnInvoice))
             {
-                TempData["SaveResult"] = "Job info was updated successfully!";
+                TempData["SaveResult"] = "Invoice was updated successfully!";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Job info could not be updated.  If you do not wish to make changes, return back to list");
+            ModelState.AddModelError("", "Info could not be updated.  If you do not wish to make changes, return back to list");
             TempData["message"] = "Edits were not saved to database.  Perhaps you did not make changes to any of the fields";
             return RedirectToAction("Index");
         }

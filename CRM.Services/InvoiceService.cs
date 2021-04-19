@@ -217,7 +217,6 @@ namespace CRM.Services
                     var entity = ctx.Jobs.Find(listOfJobsOnInvoice.ElementAt(i));
                     entity.InvoiceID = null;
                     ctx.SaveChanges();
-
                 }
             }
         }

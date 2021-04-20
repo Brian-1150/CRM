@@ -60,6 +60,7 @@
     <Compile Include="CalendarEventService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="FullCalService.cs" />
     <Compile Include="InvoiceService.cs" />
     <Compile Include="JobService.cs" />
     <Compile Include="PayCheckService.cs" />

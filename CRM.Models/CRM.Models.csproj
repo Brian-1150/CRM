@@ -69,6 +69,7 @@
     <Compile Include="Employee\EmployeeDetail.cs" />
     <Compile Include="Employee\EmployeeEdit.cs" />
     <Compile Include="Employee\EmployeeListItem.cs" />
+    <Compile Include="FullCal\FullCalEvent.cs" />
     <Compile Include="Invoice\InvoiceCreate.cs" />
     <Compile Include="Invoice\InvoiceEdit.cs" />
     <Compile Include="Invoice\InvoiceListItem.cs" />

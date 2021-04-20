@@ -2,7 +2,9 @@
 @{
     Layout = null;
     ViewBag.Title = "Index";
+
 }
+
 
 <!DOCTYPE html>
 
@@ -14,7 +16,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    
+
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/fullcalendar.js"></script>
     <script src="~/Scripts/calendar.js"></script>
@@ -38,34 +40,7 @@
 </head>
 <body>
     <div class="calendar-header">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
-                        <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
-                        <li>@Html.ActionLink("CalEvent", "Index", "CalendarEvent")</li>
-                        <li>@Html.ActionLink("Jobs", "Index", "Job")</li>
-                        <li>@Html.ActionLink("Invoice", "Index", "Invoice")</li>
-                        <li>@Html.ActionLink("PayChecks", "Index", "PayCheck")</li>
-
-
-
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>
+        @Html.Partial("~/Views/Shared/NavBarLayout.cshtml")
     </div>
     <div class="calendar-body">
         <div id="calendar"> </div>

@@ -28,7 +28,7 @@ namespace CRM.Services
         {
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
             ICollection<JobListItem> listOfJobs = (ICollection<JobListItem>)_jobService.GetJobs();
-            //create filter for list of jobs to display as option for adding to invoice
+            //create filter for list of jobs to display as option for adding to invoice *see paycheck to mimic strategy
             //ticket # 27
             return new InvoiceCreate
             {
@@ -61,7 +61,7 @@ namespace CRM.Services
                 ctx.Invoices.Add(entity);
                 saved = (ctx.SaveChanges() == 1);
             }
-            if (saved is true)
+            if (saved)
             {
                 AddForeignKeyValueToJob(model);
                 return true;
@@ -92,8 +92,6 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
-
-
 
         public InvoiceListItem GetInvoiceByID(int id)
         {
@@ -205,7 +203,7 @@ namespace CRM.Services
             }
         }
 
-        private int GetInvoiceId()
+        internal int GetInvoiceId()
         {
             List<InvoiceListItem> tempList = GetInvoices().ToList();
             return tempList.Last().InvoiceID;
@@ -219,7 +217,6 @@ namespace CRM.Services
                     var entity = ctx.Jobs.Find(listOfJobsOnInvoice.ElementAt(i));
                     entity.InvoiceID = null;
                     ctx.SaveChanges();
-
                 }
             }
         }

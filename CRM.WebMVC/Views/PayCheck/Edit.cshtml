@@ -1,4 +1,4 @@
-﻿@model CRM.Models.Invoice.InvoiceEdit
+﻿@model CRM.Models.Paycheck.PayCheckEdit
 
 @{
     ViewBag.Title = "Edit";
@@ -12,28 +12,29 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>InvoiceEdit</h4>
+    <h4>PayCheckEdit</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.InvoiceID, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PayCheckID, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.InvoiceID)
-            @Html.HiddenFor(model => model.InvoiceID)
-            @Html.HiddenFor(model => model.CustomerID)
+            @Html.DisplayFor(model => model.PayCheckID)
+            @Html.HiddenFor(model => model.PayCheckID)
+            @Html.HiddenFor(model => model.EmployeeID)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.CustomerID)
+            @Html.DisplayFor(model => model.EmployeeID)
         </div>
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(model => model.ListOfJobsOnInvoice, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ListOfJobsOnPayCheck, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @foreach (var item in Model.ListOfJobsOnInvoice)
+            @foreach (var item in Model.ListOfJobsOnPayCheck)
             {
                 <div style="width: 10%; color: azure; background-color: cadetblue; font-size: large; border-radius: 90%">
                     #
@@ -43,7 +44,6 @@
             }
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.ListOfJobsAvailable, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -51,15 +51,13 @@
             @Html.ValidationMessageFor(model => model.ListOfJobsAvailable, "", new { @class = "text=danger" })
         </div>
     </div>
-
     <div class="form-group">
-        @Html.LabelFor(model => model.InvoiceAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PayCheckAmount, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.InvoiceAmount)
+            @Html.DisplayFor(model => model.PayCheckAmount)
 
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.Adjustments, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -67,15 +65,13 @@
             @Html.ValidationMessageFor(model => model.Adjustments, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.AdjustmentNotes, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AdjustmentNotes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.AdjustmentNotes, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.AdjustmentNotes, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

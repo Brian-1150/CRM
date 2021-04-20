@@ -64,6 +64,10 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="Migrations\202104180326313_ChangeToStringBuilder.cs" />
+    <Compile Include="Migrations\202104180326313_ChangeToStringBuilder.designer.cs">
+      <DependentUpon>202104180326313_ChangeToStringBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -72,6 +76,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202104180326313_ChangeToStringBuilder.resx">
+      <DependentUpon>202104180326313_ChangeToStringBuilder.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

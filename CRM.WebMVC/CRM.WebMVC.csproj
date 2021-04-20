@@ -180,6 +180,7 @@
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PayCheckController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -417,6 +418,10 @@
     <Content Include="Views\Job\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bool.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\PayCheck\Create.cshtml" />
+    <Content Include="Views\PayCheck\Index.cshtml" />
+    <Content Include="Views\PayCheck\Details.cshtml" />
+    <Content Include="Views\PayCheck\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

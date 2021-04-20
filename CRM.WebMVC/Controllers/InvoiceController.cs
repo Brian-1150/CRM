@@ -98,7 +98,7 @@ namespace CRM.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult NoDelete()
         {
-            TempData["message"] = "You may not delete an invoice. Just remove assocaited jobs to zero out the balance.";
+            TempData["message"] = "You may not delete an invoices and paychecks. Just remove assocaited jobs to zero out the balance.";
             return RedirectToAction("Index");
         }
     }

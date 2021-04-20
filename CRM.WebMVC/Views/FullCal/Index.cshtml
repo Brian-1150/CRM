@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "FullCalHome";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/fullcalendar.js"></script>
+    <script src="~/Scripts/calendar.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetEventsOnPageLoad();
+        });
+    </script>
+    <style>
+        .calendar-body {
+            height: calc(100vh - 165px);
+            width: 90%;
+            padding-left: 130px;
+        }
+
+        .calendar-header {
+            padding-left: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-header"></div>
+    <div class="calendar-body">
+        <div id="calendar"> </div>
+    </div>
+    <div id="MyPopup" class="modal fade modal-CreateEvent" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @*Header*@
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                @*ModalBody*@
+                <div class="modal-body">
+
+
+                </div>
+                @*modal footer*@
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

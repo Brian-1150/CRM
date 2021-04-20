@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CRM.Models.FullCal
+{
+  public class FullCalEvent
+    {
+        public int id { get; set; }
+        public bool allDay { get; set; }
+        public DateTimeOffset start { get; set; }
+        public DateTimeOffset end { get; set; }
+        public string title { get; set; }
+
+    }
+}

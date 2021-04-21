@@ -43,7 +43,7 @@
         droppable: true,
         nowIndicator: true,
         eventClick: function (info) {
-            GetEventDetailByEventId(info);
+            GetFullCalEventByID(info);
         },
         eventDrop: function (info) {
             console.log(info);
@@ -54,6 +54,37 @@
         }
     })
 }
+function GetFullCalEventByID(eventinfo){
+    var object = {};
+    object.id = eventinfo.id;
+    
+    $.ajax({
+        type: "GET",
+        url: "GetFullCalEventByID/" + eventinfo.id,
+        dataType: "JSON",
+        contentType: "applicaton/json; charset=utf-8",
+        data: JSON.stringify(object),
+        success: function (eventdetails) {
+            showModal('Event Details', eventdetails, true);
+        }
+    });
+}
+
 function showModal(title, body, isEventDetail) {
     $("MyPopup .modal-title").html(title);
+
+    if (isEventDetail == null) {
+        $("#MyPopup .modal-body").html(body);
+        $("#MyPopup").modal("show");
+    }
+    else {
+        var eventDetail = 'Event Name: ' + body.title + '</br>';
+        var eventInfo = 'Event Info: ' + body.info + '</br>';
+        var eventStart = 'Event Start: ' + moment(body.start) + '</br>';
+        var eventEnd = 'Event End: ' + moment(body.end) + '</br>';
+        var modalPop = $("#MyPopup .modal-body");
+
+        modalPop.html(eventDetail + eventInfo + eventStart + eventEnd);
+        $("#MyPopup.modal").modal("show");
+    }
 }

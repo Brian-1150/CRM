@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CRM.Services
 {
-   public class FullCalService
+    public class FullCalService
     {
         private CalendarEventService _calEventSvc = new CalendarEventService();
 
@@ -29,6 +29,11 @@ namespace CRM.Services
                  });
                 return query.ToList();
             }
+        }
+
+        public FullCalEvent GetByID(int id)
+        {
+            return GetFullCalEvents().Find(d => d.id == id);
         }
     }
 }

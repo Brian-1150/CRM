@@ -24,9 +24,10 @@ namespace CRM.WebMVC.Controllers
             return new JsonResult { Data = _svc.GetFullCalEvents(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        //public ActionResult GetEventDetailByEventId(string EventId)
-        //{
-
-        //}
+     
+        public ActionResult GetFullCalEventByID(string id)
+        {
+            return new JsonResult { Data = _svc.GetByID(Convert.ToInt32(id)), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }

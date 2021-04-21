@@ -101,6 +101,23 @@ namespace CRM.Services
             }
         }
 
+        public bool UpdateCalendarEvent(CalendarEventEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .CalendarEvents.Find(model.CalEventID);
+                entity.Start = model.Start;
+                entity.End = model.End;
+                entity.Details = model.Details;
+                entity.Title = model.Title;
+                entity.Location = model.Location;
+                entity.ColorOfEvent = model.ColorOfEvent;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public CalendarEventDetail GetEventById(int id)
         {
             using (var ctx = new ApplicationDbContext())

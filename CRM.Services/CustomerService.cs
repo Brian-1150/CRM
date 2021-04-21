@@ -100,7 +100,6 @@ namespace CRM.Services
         public bool UpdateCustomer(CustomerEdit model)
         {
 
-
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx

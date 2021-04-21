@@ -527,6 +527,7 @@
     <Content Include="Views\PayCheck\Edit.cshtml" />
     <Content Include="Views\FullCal\Index.cshtml" />
     <Content Include="Views\Shared\NavBarLayout.cshtml" />
+    <Content Include="Views\CalendarEvent\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

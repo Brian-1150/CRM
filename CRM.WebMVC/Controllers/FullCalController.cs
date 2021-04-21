@@ -29,5 +29,11 @@ namespace CRM.WebMVC.Controllers
         {
             return new JsonResult { Data = _svc.GetByID(Convert.ToInt32(id)), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+        [HttpPost]
+        public void UpdateFullCalEvent(string id, DateTimeOffset start, DateTimeOffset end)
+        {
+            _svc.UpdateEvent(id, start, end);
+        }
     }
 }

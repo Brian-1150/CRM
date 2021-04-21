@@ -35,5 +35,10 @@ namespace CRM.Services
         {
             return GetFullCalEvents().Find(d => d.id == id);
         }
+
+        public void UpdateEvent(string id, DateTimeOffset start, DateTimeOffset end)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

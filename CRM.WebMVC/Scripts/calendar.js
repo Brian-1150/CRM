@@ -20,7 +20,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "GetEventData",
+                url: "FullCal/GetEventData",
                 dataType: "JSON",
                 success: function (data) {
                     var events = [];
@@ -58,7 +58,7 @@ function GetFullCalEventByID(eventinfo) {
 
     $.ajax({
         type: "GET",
-        url: "GetFullCalEventByID/" + eventinfo.id,
+        url: "FullCal/GetFullCalEventByID/" + eventinfo.id,
         dataType: "JSON",
         contentType: "applicaton/json; charset=utf-8",
         success: function (eventdetails) {
@@ -74,7 +74,7 @@ function UpdateFullCalEvent(id, start, end) {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "UpdateFullCalEvent/",
+        url: "FullCal/UpdateFullCalEvent/",
         dataType: "JSON",
         data: JSON.stringify(object)
     });

@@ -47,10 +47,10 @@
         },
         eventDrop: function (info) {
             console.log(info);
-            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString());
+            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString()); 
         },
         eventResize: function (info) {
-            UpdateFullCalEvent(info.id, info.start.toIOSString(), info.end.toIOSString());
+            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString());
         }
     })
 }
@@ -74,7 +74,7 @@ function UpdateFullCalEvent(id, start, end) {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "UpdateFullCalEvent",
+        url: "UpdateFullCalEvent/",
         dataType: "JSON",
         data: JSON.stringify(object)
     });

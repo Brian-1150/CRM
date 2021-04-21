@@ -31,9 +31,10 @@ namespace CRM.WebMVC.Controllers
         }
 
         [HttpPost]
-        public void UpdateFullCalEvent(string id, DateTimeOffset start, DateTimeOffset end)
+        public void UpdateFullCalEvent(string id, string start, string end)
         {
-            _svc.UpdateEvent(id, start, end);
+            
+            _svc.UpdateEvent(id, DateTime.Parse(start), DateTime.Parse(end));
         }
     }
 }

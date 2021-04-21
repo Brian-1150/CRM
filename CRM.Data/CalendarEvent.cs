@@ -23,7 +23,7 @@ namespace CRM.Data
         public virtual Job Job { get; set; }
         public string Location { get; set; }
         public DateTimeOffset Start { get; set; }
-        public DateTimeOffset? End { get; set; }
+        public DateTimeOffset End { get; set; }
         public string Title { get; set; }
         public string Details { get; set; }
         public EventColor ColorOfEvent { get; set; }

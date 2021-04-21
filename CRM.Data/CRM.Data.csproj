@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202104180326313_ChangeToStringBuilder.designer.cs">
       <DependentUpon>202104180326313_ChangeToStringBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104211620575_RemoveNullableDatetimeFromCalEventData.cs" />
+    <Compile Include="Migrations\202104211620575_RemoveNullableDatetimeFromCalEventData.designer.cs">
+      <DependentUpon>202104211620575_RemoveNullableDatetimeFromCalEventData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104180326313_ChangeToStringBuilder.resx">
       <DependentUpon>202104180326313_ChangeToStringBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104211620575_RemoveNullableDatetimeFromCalEventData.resx">
+      <DependentUpon>202104211620575_RemoveNullableDatetimeFromCalEventData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

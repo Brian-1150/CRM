@@ -12,6 +12,12 @@
         .height{
             height: fit-content();
         }
+        .navbar-center {
+            position: relative;
+            left: 40%;
+            
+            transform: translate(-50%);
+        }
     </style>
 </head>
 <div class="navbar navbar-inverse navbar-fixed-top height">
@@ -30,17 +36,15 @@
                     <a href="~/Home"><img src="~/Content/Assets/iconfinder-icon.svg" alt="Home" width="40" height="40"></a>
                 </li>
                 <li><a href="https://www.linkedin.com/in/brian-campassi"><img src="~/Content/Assets/about.png" alt="About Me" width="40" height="40"></a></li>
+            </ul>
+       
+            <ul class="nav navbar-nav bars navbar-center">
                 @if (User.IsInRole("Admin"))
                 {
                     <li><a href="~/Customer/Index"><img src="~/Content/Assets/customer.png" alt="Customer" width="40" height="40"></a></li>
-
-                    <li><a href="~/Invoice/Index"><img src="~/Content/Assets/invoice.png" alt="Invoice" width="40" height="40"></a></li>
-
-                    <li><a href="~/PayCheck/Index"><img src="~/Content/Assets/paycheck.png" alt="PayCheck" width="40" height="40"></a></li>
-
-
                     <li><a href="~/Employee/Index"><img src="~/Content/Assets/employee.png" alt="Employee" width="40" height="40"></a></li>
-
+                    <li><a href="~/Invoice/Index"><img src="~/Content/Assets/invoice.png" alt="Invoice" width="40" height="40"></a></li>
+                    <li><a href="~/PayCheck/Index"><img src="~/Content/Assets/paycheck.png" alt="PayCheck" width="40" height="40"></a></li>
 
                 }
 
@@ -57,5 +61,4 @@
         </div>
     </div>
 </div>
-@*</body>
-    </html>*@
+

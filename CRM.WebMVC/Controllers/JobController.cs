@@ -11,35 +11,21 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
+        [Authorize(Roles = "Admin")]
+    
     public class JobController : Controller
     {
         private EmployeeService _empSvc = new EmployeeService();
-        private JobService NewJobServcie()
-        {
-            try
-            {
-                var userId = Guid.Parse(User.Identity.GetUserId());
-                var service = new JobService(userId);
-                return service;
-            }
-            catch (ArgumentNullException e)
-            {
+        private JobService _svc = new JobService();
 
-                return null;
 
-                throw;
-            }
-
-        }
 
         //CREATE
         public ActionResult Create()
         {
-            var service = NewJobServcie();
-            if (service is null)
+            if (_svc is null)
                 return View("Error");
-            var model = service.GetJobCreateView();
-            return View(model);
+            return View(_svc.GetJobCreateView());
         }
 
         [HttpPost]
@@ -48,8 +34,7 @@ namespace CRM.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            var service = NewJobServcie();
-            if (service.CreateJob(model))
+            if (_svc.CreateJob(model))
             {
                 TempData["SaveResult"] = "Event Added";
                 return RedirectToAction("Index");
@@ -59,27 +44,25 @@ namespace CRM.WebMVC.Controllers
         }
 
 
-
         // READ:  List
+        [Authorize(Roles = "Admin, Employee")]
         public ActionResult Index()
         {
-            var service = NewJobServcie();
-            var model = service.GetJobs();
-            return View(model);
+            return View(_svc.GetJobs());
         }
+
         //READ: Details
+        [Authorize(Roles = "Admin, Employee")]
         public ActionResult Details(int id)
         {
-            var service = NewJobServcie();
-            var model = service.GetJobByID(id);
-            return View(model);
+            return View(_svc.GetJobByID(id));
         }
 
         //UPDATE: 
         public ActionResult Edit(int id)
         {
-            var service = NewJobServcie();
-            var detail = service.GetJobByID(id);
+
+            var detail = _svc.GetJobByID(id);
             if (detail.InvoiceID.HasValue || detail.PayCheckID.HasValue)
             {
                 TempData["message"] = "Job may not be edited once it has been added to invoice or paycheck";
@@ -112,8 +95,8 @@ namespace CRM.WebMVC.Controllers
                 return View(model);
 
             }
-            var service = NewJobServcie();
-            if (service.UpdateJob(model))
+
+            if (_svc.UpdateJob(model))
             {
                 TempData["SaveResult"] = "Job info was updated successfully!";
                 return RedirectToAction("Index");
@@ -127,18 +110,17 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Delete(int id)
         {
             //prevent delete if job has FK of invoice or paycheck ticket # 29
-            var service = NewJobServcie();
-             
-            var model = service.GetJobByID(id);
-            return View(model);
+
+            return View(_svc.GetJobByID(id));
         }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteJob(int id)
         {
-            var service = NewJobServcie();
-            service.DeleteJob(id);
+
+            _svc.DeleteJob(id);
             TempData["SaveResult"] = "Your Job was deleted";
 
             return RedirectToAction("Index");
@@ -146,5 +128,5 @@ namespace CRM.WebMVC.Controllers
     }
 
 
-    
+
 }

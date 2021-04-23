@@ -7,15 +7,15 @@
     <style>
         .bars :hover {
             background-color: blue;
-
         }
-        .height{
+
+        .height {
             height: fit-content();
         }
+
         .navbar-center {
             position: relative;
             left: 40%;
-            
             transform: translate(-50%);
         }
     </style>
@@ -37,7 +37,7 @@
                 </li>
                 <li><a href="https://www.linkedin.com/in/brian-campassi"><img src="~/Content/Assets/about.png" alt="About Me" width="40" height="40"></a></li>
             </ul>
-       
+
             <ul class="nav navbar-nav bars navbar-center">
                 @if (User.IsInRole("Admin"))
                 {

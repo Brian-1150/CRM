@@ -14,7 +14,7 @@ namespace CRM.WebMVC.Controllers
 
 
         // GET: FullCal
-        public ActionResult Index()
+        public ActionResult TheIndex()
         {
             return View();
         }

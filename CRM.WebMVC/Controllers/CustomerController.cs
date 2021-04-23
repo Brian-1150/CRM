@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CustomerController : Controller
     {
         private CustomerService NewCustomerService()

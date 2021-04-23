@@ -44,7 +44,7 @@ namespace CRM.Services
 
                 Location = model.Location,
                 Start = model.Start,
-                End = endDefault,
+                End = (DateTimeOffset)endDefault,
                 Title = model.Title,
                 ColorOfEvent = model.ColorOfEvent,
                 Details = model.Details
@@ -98,6 +98,23 @@ namespace CRM.Services
                 //        });
                 //tempList.Add((CalendarEventListItem)query);
                 //return tempList;
+            }
+        }
+
+        public bool UpdateCalendarEvent(CalendarEventEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .CalendarEvents.Find(model.CalEventID);
+                entity.Start = model.Start;
+                entity.End = (DateTimeOffset)model.End;
+                entity.Details = model.Details;
+                entity.Title = model.Title;
+                entity.Location = model.Location;
+                entity.ColorOfEvent = model.ColorOfEvent;
+
+                return ctx.SaveChanges() == 1;
             }
         }
 

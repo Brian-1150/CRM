@@ -3,22 +3,44 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<head>
+    <style>
+        .mylist {
+            margin: 15px;
+        }
+            .mylist ul {
+                list-style-type: none;
+                display: inline;
+                
+            }
+            .mylist li {
+                margin-right: 20px;
+                margin-bottom: 5px;
+                display: inline;
+            }
+    </style>
+</head>
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="mylist">
+    <ul>
+        
+        
+            <li ><a href="~/CalendarEvent/Create"><img src="~/Content/Assets/cal_add.png" alt="Calendar View" width="32" height="32"></a></li>
+        
+            <li><a href="~/FullCal/TheIndex"><img src="~/Content/Assets/cal.png" alt="Calendar View" width="32" height="32"></a></li>
+        </ul>
+</div>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CalendarEventID)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
-       
+
         <th>
             @Html.DisplayNameFor(model => model.Start)
         </th>
@@ -28,28 +50,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CalendarEventID)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.End)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { id = item.CalendarEventID }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalendarEventID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CalendarEventID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CalendarEventID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CalendarEventID })
+            </td>
+        </tr>
+    }
 
 </table>

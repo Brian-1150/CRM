@@ -9,15 +9,10 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CustomerController : Controller
     {
-        private CustomerService NewCustomerService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new CustomerService(userId);
-            return service;
-        }
+        private CustomerService _svc = new CustomerService();
 
         //[C]RUD
         //GET:  CreateCustomer View
@@ -37,8 +32,8 @@ namespace CRM.WebMVC.Controllers
 
             //have EnumDropDownList default to have IN selected, but still be editable ** Ticket#15
             //model.StateOfPerson = Data.PersonState.IN;
-            var service = NewCustomerService();
-            if (service.CreateCustomer(model))
+
+            if (_svc.CreateCustomer(model))
             {
                 TempData["SaveResult"] = " Customer was successfully added to database! ";
                 return RedirectToAction("Index");
@@ -51,17 +46,13 @@ namespace CRM.WebMVC.Controllers
         // GET: Index - List of customers
         public ActionResult Index()
         {
-            var service = NewCustomerService();
-            var model = service.GetCustomers();
-            return View(model);
+            return View(_svc.GetCustomers());
         }
+
         //GET:  Customer Details
         public ActionResult Details(int id)
         {
-            var svc = NewCustomerService();
-            var model = svc.GetCustomerDetailByID(id);
-
-            return View(model);
+            return View(_svc.GetCustomerDetailByID(id));
         }
 
 
@@ -69,9 +60,9 @@ namespace CRM.WebMVC.Controllers
         //Edit 
         public ActionResult Edit(int id)
         {
-            var service = NewCustomerService();
-            var detail = service.GetCustomerDetailByID(id);
-            
+
+            var detail = _svc.GetCustomerDetailByID(id);
+
             var model = new CustomerEdit
             {
                 CustomerID = detail.CustomerID,
@@ -99,8 +90,8 @@ namespace CRM.WebMVC.Controllers
                 return View(model);
 
             }
-            var service = NewCustomerService();
-            if (service.UpdateCustomer(model))
+
+            if (_svc.UpdateCustomer(model))
             {
                 TempData["SaveResult"] = "Customer info was updated successfully!";
                 return RedirectToAction("Index");
@@ -113,8 +104,7 @@ namespace CRM.WebMVC.Controllers
         //Ticket # 16(NEED TO FIX ENTIRE DELETE METHOD)
         public ActionResult Delete(int id)
         {
-            var service = NewCustomerService();
-            var detail = service.GetCustomerDetailByID(id);
+            var detail = _svc.GetCustomerDetailByID(id);
             var model = new CustomerDelete
             {
                 CustomerID = detail.CustomerID,
@@ -143,14 +133,14 @@ namespace CRM.WebMVC.Controllers
                 return View(model);
 
             }
-            var service = NewCustomerService();
-            if (service.DeleteCustomer(model))
-            {if (model.IsOnDoNotContactList)
+            if (_svc.DeleteCustomer(model))
+            {
+                if (model.IsOnDoNotContactList)
                 {
                     TempData["SaveResult"] = "Customer has been placed on 'DO NOT CONTACT LIST' and status is changed to 'INACTIVE'";
                     return RedirectToAction("Index");
                 }
-            if (!model.IsOnDoNotContactList && model.StatusOfCustomer == Data.CustomerStatus.Inactive)
+                if (!model.IsOnDoNotContactList && model.StatusOfCustomer == Data.CustomerStatus.Inactive)
                 {
                     TempData["SaveResult"] = "Customer status is changed to 'INACTIVE'";
                     return RedirectToAction("Index");

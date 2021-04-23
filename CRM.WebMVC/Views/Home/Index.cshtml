@@ -1,14 +1,35 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<head>
+    <style>
+        body {
+            background-color: powderblue;
+            color: cadetblue;
+        }
 
-<div class="jumbotron">
-    <h1>Small Business CRM App</h1>
-    <p class="lead">Search</p>
-    <p><a href="google.com" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        .wrapper {
+            
+            min-height: calc(80vh - 10px);
+        }
+
+        footer {
+            height: 10px;
+            color: brown;
+        }
+        .push{
+            margin: 10%;
+        }
+    </style>
+</head>
+<div class="wrapper">
+<div class="jumbotron" style="background-color: #92856c; border-radius: 50%; color: black; margin-top: 5%;">
+    <h1 style="text-align: center;">Small Business CRM App</h1>
+
+    <p><a href="About/Index" class="btn btn-primary btn-lg center-block" style=" max-width: max-content">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
+<div class="row push">
     <div class="col-md-4">
         <h2>Testimonials</h2>
         <p>
@@ -16,5 +37,5 @@
         </p>
         <p><a class="btn btn-default" href="cleanforyoullc.com">Learn more &raquo;</a></p>
     </div>
-    
+</div>
 </div>

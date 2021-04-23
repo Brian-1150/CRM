@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class FullCalController : Controller
     {
         FullCalService _svc = new FullCalService();
@@ -24,7 +25,7 @@ namespace CRM.WebMVC.Controllers
             return new JsonResult { Data = _svc.GetFullCalEvents(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-     
+
         public ActionResult GetFullCalEventByID(string id)
         {
             return new JsonResult { Data = _svc.GetByID(Convert.ToInt32(id)), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -33,7 +34,7 @@ namespace CRM.WebMVC.Controllers
         [HttpPost]
         public void UpdateFullCalEvent(string id, string start, string end)
         {
-            
+
             _svc.UpdateEvent(id, DateTime.Parse(start), DateTime.Parse(end));
         }
     }

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
-{
+{[Authorize(Roles = "Admin")]
     public class PayCheckController : Controller
     {
         private PayCheckService _svc = new PayCheckService();

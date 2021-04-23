@@ -9,30 +9,24 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
-        private EmployeeService NewEmployeeService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new EmployeeService(userId);
-            return service;
-        }
-
+        private EmployeeService _svc = new EmployeeService();
         //[C]RUD
         //GET:  CreateEmployee View
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(EmployeeCreate model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-            var service = NewEmployeeService();
-            if (service.CreateEmployee(model))
+            if (_svc.CreateEmployee(model))
             {
                 TempData["SaveResult"] = "Employee Added";
                 return RedirectToAction("Index");
@@ -42,26 +36,23 @@ namespace CRM.WebMVC.Controllers
         }
         //C[R]UD
         //GET:  Index - List of Employees
-                
+
         public ActionResult Index()
         {
-            var service = NewEmployeeService();
-            var model = service.GetEmployees();
-            return View(model);
+            return View(_svc.GetEmployees());
         }
+
         //GET:  Employee Details
         public ActionResult Details(int id)
         {
-            var service = NewEmployeeService();
-            var model = service.GetEmployeeByID(id);
-            return View(model);
+            return View(_svc.GetEmployeeByID(id));
         }
+
         //CR[U]D
         //GET: Edit view
         public ActionResult Edit(int id)
         {
-            var service = NewEmployeeService();
-            var detail = service.GetEmployeeByID(id);
+            var detail = _svc.GetEmployeeByID(id);
             var model = new EmployeeEdit
             {
                 EmployeeID = detail.EmployeeID,
@@ -72,28 +63,28 @@ namespace CRM.WebMVC.Controllers
                 StreetAddress = detail.StreetAddress,
                 City = detail.City,
                 StateOfPerson = detail.StateOfPerson,
-               HireDate = detail.HireDate,
+                HireDate = detail.HireDate,
                 Current = detail.Current
             };
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit (int id, EmployeeEdit model)
+        public ActionResult Edit(int id, EmployeeEdit model)
         {
             if (!ModelState.IsValid) return View(model);
             if (model.EmployeeID != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
-
             }
-            var service = NewEmployeeService();
-            if (service.UpdateEmployee(model))
+
+            if (_svc.UpdateEmployee(model))
             {
                 TempData["SaveResult"] = "Customer info was updated successfully!";
                 return RedirectToAction("Index");
             }
+
             ModelState.AddModelError("", "Customer info could not be updated");
             return View(model);
         }

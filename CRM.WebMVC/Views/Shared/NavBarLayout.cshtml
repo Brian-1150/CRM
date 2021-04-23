@@ -7,10 +7,14 @@
     <style>
         .bars :hover {
             background-color: blue;
+
+        }
+        .height{
+            height: fit-content();
         }
     </style>
 </head>
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top height">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,21 +27,28 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav bars">
                 <li>
-                    <a href="~/Home"><img src="~/Content/Assets/iconfinder-icon.svg" alt="Home" width="32" height="32"></a>
+                    <a href="~/Home"><img src="~/Content/Assets/iconfinder-icon.svg" alt="Home" width="40" height="40"></a>
                 </li>
-                <li><a href="https://www.linkedin.com/in/brian-campassi">About Me</a></li>
+                <li><a href="https://www.linkedin.com/in/brian-campassi"><img src="~/Content/Assets/about.png" alt="About Me" width="40" height="40"></a></li>
                 @if (User.IsInRole("Admin"))
                 {
-                    <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
-                    <li>@Html.ActionLink("Invoice", "Index", "Invoice")</li>
-                    <li>@Html.ActionLink("PayChecks", "Index", "PayCheck")</li>
-                    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+                    <li><a href="~/Customer/Index"><img src="~/Content/Assets/customer.png" alt="CalendarEvents" width="40" height="40"></a></li>
+
+                    <li><a href="~/Invoice/Index"><img src="~/Content/Assets/invoice.png" alt="CalendarEvents" width="40" height="40"></a></li>
+
+                    <li><a href="~/PayCheck/Index"><img src="~/Content/Assets/paycheck.png" alt="CalendarEvents" width="40" height="40"></a></li>
+
+
+                    <li><a href="~/Employee/Index"><img src="~/Content/Assets/employee.png" alt="CalendarEvents" width="40" height="40"></a></li>
+
+
                 }
 
                 @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                 {
-                    <li>@Html.ActionLink("CalEvent", "Index", "CalendarEvent")</li>
-                    <li>@Html.ActionLink("Jobs", "Index", "Job")</li>
+                    <li><a href="~/CalendarEvent/Index"><img src="~/Content/Assets/cal_white.png" alt="CalendarEvents" width="40" height="40"></a></li>
+                    <li><a href="~/Job/Index"><img src="~/Content/Assets/jobs.png" alt="Jobs" width="35" height="35"></a></li>
+
                 }
 
 

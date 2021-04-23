@@ -9,23 +9,17 @@ using System.Web.Mvc;
 
 namespace CRM.WebMVC.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class CalendarEventController : Controller
     {
         private CalendarEventService _svc = new CalendarEventService();
-        private CalendarEventService NewCalEventService() //remove unnecessary Guid parsing ticket #31
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new CalendarEventService(userId);
-            return service;
-        }
+
 
         //CREATE
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            var service = NewCalEventService();
-            var model = service.CalendarEventCreateView();
-
-            return View(model);
+            return View(_svc.CalendarEventCreateView());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -33,8 +27,7 @@ namespace CRM.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            var service = NewCalEventService();
-            if (service.CreateCalendarEvent(model))
+            if (_svc.CreateCalendarEvent(model))
             {
                 TempData["SaveResult"] = "Event Added";
                 return RedirectToAction("Index");
@@ -46,20 +39,18 @@ namespace CRM.WebMVC.Controllers
         // READ:  list of events
         public ActionResult Index()
         {
-            var service = NewCalEventService();
-            var model = service.GetCalendarEvents();
-            return View(model);
+            return View(_svc.GetCalendarEvents());
         }
+
         //READ:  Event Details
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
-            var svc = NewCalEventService();
-            var model = svc.GetEventById(id);
-
-            return View(model);
+            return View(_svc.GetEventById(id));
         }
 
         //UPDATE
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var detail = _svc.GetEventById(id);
@@ -76,7 +67,8 @@ namespace CRM.WebMVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CalendarEventEdit model) {
+        public ActionResult Edit(int id, CalendarEventEdit model)
+        {
             if (!ModelState.IsValid) return View(model);
             if (model.CalEventID != id)
             {
@@ -91,5 +83,6 @@ namespace CRM.WebMVC.Controllers
             }
             ModelState.AddModelError("", "Event could not be updated");
             return View(model);
-    } }
+        }
+    }
 }

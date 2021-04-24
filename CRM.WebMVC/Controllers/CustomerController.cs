@@ -44,9 +44,16 @@ namespace CRM.WebMVC.Controllers
         }
         //C[R]UD
         // GET: Index - List of customers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(_svc.GetCustomers());
+            var custList = _svc.GetCustomers();
+            ViewBag.SortByName = string.IsNullOrEmpty(sortOrder) ? "nameDescending" : "";
+            ViewBag.SortByDate = sortOrder == "Date" ? "dateDescending" : "Date";
+
+                custList = sortOrder == "nameDescending" ? custList.OrderByDescending(l => l.LastName) : custList.OrderBy(l => l.LastName);
+
+
+            return View(custList);
         }
 
         //GET:  Customer Details

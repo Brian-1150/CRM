@@ -24,6 +24,7 @@ namespace CRM.Services
                 StreetAddress = model.StreetAddress,
                 City = model.City,
                 StateOfPerson = model.StateOfPerson,
+                ZipCode = model.ZipCode,
                 InitialDateOfContact = DateTimeOffset.Now,
                 StatusOfCustomer = CustomerStatus.Prospect  //new Customer gets set to prospect by default
 

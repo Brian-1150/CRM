@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.SortByName })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)

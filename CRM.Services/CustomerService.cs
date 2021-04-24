@@ -45,7 +45,7 @@ namespace CRM.Services
                 var query =
                     ctx
                        .Customers
-                       .Where(e => e.CustomerID >= 0)
+                       .Where(e => e.CustomerID >= 0 && !e.IsOnDoNotContactList)
                        .Select(
                           e =>
                               new CustomerListItem
@@ -83,6 +83,7 @@ namespace CRM.Services
                         StreetAddress = entity.StreetAddress,
                         City = entity.City,
                         StateOfPerson = entity.StateOfPerson,
+                        ZipCode = entity.ZipCode,
                         StatusOfCustomer = entity.StatusOfCustomer,
                         InitialDateOfContact = entity.InitialDateOfContact,
                         IsOnDoNotContactList = entity.IsOnDoNotContactList
@@ -113,7 +114,7 @@ namespace CRM.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteCustomer(int id)
+        public void DeleteCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -125,7 +126,7 @@ namespace CRM.Services
                 entity.IsOnDoNotContactList = true;
                 entity.StatusOfCustomer = CustomerStatus.Inactive;
 
-                return ctx.SaveChanges() == 1;
+                ctx.SaveChanges();
             }
         }
 

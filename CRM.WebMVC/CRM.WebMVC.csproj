@@ -528,6 +528,7 @@
     <Content Include="Views\FullCal\TheIndex.cshtml" />
     <Content Include="Views\Shared\NavBarLayout.cshtml" />
     <Content Include="Views\CalendarEvent\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,6 +102,7 @@ namespace CRM.WebMVC.Controllers
         //CRU[D]
         //GET:  Customer Delete View
         //Ticket # 16(NEED TO FIX ENTIRE DELETE METHOD)
+        [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var detail = _svc.GetCustomerDetailByID(id);
@@ -115,6 +116,7 @@ namespace CRM.WebMVC.Controllers
                 StreetAddress = detail.StreetAddress,
                 City = detail.City,
                 StateOfPerson = detail.StateOfPerson,
+                ZipCode = detail.ZipCode,
                 InitialDateOfContact = detail.InitialDateOfContact,
                 StatusOfCustomer = detail.StatusOfCustomer,
                 IsOnDoNotContactList = detail.IsOnDoNotContactList
@@ -122,32 +124,20 @@ namespace CRM.WebMVC.Controllers
             };
             return View(model);
         }
+        [ActionName("Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, CustomerDelete model)
+        public ActionResult DeleteCustomer(int id)
         {
-            if (!ModelState.IsValid) return View(model);
-            if (model.CustomerID != id)
-            {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
 
-            }
-            if (_svc.DeleteCustomer(model))
-            {
-                if (model.IsOnDoNotContactList)
-                {
-                    TempData["SaveResult"] = "Customer has been placed on 'DO NOT CONTACT LIST' and status is changed to 'INACTIVE'";
-                    return RedirectToAction("Index");
-                }
-                if (!model.IsOnDoNotContactList && model.StatusOfCustomer == Data.CustomerStatus.Inactive)
-                {
-                    TempData["SaveResult"] = "Customer status is changed to 'INACTIVE'";
-                    return RedirectToAction("Index");
-                }
-            }
-            ModelState.AddModelError("", "Customer info could not be updated");
-            return View(model);
+            _svc.DeleteCustomer(id);
+           
+                TempData["SaveResult"] = "Customer has been placed on 'DO NOT CONTACT LIST' and status is changed to 'INACTIVE'";
+                return RedirectToAction("Index");
+            
+
+            //TempData["Message"] = "Customer info could not be updated";
+            //return RedirectToAction("Index");
         }
     }
 }

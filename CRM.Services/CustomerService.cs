@@ -113,17 +113,17 @@ namespace CRM.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteCustomer(CustomerDelete model)
+        public bool DeleteCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Customers
-                    .Single(e => e.CustomerID == model.CustomerID);
+                    .Single(e => e.CustomerID == id);
 
-                entity.IsOnDoNotContactList = model.IsOnDoNotContactList;
-                entity.StatusOfCustomer = model.StatusOfCustomer;
+                entity.IsOnDoNotContactList = true;
+                entity.StatusOfCustomer = CustomerStatus.Inactive;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -10,14 +10,8 @@ namespace CRM.Services
 {
     public class CustomerService
     {
-        private readonly Guid _userId;
 
         public CustomerService() { }
-        public CustomerService(Guid userId)
-        {
-            _userId = userId;
-
-        }
 
         public bool CreateCustomer(CustomerCreate model)
         {
@@ -148,7 +142,7 @@ namespace CRM.Services
                 return entity;
             }
         }
-        internal List<Customer>GetCustomerFromDB()
+        internal List<Customer> GetCustomerFromDB()
         {
             using (var ctx = new ApplicationDbContext())
             {

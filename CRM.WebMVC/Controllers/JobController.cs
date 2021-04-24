@@ -18,8 +18,6 @@ namespace CRM.WebMVC.Controllers
         private EmployeeService _empSvc = new EmployeeService();
         private JobService _svc = new JobService();
 
-
-
         //CREATE
         public ActionResult Create()
         {

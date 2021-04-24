@@ -15,14 +15,7 @@ namespace CRM.Services
         private CustomerService _custService = new CustomerService();
         private JobService _jobService = new JobService();
 
-
-
-        //Make this class without GUID constructor and see if we can still validate authorized user by using [Authorize] on controller
-        //ticket #24
-        public InvoiceService()
-        {
-
-        }
+        public InvoiceService() { }
 
         public InvoiceCreate GetInvoiceCreatView()
         {

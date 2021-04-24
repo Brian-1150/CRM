@@ -16,17 +16,12 @@ namespace CRM.Services
 {
     public class JobService
     {
-        private readonly Guid _userId;
+
         private CustomerService _custService = new CustomerService();
         private EmployeeService _empService = new EmployeeService();
         private CalendarEventService _calEventService = new CalendarEventService();
 
         public JobService() { }
-        public JobService(Guid userId)
-        {
-            _userId = userId;
-        }
-
 
         public JobCreate GetJobCreateView()
         {
@@ -41,19 +36,6 @@ namespace CRM.Services
                 ListOfCalEvents = listOfCalEvents
             };
         }
-
-        //internal void AddForeignKeyValue(InvoiceCreate model)
-        //{
-        //    for (int i = 0; i < model.ListOfSelectedJobs.Count; i++)
-        //    {
-        //        using (var ctx = new ApplicationDbContext())
-        //        {
-        //            var entity =
-        //            ctx.Jobs.Find(model.ListOfSelectedJobs.ElementAt(i));
-        //            entity.InvoiceID = model.
-        //        }
-        //    }
-        //}
 
         public bool CreateJob(JobCreate model)
         {
@@ -202,34 +184,6 @@ namespace CRM.Services
 
             }
         }
-
-
-        //Helper Mehtods
-        //public IEnumerable<int> GetJobs(int id)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //            .Jobs
-        //            .Where(e => e.InvoiceID == id)
-        //            .Select(
-        //                e =>
-        //                new JobListItem
-        //                {
-        //                    JobID = e.JobID,
-        //                    CalendarEventID = e.CalendarEventID,
-        //                    CustomerID = e.CustomerID,
-        //                    EmployeeID = e.EmployeeID,
-        //                    EmployeePay = e.EmployeePay,
-        //                    CustomerCharge = e.CustomerCharge,
-        //                    PayCheckID = e.PayCheckID,
-        //                    InvoiceID = e.InvoiceID
-        //                });
-        //        return query.ToArray();
-        //    }
-        //}
-
 
     }
 }

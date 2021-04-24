@@ -12,16 +12,7 @@ namespace CRM.Services
 {
     public class CalendarEventService
     {
-        private readonly Guid _userId;
-        private CustomerService _custService = new CustomerService();
-        private EmployeeService _empService = new EmployeeService();
-
         public CalendarEventService() { }
-        public CalendarEventService(Guid userId)
-        {
-            _userId = userId;
-        }
-
 
         public CalendarEventCreate CalendarEventCreateView()
         {
@@ -35,7 +26,7 @@ namespace CRM.Services
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
 
-                DateTimeOffset? endDefault;
+            DateTimeOffset? endDefault;
             if (model.End != null)
                 endDefault = model.End;
             else endDefault = model.Start.AddDays(1);
@@ -80,24 +71,6 @@ namespace CRM.Services
                             ColorOfEvent = e.ColorOfEvent
                         });
                 return query.ToArray();
-                //tempList.Add((CalendarEventListItem)query);
-
-                //var query2 = ctx
-                //    .CalendarEvents
-                //    .Where(e => e.Job.CalendarEventID == e.CalEventID)
-                //    .Select(
-                //        e =>
-                //        new CalendarEventListItem
-                //        {
-                //            CalEventID = e.CalEventID,
-                //            JobID = e.Job.JobID,
-                //            Location = e.Location,
-                //            Start = e.Start,
-                //            End = e.End,
-                //            ColorOfEvent = e.ColorOfEvent
-                //        });
-                //tempList.Add((CalendarEventListItem)query);
-                //return tempList;
             }
         }
 

@@ -49,8 +49,8 @@ namespace CRM.WebMVC.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "username/email")]
+      
         public string Email { get; set; }
 
         [Required]

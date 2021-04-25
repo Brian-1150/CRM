@@ -43,17 +43,58 @@
         droppable: true,
         nowIndicator: true,
         eventClick: function (info) {
-            GetEventDetailByEventId(info);
+            GetFullCalEventByID(info);
         },
         eventDrop: function (info) {
             console.log(info);
-            UpdateEventDetails(info.id, info.start.toISOString(), info.end.toISOString());
+            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString()); 
         },
         eventResize: function (info) {
-            UpdateEventDetails(info.id, info.start.toIOSString(), info.end.toIOSString());
+            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString());
         }
     })
 }
+function GetFullCalEventByID(eventinfo) {
+
+    $.ajax({
+        type: "GET",
+        url: "GetFullCalEventByID/" + eventinfo.id,
+        dataType: "JSON",
+        contentType: "applicaton/json; charset=utf-8",
+        success: function (eventdetails) {
+            showModal('Event Details', eventdetails, true);
+        }
+    });
+}
+function UpdateFullCalEvent(id, start, end) {
+    var object = {};
+    object.id = id;
+    object.start = start;
+    object.end = end;
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "UpdateFullCalEvent/",
+        dataType: "JSON",
+        data: JSON.stringify(object)
+    });
+
+}
 function showModal(title, body, isEventDetail) {
     $("MyPopup .modal-title").html(title);
+
+    if (isEventDetail == null) {
+        $("#MyPopup .modal-body").html(body);
+        $("#MyPopup").modal("show");
+    }
+    else {
+        var eventDetail = 'Event Name: ' + body.title + '</br>';
+        var eventInfo = 'Event Info: ' + body.info + '</br>';
+        var eventStart = 'Event Start: ' + moment(body.start).format("M/D/YYYY") + '</br>';
+        var eventEnd = 'Event End: ' + moment(body.end).format("M/D/YYYY") + '</br>';
+        var modalPop = $("#MyPopup .modal-body");
+
+        modalPop.html(eventDetail + eventInfo + eventStart + eventEnd);
+        $("#MyPopup.modal").modal("show");
+    }
 }

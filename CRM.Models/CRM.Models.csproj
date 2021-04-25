@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CalendarEvent\CalendarEventCreate.cs" />
     <Compile Include="CalendarEvent\CalendarEventDetail.cs" />
+    <Compile Include="CalendarEvent\CalendarEventEdit.cs" />
     <Compile Include="CalendarEvent\CalendarEventListItem.cs" />
     <Compile Include="Customer\CustomerCreate.cs" />
     <Compile Include="Customer\CustomerDetail.cs" />

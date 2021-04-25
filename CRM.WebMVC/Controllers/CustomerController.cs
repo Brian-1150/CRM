@@ -47,13 +47,32 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Index(string sortOrder)
         {
             var custList = _svc.GetCustomers();
-            ViewBag.SortByName = string.IsNullOrEmpty(sortOrder) ? "nameDescending" : "";
-            ViewBag.SortByDate = sortOrder == "Date" ? "dateDescending" : "Date";
+            ViewBag.SortByName = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.SortByDate = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.SortByID = sortOrder == "ID" ? "custID" : "ID";
 
-                custList = sortOrder == "nameDescending" ? custList.OrderByDescending(l => l.LastName) : custList.OrderBy(l => l.LastName);
-
-
-            return View(custList);
+             switch (sortOrder)
+            {
+                case "name_desc":
+                    custList = custList.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    custList = custList.OrderBy(s => s.InitialDateOfContact);
+                    break;
+                case "date_desc":
+                    custList = custList.OrderByDescending(s => s.InitialDateOfContact);
+                    break;
+                case "ID":
+                    custList = custList.OrderBy(c => c.CustomerID);
+                    break;
+                case "custID":
+                    custList = custList.OrderByDescending(c => c.CustomerID);
+                    break;
+                default:
+                    custList = custList.OrderBy(s => s.LastName);
+                    break;
+            }
+                    return View(custList);
         }
 
         //GET:  Customer Details

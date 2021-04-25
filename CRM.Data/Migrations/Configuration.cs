@@ -167,7 +167,7 @@
                     InitialDateOfContact = new DateTime(2015, 12, 20),
                     StatusOfCustomer = CustomerStatus.Active
                 },
-                
+
                 new Customer()
                 {
                     FirstName = "Deepak",

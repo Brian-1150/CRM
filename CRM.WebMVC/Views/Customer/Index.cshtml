@@ -12,7 +12,8 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerID)
+            @Html.ActionLink("Customer ID", "Index", new { sortOrder = ViewBag.SortByID })
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -33,7 +34,7 @@
             @Html.DisplayNameFor(model => model.City)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InitialDateOfContact)
+            @Html.ActionLink("Date Of Contact", "Index", new { sortOrder = ViewBag.SortByDate })
         </th>
         <th></th>
     </tr>

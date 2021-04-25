@@ -67,7 +67,9 @@ namespace CRM.WebMVC.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 custList = custList.Where(c => c.LastName.ToLower().Contains(search.ToLower())
-                                 || c.FirstName.ToLower().Contains(search.ToLower()));
+                                 || c.FirstName.ToLower().Contains(search.ToLower()) || c.Email.ToLower().Contains
+                                 (search.ToLower()) || c.StreetAddress.ToLower().Contains(search.ToLower()) ||
+                                 c.PhoneNumber.Contains(search));
                     }
              switch (sort)
             {

@@ -7,7 +7,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Customer Database</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,7 +18,7 @@
 
 {
     <p>
-        Find by name: @Html.TextBox("search", ViewBag.Filter as string)
+        Search by name/phone/address/email: @Html.TextBox("search", ViewBag.Filter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -35,6 +35,7 @@
             @Html.ActionLink("Last Name", "Index", new { sort = ViewBag.SortByName })
         </th>
         <th>
+           
             Phone
         </th>
         <th>

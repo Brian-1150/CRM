@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace CRM.WebMVC.Controllers
 {
@@ -44,35 +45,55 @@ namespace CRM.WebMVC.Controllers
         }
         //C[R]UD
         // GET: Index - List of customers
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sort, string filter, string search, int? page)
         {
             var custList = _svc.GetCustomers();
-            ViewBag.SortByName = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.SortByDate = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.SortByID = sortOrder == "ID" ? "custID" : "ID";
+            ViewBag.Sort = sort;
+            ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "nameDescending" : "";
+            ViewBag.SortByDate = sort == "Date" ? "dateDescending" : "Date";
+            ViewBag.SortByID = sort == "ID" ? "idDescending" : "ID";
 
-             switch (sortOrder)
+            if (search != null)
             {
-                case "name_desc":
+                page = 1;
+            }
+            else
+            {
+                search = filter;
+            }
+
+            ViewBag.Filter = search;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                custList = custList.Where(c => c.LastName.ToLower().Contains(search.ToLower())
+                                 || c.FirstName.ToLower().Contains(search.ToLower()));
+                    }
+             switch (sort)
+            {
+                case "nameDescending":
                     custList = custList.OrderByDescending(s => s.LastName);
                     break;
                 case "Date":
                     custList = custList.OrderBy(s => s.InitialDateOfContact);
                     break;
-                case "date_desc":
+                case "dateDescending":
                     custList = custList.OrderByDescending(s => s.InitialDateOfContact);
                     break;
                 case "ID":
                     custList = custList.OrderBy(c => c.CustomerID);
                     break;
-                case "custID":
+                case "idDescending":
                     custList = custList.OrderByDescending(c => c.CustomerID);
                     break;
                 default:
                     custList = custList.OrderBy(s => s.LastName);
                     break;
             }
-                    return View(custList);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(custList.ToPagedList(pageNumber, pageSize));
+
         }
 
         //GET:  Customer Details

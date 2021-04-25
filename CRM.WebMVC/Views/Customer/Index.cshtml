@@ -1,4 +1,7 @@
-﻿@model IEnumerable<CRM.Models.CustomerListItem>
+﻿@model PagedList.IPagedList<CRM.Models.CustomerListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,68 +12,85 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+
+
+{
+    <p>
+        Find by name: @Html.TextBox("search", ViewBag.Filter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Customer ID", "Index", new { sortOrder = ViewBag.SortByID })
+            @Html.ActionLink("Customer ID", "Index", new { sort = ViewBag.SortByID })
 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </th>
         <th>
-            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.SortByName })
+            @Html.ActionLink("Last Name", "Index", new { sort = ViewBag.SortByName })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreetAddress)
+            Street
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            City
         </th>
         <th>
-            @Html.ActionLink("Date Of Contact", "Index", new { sortOrder = ViewBag.SortByDate })
+            @Html.ActionLink("Date Of Contact", "Index", new { sort = ViewBag.SortByDate })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CustomerID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StreetAddress)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.City)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.InitialDateOfContact)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitialDateOfContact)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sort = ViewBag.Sort, filter = ViewBag.Filter }))

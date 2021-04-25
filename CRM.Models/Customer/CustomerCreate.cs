@@ -11,6 +11,9 @@ namespace CRM.Models
     {
         //Attempt at highlighting IN in EnumDropDownList
         public new PersonState StateOfPerson { get; set; } = PersonState.IN;
+        public new string StreetAddress { get; set; } = "none";
+        public new string Email { get; set; } = "none";
+        public string PhoneNumber { get; set; } = "none";
         public TextColor TextColor => StateOfPerson == PersonState.IN ? TextColor.Primary : TextColor.Secondary;
     }
 }

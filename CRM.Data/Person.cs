@@ -17,16 +17,19 @@ namespace CRM.Data
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "A First Name is required.")]
         public string FirstName { get; set; }
+
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Display(Name = "Phone Number")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number. (10 digits no dashes) ex(317123456) ")]
         public string PhoneNumber { get; set; }
+
         [EmailAddress]
         public string Email { get; set; }
         [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
+
         [Display(Name = "City")]
         public string City { get; set; }
 

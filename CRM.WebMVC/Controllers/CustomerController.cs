@@ -48,6 +48,7 @@ namespace CRM.WebMVC.Controllers
         public ActionResult Index(string sort, string filter, string search, int? page)
         {
             var custList = _svc.GetCustomers();
+            
             ViewBag.Sort = sort;
             ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "nameDescending" : "";
             ViewBag.SortByDate = sort == "Date" ? "dateDescending" : "Date";
@@ -67,8 +68,7 @@ namespace CRM.WebMVC.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 custList = custList.Where(c => c.LastName.ToLower().Contains(search.ToLower())
-                                 || c.FirstName.ToLower().Contains(search.ToLower()) || c.Email.ToLower().Contains
-                                 (search.ToLower()) || c.StreetAddress.ToLower().Contains(search.ToLower()) ||
+                                 || c.FirstName.ToLower().Contains(search.ToLower()) ||  c.StreetAddress.ToLower().Contains(search.ToLower()) ||
                                  c.PhoneNumber.Contains(search));
                     }
              switch (sort)

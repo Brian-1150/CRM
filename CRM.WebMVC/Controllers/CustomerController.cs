@@ -54,7 +54,7 @@ namespace CRM.WebMVC.Controllers
             
             ViewBag.Sort = sort;
             ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "nameDescending" : "";
-            ViewBag.SortByDate = sort == "Date" ? "dateDescending" : "Date";
+            ViewBag.SortByStatus = sort == "Status" ? "statusDescending" : "Status";
             ViewBag.SortByID = sort == "ID" ? "idDescending" : "ID";
 
             if (search != null)
@@ -79,11 +79,11 @@ namespace CRM.WebMVC.Controllers
                 case "nameDescending":
                     custList = custList.OrderByDescending(s => s.LastName);
                     break;
-                case "Date":
-                    custList = custList.OrderBy(s => s.InitialDateOfContact);
+                case "Status":
+                    custList = custList.OrderBy(s => s.StatusOfCustomer);
                     break;
-                case "dateDescending":
-                    custList = custList.OrderByDescending(s => s.InitialDateOfContact);
+                case "statusDescending":
+                    custList = custList.OrderByDescending(s => s.StatusOfCustomer);
                     break;
                 case "ID":
                     custList = custList.OrderBy(c => c.CustomerID);

@@ -58,7 +58,8 @@ namespace CRM.Services
                                   Email = e.Email,
                                   StreetAddress = e.StreetAddress,
                                   City = e.City,
-                                  InitialDateOfContact = e.InitialDateOfContact
+                                  InitialDateOfContact = e.InitialDateOfContact,
+                                  StatusOfCustomer = e.StatusOfCustomer
 
                               }
                    );

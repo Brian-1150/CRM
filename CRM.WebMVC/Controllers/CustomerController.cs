@@ -13,6 +13,7 @@ namespace CRM.WebMVC.Controllers
     [Authorize(Roles = "Admin")]
     public class CustomerController : Controller
     {
+        private CalendarEventService _calSvc = new CalendarEventService();
         private CustomerService _svc = new CustomerService();
         private InvoiceService _invoiceSvc = new InvoiceService();
 
@@ -105,6 +106,7 @@ namespace CRM.WebMVC.Controllers
         //GET:  Customer Details
         public ActionResult Details(int id)
         {
+            ViewBag.CalEventList = _calSvc.GetCalendarEvents(id);
             ViewBag.InvoiceList = _invoiceSvc.GetInvoices(id);
             return View(_svc.GetCustomerDetailByID(id));
         }

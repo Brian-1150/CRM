@@ -3,112 +3,121 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<head>
+    <style>
+        .moveright {
+            justify-content: right;
+            right: 0;
+        }
+    </style>
+</head>
 <h2>Details</h2>
 
 <div>
     <h4>CustomerDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerID)
-        </dt>
+    <div class="container">
+        <div class="col">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CustomerID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerID)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StreetAddress)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StreetAddress)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StateOfPerson)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StateOfPerson)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StateOfPerson)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusOfCustomer)
+                <dd>
+                    @Html.DisplayFor(model => model.StateOfPerson)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StatusOfCustomer)
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusOfCustomer)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StatusOfCustomer)
+                </dd>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InitialDateOfContact)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.InitialDateOfContact)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.InitialDateOfContact)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.InitialDateOfContact)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+
+        <div class="col">
+            <div class="row">
+                @Html.Label("Invoices")
+
+                @Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), "Select for details", htmlAttributes:
+                new { @class = "form-control drop invoice_link" })
+            </div>
+            <div class="row">
+                @Html.Label("Calendar Events")
+
+                @Html.DropDownList("CalEvents", new SelectList(ViewBag.CalEventList, "CalendarEventID", "CalendarEventID"), "Choose", htmlAttributes:
+                new { @class = "form-control drop calendar_link" })
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.Label("Invoices")
-    <ul>
-        @foreach (var invoice in ViewBag.InvoiceList)
-        {
-            <li>
-                <a href="~/Invoice/Details/@invoice.InvoiceID">
-                    @invoice.InvoiceID
-                </a>
-            </li>
-        }
-    </ul>
 
-    @*@Html.DropDownList(Html.ActionLink("Invoices", "Details", new { id = "InvoiceID" }), new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), htmlAttributes: new { @class = "form-control drop" })*@
 
-    @Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), htmlAttributes:
-    new { @class = "form-control drop mylink" })
 
-    @*@Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, Html.ActionLink("InvoiceID", "Details", "Invoices", new { id = "InvoiceID" })))*@
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
     @Html.ActionLink("Back to List", "Index")
@@ -116,11 +125,17 @@
 
 <script type="text/javascript">
     $(function () {
-        $('.mylink').change(function () {
-            var url = $(this).val();
-            if (url != null && url != '') {
-                window.location.href = window.location.origin + "/Invoice/Details/" + url;
-            }
+        $('.invoice_link').change(function () {
+            var id = $(this).val();
+            window.location.href = window.location.origin + "/Invoice/Details/" + id;
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('.calendar_link').change(function () {
+            var id = $(this).val();
+            window.location.href = window.location.origin + "/CalendarEvent/Details/" + id;
         });
     });
 </script>

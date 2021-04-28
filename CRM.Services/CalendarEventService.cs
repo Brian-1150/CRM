@@ -49,8 +49,6 @@ namespace CRM.Services
 
         }
 
-
-
         public IEnumerable<CalendarEventListItem> GetCalendarEvents()
         {
             var tempList = new List<CalendarEventListItem>();
@@ -74,6 +72,28 @@ namespace CRM.Services
             }
         }
 
+        public IEnumerable<CalendarEventListItem> GetCalendarEvents(int id)
+        {
+            var tempList = new List<CalendarEventListItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .CalendarEvents
+                    .Where(e => e.Job.CalendarEventID >= id)
+                    .Select(
+                        e =>
+                        new CalendarEventListItem
+                        {
+                            CalendarEventID = e.CalEventID,
+                            Location = e.Location,
+                            Start = e.Start,
+                            End = e.End,
+                            ColorOfEvent = e.ColorOfEvent
+                        });
+                return query.ToArray();
+            }
+        }
         public bool UpdateCalendarEvent(CalendarEventEdit model)
         {
             using (var ctx = new ApplicationDbContext())

@@ -14,9 +14,12 @@ namespace CRM.WebMVC.Controllers
     public class CustomerController : Controller
     {
         private CustomerService _svc = new CustomerService();
+        private InvoiceService _invoiceSvc = new InvoiceService();
 
         //[C]RUD
         //GET:  CreateCustomer View
+
+        [HttpGet]
         public ActionResult Create()
         {
             var model = new CustomerCreate();
@@ -26,6 +29,7 @@ namespace CRM.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ActionName ( "Create")]
         public ActionResult Create(CustomerCreate model)
         {
             if (!ModelState.IsValid)
@@ -101,6 +105,7 @@ namespace CRM.WebMVC.Controllers
         //GET:  Customer Details
         public ActionResult Details(int id)
         {
+            ViewBag.InvoiceList = _invoiceSvc.GetInvoices(id);
             return View(_svc.GetCustomerDetailByID(id));
         }
 

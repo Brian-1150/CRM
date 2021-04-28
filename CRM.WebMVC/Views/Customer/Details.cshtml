@@ -89,7 +89,38 @@
 
     </dl>
 </div>
+<div>
+    @Html.Label("Invoices")
+    <ul>
+        @foreach (var invoice in ViewBag.InvoiceList)
+        {
+            <li>
+                <a href="~/Invoice/Details/@invoice.InvoiceID">
+                    @invoice.InvoiceID
+                </a>
+            </li>
+        }
+    </ul>
+
+    @*@Html.DropDownList(Html.ActionLink("Invoices", "Details", new { id = "InvoiceID" }), new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), htmlAttributes: new { @class = "form-control drop" })*@
+
+    @Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), htmlAttributes:
+    new { @class = "form-control drop mylink" })
+
+    @*@Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, Html.ActionLink("InvoiceID", "Details", "Invoices", new { id = "InvoiceID" })))*@
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script type="text/javascript">
+    $(function () {
+        $('.mylink').change(function () {
+            var url = $(this).val();
+            if (url != null && url != '') {
+                window.location.href = window.location.origin + "/Invoice/Details/" + url;
+            }
+        });
+    });
+</script>

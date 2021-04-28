@@ -67,13 +67,14 @@ namespace CRM.Services
         }
         public CustomerDetail GetCustomerDetailByID(int id)
         {
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Customers
                     .Single(e => e.CustomerID == id);
-                return
+                            return
                     new CustomerDetail
                     {
                         CustomerID = entity.CustomerID,

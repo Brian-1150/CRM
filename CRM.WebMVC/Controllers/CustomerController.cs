@@ -35,9 +35,7 @@ namespace CRM.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-
-            //have EnumDropDownList default to have IN selected, but still be editable ** Ticket#15
-            //model.StateOfPerson = Data.PersonState.IN;
+            //check for duplicate and ask for confirm before proceeding ticket # 38
 
             if (_svc.CreateCustomer(model))
             {
@@ -100,6 +98,7 @@ namespace CRM.WebMVC.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(custList.ToPagedList(pageNumber, pageSize));
+            //Add button to show deleted customers ticket #39
 
         }
 

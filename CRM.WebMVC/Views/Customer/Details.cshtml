@@ -138,7 +138,9 @@
     $(function () {
         $('.calendar_link').change(function () {
             var id = $(this).val();
-            window.location.href = window.location.origin + "/CalendarEvent/Details/" + id;
+            if (id != null && id != '') {
+                window.location.href = window.location.origin + "/CalendarEvent/Details/" + id;
+            }
         });
     });
 </script>

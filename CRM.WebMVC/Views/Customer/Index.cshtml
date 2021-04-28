@@ -17,8 +17,8 @@
 
 
 {
-    <p>
-        Search by name/phone/address/email: @Html.TextBox("search", ViewBag.Filter as string)
+    <p class="text-success" style="font-weight: 800">
+        Search by any portion of first name, last name, phone number, or address: @Html.TextBox("search", ViewBag.Filter as string)
         <input type="submit" value="Search" />
     </p>
 }

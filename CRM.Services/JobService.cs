@@ -39,7 +39,7 @@ namespace CRM.Services
 
         public bool CreateJob(JobCreate model)
         {
-
+            ChangeCustStatus(model.CustomerID);
 
             var entity = new Job()
             {
@@ -59,6 +59,7 @@ namespace CRM.Services
 
         }
 
+        
         public IEnumerable<JobListItem> GetJobs()
         {
             using (var ctx = new ApplicationDbContext())
@@ -184,6 +185,22 @@ namespace CRM.Services
 
             }
         }
+
+        //Helper Methods
+
+        private void ChangeCustStatus(int customerID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Customers.Find(customerID);
+                if(entity.StatusOfCustomer != CustomerStatus.Active)
+                {
+                    entity.StatusOfCustomer = CustomerStatus.Active;
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
 
     }
 }

@@ -64,9 +64,9 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="Migrations\202104250235219_test.cs" />
-    <Compile Include="Migrations\202104250235219_test.designer.cs">
-      <DependentUpon>202104250235219_test.cs</DependentUpon>
+    <Compile Include="Migrations\202104280639242_force.cs" />
+    <Compile Include="Migrations\202104280639242_force.designer.cs">
+      <DependentUpon>202104280639242_force.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
@@ -78,8 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104250235219_test.resx">
-      <DependentUpon>202104250235219_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104280639242_force.resx">
+      <DependentUpon>202104280639242_force.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

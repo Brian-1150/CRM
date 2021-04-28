@@ -7,10 +7,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Customer Database</h2>
+<h2 style="margin: 3%;">Customer Database</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="right" style="float: right;">
+    @Html.ActionLink("Add Customer", "Create")
 </p>
 
 @using (Html.BeginForm("Index", "Customer", FormMethod.Get))
@@ -52,6 +52,7 @@
            
         </th>
         <th>
+          
             Initial Contact
         </th>
         <th></th>

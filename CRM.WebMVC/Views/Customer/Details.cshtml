@@ -9,15 +9,18 @@
             justify-content: right;
             right: 0;
         }
+        .row {
+            margin: 4px;
+        }
     </style>
 </head>
-<h2>Details</h2>
+<h2>Customer Details</h2>
 
 <div>
-    <h4>CustomerDetail</h4>
+   
     <hr />
     <div class="container">
-        <div class="col">
+        <div class="col-sm-7">
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.CustomerID)
@@ -99,17 +102,17 @@
             </dl>
         </div>
 
-        <div class="col">
+        <div class="col-sm-5">
             <div class="row">
-                @Html.Label("Invoices")
-
-                @Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), "Select for details", htmlAttributes:
-                new { @class = "form-control drop invoice_link" })
+              
+                    @Html.DropDownList("Invoices", new SelectList(ViewBag.InvoiceList, "InvoiceID", "InvoiceID"), "List of Invoices", htmlAttributes:
+                    new { @class = "form-control drop invoice_link" })
+                
             </div>
+           
             <div class="row">
-                @Html.Label("Calendar Events")
-
-                @Html.DropDownList("CalEvents", new SelectList(ViewBag.CalEventList, "CalendarEventID", "CalendarEventID"), "Choose", htmlAttributes:
+              
+                @Html.DropDownList("CalEvents", new SelectList(ViewBag.CalEventList, "CalendarEventID", "CalendarEventID"), "List of Calendar Events", htmlAttributes:
                 new { @class = "form-control drop calendar_link" })
             </div>
         </div>

@@ -72,6 +72,8 @@ namespace CRM.Services
             }
         }
 
+
+
         public IEnumerable<CalendarEventListItem> GetCalendarEvents(int id)
         {
             var tempList = new List<CalendarEventListItem>();
@@ -154,6 +156,17 @@ namespace CRM.Services
                             ColorOfEvent = e.ColorOfEvent
                         });
                 return query.ToList();
+            }
+        }
+
+        internal int GetLastCalEventID()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CalendarEvents.OrderByDescending(c => c.CalEventID).FirstOrDefault();
+                return entity.CalEventID;
+
+                //return ctx.CalendarEvents.Last().CalEventID;
             }
         }
     }

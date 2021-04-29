@@ -36,6 +36,19 @@ namespace CRM.Services
                 ListOfCalEvents = listOfCalEvents
             };
         }
+        public JobCreate GetJobCreateViewForCalEvent()
+        {
+
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
+            int id = _calEventService.GetLastCalEventID();
+            return new JobCreate
+            {
+                ListOfCustomers = listOfCustomers,
+                ListOfEmployees = listOfEmployees,
+                CalendarEventID = id
+            };
+        }
 
         public bool CreateJob(JobCreate model)
         {

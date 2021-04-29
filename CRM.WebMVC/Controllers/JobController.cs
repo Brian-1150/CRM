@@ -26,6 +26,15 @@ namespace CRM.WebMVC.Controllers
             return View(_svc.GetJobCreateView());
         }
 
+
+        [ActionName("CreateFromCalEvent")]
+        public ActionResult CreateFromCalEvent()
+        {
+            if (_svc is null)
+                return View("Error");
+            return View(_svc.GetJobCreateViewForCalEvent());
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobCreate model)

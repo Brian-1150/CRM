@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "CalendarEvent", FormMethod.Post )) 
 {
     @Html.AntiForgeryToken()
     
@@ -65,7 +65,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" formaction="Create" class="btn btn-default" />
             <input type="submit" value="Add Job info" formaction="Job" class= "btn btn-default" />
 
         </div>

@@ -536,6 +536,7 @@
     <Content Include="Views\Shared\NavBarLayout.cshtml" />
     <Content Include="Views\CalendarEvent\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Job\CreateFromCalEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

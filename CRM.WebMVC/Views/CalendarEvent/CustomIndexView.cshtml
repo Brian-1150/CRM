@@ -1,41 +1,44 @@
 ﻿@model IEnumerable<CRM.Models.CalendarEvent.CalendarEventListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CustomIndexView";
 }
+
 <head>
     <style>
         .mylist {
             margin: 15px;
         }
+
             .mylist ul {
                 list-style-type: none;
                 display: inline;
-                
             }
+
             .mylist li {
                 margin-right: 20px;
                 margin-bottom: 5px;
                 display: inline;
             }
-            body {
-                background-color: darkslategrey;
-                color: honeydew;
-            }
+
+        body {
+            background-color: darkslategrey;
+            color: honeydew;
+        }
     </style>
 </head>
 <h2>Schedule</h2>
 <p class="right" style="float: right;">
-    @Html.ActionLink("Hide Past Events", "CustomIndexView")
+    @Html.ActionLink("Show All", "Index")
 </p>
 <div class="mylist">
     <ul>
-        
-        
-            <li ><a href="~/CalendarEvent/Create"><img src="~/Content/Assets/cal_add.png" alt="Calendar View" width="32" height="32"></a></li>
-        
-            <li><a href="~/FullCal/TheIndex"><img src="~/Content/Assets/cal.png" alt="Calendar View" width="32" height="32"></a></li>
-        </ul>
+
+
+        <li><a href="~/CalendarEvent/Create"><img src="~/Content/Assets/cal_add.png" alt="Calendar View" width="32" height="32"></a></li>
+
+        <li><a href="~/FullCal/TheIndex"><img src="~/Content/Assets/cal.png" alt="Calendar View" width="32" height="32"></a></li>
+    </ul>
 </div>
 <table class="table">
     <tr>

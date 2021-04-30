@@ -7,13 +7,13 @@ namespace CRM.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class force : IMigrationMetadata
+    public sealed partial class First : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(force));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104280639242_force"; }
+            get { return "202104301648149_First"; }
         }
         
         string IMigrationMetadata.Source

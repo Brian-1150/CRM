@@ -58,6 +58,22 @@ namespace CRM.WebMVC.Controllers
             return View(_svc.GetCalendarEvents());
         }
 
+        public ActionResult CustomIndexView()
+        {
+            var list = _svc.GetCalendarEvents();
+            var newList = new List<CalendarEventListItem>();
+            foreach(var x in list)
+            {
+                if (x.End > DateTime.Now)
+                {
+                    
+                    newList.Add(x);  //model.Remove(x);
+                }
+                    
+            }
+            return View(newList);
+        }
+
         //READ:  Event Details
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)

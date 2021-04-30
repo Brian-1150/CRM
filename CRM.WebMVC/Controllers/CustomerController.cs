@@ -48,7 +48,7 @@ namespace CRM.WebMVC.Controllers
         }
         //C[R]UD
         // GET: Index - List of customers
-        public ActionResult Index(string sort, string filter, string search, int? page)
+        public ActionResult Index(string sort, string search, int? page) //string filter,
         {
             var custList = _svc.GetCustomers();
             
@@ -61,10 +61,10 @@ namespace CRM.WebMVC.Controllers
             {
                 page = 1;
             }
-            else
-            {
-                search = filter;
-            }
+            //else
+            //{
+            //    search = filter;
+            //}
 
             ViewBag.Filter = search;
 

@@ -38,6 +38,7 @@ namespace CRM.Services
                 End = (DateTimeOffset)endDefault,
                 Title = model.Title,
                 ColorOfEvent = model.ColorOfEvent,
+                TypeOfEvent = model.TypeOfEvent,
                 Details = model.Details
 
             };
@@ -66,7 +67,8 @@ namespace CRM.Services
                             Location = e.Location,
                             Start = e.Start,
                             End = e.End,
-                            ColorOfEvent = e.ColorOfEvent
+                            ColorOfEvent = e.ColorOfEvent,
+                            TypeOfEvent = e.TypeOfEvent
                         });
                 return query.ToArray();
             }

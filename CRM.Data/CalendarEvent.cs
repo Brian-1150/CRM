@@ -13,6 +13,10 @@ namespace CRM.Data
     {
         Red, Orange, Yellow, Green, Blue, Violet
     }
+    public enum EventType
+    {
+        Job, Estimate, Communication
+    }
   public  class CalendarEvent
     {
         // May have zero or one Job
@@ -27,12 +31,12 @@ namespace CRM.Data
         public string Title { get; set; }
         public string Details { get; set; }
         public EventColor ColorOfEvent { get; set; }
-
-      
-
+        public EventType TypeOfEvent { get; set; }
 
 
-        
+
+
+
 
 
 

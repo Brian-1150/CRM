@@ -19,6 +19,7 @@ namespace CRM.Models.CalendarEvent
         public DateTimeOffset End { get; set; }
 
         public EventColor ColorOfEvent { get; set; }
+        public EventType TypeOfEvent { get; set; }
 
 
     }

@@ -27,5 +27,6 @@ namespace CRM.Models.CalendarEvent
         public string Title { get; set; }
         public EventColor ColorOfEvent { get; set; }
         public string Details { get; set; }
+        public EventType TypeOfEvent { get; set; }
     }
 }

@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202104301648149_First.designer.cs">
       <DependentUpon>202104301648149_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105010411356_AddEventTypeToCalendarEvents.cs" />
+    <Compile Include="Migrations\202105010411356_AddEventTypeToCalendarEvents.designer.cs">
+      <DependentUpon>202105010411356_AddEventTypeToCalendarEvents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104301648149_First.resx">
       <DependentUpon>202104301648149_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105010411356_AddEventTypeToCalendarEvents.resx">
+      <DependentUpon>202105010411356_AddEventTypeToCalendarEvents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

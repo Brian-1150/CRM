@@ -51,6 +51,9 @@
             @Html.DisplayNameFor(model => model.End)
         </th>
         <th>
+            Type Of Event
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
@@ -96,7 +99,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.End)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfEvent)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
             </td>

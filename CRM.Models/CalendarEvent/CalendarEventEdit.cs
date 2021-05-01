@@ -22,6 +22,11 @@ namespace CRM.Models.CalendarEvent
         public string Title { get; set; }
         public string Details { get; set; }
         public EventColor ColorOfEvent { get; set; }
+        public string CustomerFullName { get; set; }
+        public int EmployeeID { get; set; }
+        public string EmployeeFullName { get; set; }
+        public double EmployeePay { get; set; }
+        public double CustomerCharge { get; set; }
 
     }
 }

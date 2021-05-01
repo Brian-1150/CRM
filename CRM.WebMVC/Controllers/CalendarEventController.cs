@@ -89,6 +89,7 @@ namespace CRM.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
+            ViewBag.JobInfo = _jobSvc.GetJobByID(id);
             return View(_svc.GetEventById(id));
         }
 

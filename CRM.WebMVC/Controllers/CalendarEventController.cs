@@ -55,6 +55,8 @@ namespace CRM.WebMVC.Controllers
         // READ:  list of events
         public ActionResult Index()
         {
+            var list = _jobSvc.GetJobsFromDB();
+            ViewBag.JobInfo = list;
             return View(_svc.GetCalendarEvents());
         }
 

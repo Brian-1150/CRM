@@ -72,7 +72,13 @@ namespace CRM.Services
 
         }
 
-        
+        public IEnumerable<Job> GetJobsFromDB()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Jobs.Include("Customer").Include("Employee").ToList();
+            }
+        }
         public IEnumerable<JobListItem> GetJobs()
         {
             using (var ctx = new ApplicationDbContext())

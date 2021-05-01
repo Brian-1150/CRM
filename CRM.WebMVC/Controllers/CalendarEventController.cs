@@ -15,6 +15,7 @@ namespace CRM.WebMVC.Controllers
     {
         private CalendarEventService _svc = new CalendarEventService();
         private JobService _jobSvc = new JobService();
+        private EmployeeService _empService = new EmployeeService();
 
         //CREATE
         [Authorize(Roles = "Admin")]
@@ -32,9 +33,10 @@ namespace CRM.WebMVC.Controllers
             {
                 if (_svc.CreateCalendarEvent(model))
                     return Redirect("~/Job/CreateFromCalEvent");
-                else {
+                else
+                {
                     TempData["message"] = "That did not work";
-                return View(model);
+                    return View(model);
                 }
             }
             if (_svc.CreateCalendarEvent(model))
@@ -97,6 +99,8 @@ namespace CRM.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
+           
+            var jobDetail = _jobSvc.GetJobByID(id);
             var detail = _svc.GetEventById(id);
             var model = new CalendarEventEdit
             {
@@ -105,14 +109,23 @@ namespace CRM.WebMVC.Controllers
                 Start = detail.Start,
                 End = detail.End,
                 Details = detail.Details,
-                ColorOfEvent = detail.ColorOfEvent
-            };
+                ColorOfEvent = detail.ColorOfEvent,
+                CustomerFullName = jobDetail.CustomerFullName,
+                EmployeeID = jobDetail.EmployeeID,
+                EmployeeFullName = jobDetail.EmployeeFullName,
+                CustomerCharge = jobDetail.CustomerCharge,
+                EmployeePay = jobDetail.EmployeePay,
+                Location = detail.Location,
+                ListOfEmployees = _empService.GetEmployees().ToList()
+
+        };
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CalendarEventEdit model)
         {
+            //need to catch job edits and send off to jobService
             if (!ModelState.IsValid) return View(model);
             if (model.CalEventID != id)
             {

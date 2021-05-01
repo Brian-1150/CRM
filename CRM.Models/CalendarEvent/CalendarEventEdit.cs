@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +28,7 @@ namespace CRM.Models.CalendarEvent
         public string EmployeeFullName { get; set; }
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
+        public virtual ICollection<EmployeeListItem> ListOfEmployees { get; set; }
 
     }
 }

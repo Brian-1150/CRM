@@ -74,9 +74,10 @@ namespace CRM.WebMVC.Controllers
                 ListOfJobsAvailable = listOfJobsAvailable,
                 CustomerID = detail.CustomerID,
                 InvoiceAmount = detail.InvoiceAmount,
-                Paid = detail.Paid
+                Paid = detail.Paid,
+                
             };
-            return View(model);
+            return View(model); // update not working.  not getting the job ids properly
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

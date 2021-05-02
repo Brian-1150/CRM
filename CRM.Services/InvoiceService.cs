@@ -63,6 +63,7 @@ namespace CRM.Services
                 {
                     CustomerID = model.CustomerID,
                     InvoiceAmount = invoiceAmount,
+                   
 
                 };
                 ctx.Invoices.Add(entity);
@@ -91,10 +92,10 @@ namespace CRM.Services
                         new InvoiceListItem
                         {
                             InvoiceID = e.InvoiceID,
-                            CustomerID = e.CustomerID,
-                            //JobIDs = GetJobIDs(e.InvoiceID),
+                            CustomerID = e.CustomerID,                            
                             InvoiceAmount = e.InvoiceAmount,
-                            Paid = e.Paid
+                            Paid = e.Paid,
+                            
                         });
                 return query.ToArray();
             }
@@ -117,7 +118,8 @@ namespace CRM.Services
                             InvoiceID = e.InvoiceID,
                             CustomerID = e.CustomerID,
                             InvoiceAmount = e.InvoiceAmount,
-                            Paid = e.Paid
+                            Paid = e.Paid,
+                            
                         });
                 return query.ToArray();
             }
@@ -139,7 +141,8 @@ namespace CRM.Services
                         CustomerID = entity.CustomerID,
                         JobIDs = jobIDs,
                         InvoiceAmount = entity.InvoiceAmount,
-                        Paid = entity.Paid
+                        Paid = entity.Paid,
+                        AdjustmentNotes = entity.AdjustmentNotes
                     };
             }
 
@@ -164,7 +167,7 @@ namespace CRM.Services
                     .Find(model.InvoiceID);
 
                 entity.InvoiceAmount = invoiceAmount + model.Adjustments;
-                entity.AdjustmentNotes = model.AdjustmentNotes;
+                entity.AdjustmentNotes += "\n" + DateTime.Now.ToString("d") + " " + (model.AdjustmentNotes);
                 entity.Paid = model.Paid;  // make "mark paid" option in list view.  ticket # 28
                 if (ctx.SaveChanges() == 1)
                 {

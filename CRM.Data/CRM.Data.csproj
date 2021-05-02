@@ -72,6 +72,14 @@
     <Compile Include="Migrations\202105010411356_AddEventTypeToCalendarEvents.designer.cs">
       <DependentUpon>202105010411356_AddEventTypeToCalendarEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105020431553_AddAdjustmentNotesProp.cs" />
+    <Compile Include="Migrations\202105020431553_AddAdjustmentNotesProp.designer.cs">
+      <DependentUpon>202105020431553_AddAdjustmentNotesProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105020642332_ChangeStringBuilderBackToString.cs" />
+    <Compile Include="Migrations\202105020642332_ChangeStringBuilderBackToString.designer.cs">
+      <DependentUpon>202105020642332_ChangeStringBuilderBackToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -87,6 +95,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105010411356_AddEventTypeToCalendarEvents.resx">
       <DependentUpon>202105010411356_AddEventTypeToCalendarEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105020431553_AddAdjustmentNotesProp.resx">
+      <DependentUpon>202105020431553_AddAdjustmentNotesProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105020642332_ChangeStringBuilderBackToString.resx">
+      <DependentUpon>202105020642332_ChangeStringBuilderBackToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

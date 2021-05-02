@@ -134,7 +134,7 @@ namespace CRM.Services
                 var query =
                     ctx
                     .Jobs
-                    .Where(e => e.EmployeeID == custID && e.InvoiceID == null)
+                    .Where(e => e.CustomerID == custID && e.InvoiceID == null)
                     .Select(
                         e =>
                         new JobListItem

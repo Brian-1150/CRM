@@ -52,7 +52,7 @@ namespace CRM.Services
             {
                 PayCheckAmount = payCheckAmount,
                 EmployeeID = model.EmployeeID,
-                AdjustmentNotes = new StringBuilder(" ")
+
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -83,10 +83,9 @@ namespace CRM.Services
                             PayCheckID = e.PayCheckID,
                             EmployeeID = e.EmployeeID,
                             PayCheckAmount = e.PayCheckAmount,
-                            AdjustmentNotes = e.AdjustmentNotes,
                             Paid = e.Paid
                         });
-                return query.ToArray();
+                return query.ToList();
             }
         }
 
@@ -122,7 +121,7 @@ namespace CRM.Services
             {
                 var entity = ctx.PayChecks.Find(model.PayCheckID);
                 entity.PayCheckAmount = payCheckAmount + model.Adjustments;
-                entity.AdjustmentNotes.Append("\n" + DateTime.Now.ToShortDateString() + model.AdjustmentNotes);
+                entity.AdjustmentNotes += "\n"+ DateTime.Now.ToString("d") + " " + (model.AdjustmentNotes);
                 entity.Paid = model.Paid;
                 if (ctx.SaveChanges() == 1)
                 {
@@ -170,9 +169,9 @@ namespace CRM.Services
 
         private void RemoveForeignKeyValueFromJobFirst(List<int> listOfJobsOnPayCheck)
         {
-           using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                for (int i =0; i < listOfJobsOnPayCheck.Count; i++)
+                for (int i = 0; i < listOfJobsOnPayCheck.Count; i++)
                 {
                     var entity = ctx.Jobs.Find(listOfJobsOnPayCheck.ElementAt(i));
                     entity.PayCheckID = null;

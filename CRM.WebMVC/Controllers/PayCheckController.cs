@@ -73,7 +73,7 @@ namespace CRM.WebMVC.Controllers
                 EmployeeID = detail.EmployeeID,
                 PayCheckAmount = detail.PayCheckAmount,
                 Paid = detail.Paid,
-                AdjustmentNotes = detail.AdjustmentNotes.ToString(),
+               
             };
             return View(model);
         }

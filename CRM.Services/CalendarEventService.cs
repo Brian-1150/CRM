@@ -132,7 +132,8 @@ namespace CRM.Services
                         Details = entity.Details,
                         Location = entity.Location,
                         Title = entity.Title,
-                        ColorOfEvent = entity.ColorOfEvent
+                        ColorOfEvent = entity.ColorOfEvent,
+                        TypeOfEvent = entity.TypeOfEvent
                     };
             }
         }

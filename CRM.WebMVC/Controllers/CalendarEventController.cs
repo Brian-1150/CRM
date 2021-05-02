@@ -1,5 +1,6 @@
 ﻿using CRM.Data;
 using CRM.Models.CalendarEvent;
+using CRM.Models.Job;
 using CRM.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -91,17 +92,21 @@ namespace CRM.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
-            ViewBag.JobInfo = _jobSvc.GetJobByID(id);
-            return View(_svc.GetEventById(id));
+            var detail = _svc.GetEventById(id);
+            if (detail.TypeOfEvent == EventType.Job)
+                ViewBag.JobInfo = _jobSvc.GetJobByID(id);
+            return View(detail);
         }
 
         //UPDATE
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-           
-            var jobDetail = _jobSvc.GetJobByID(id);
+            var jobDetail = new JobDetail { };
             var detail = _svc.GetEventById(id);
+            if (detail.TypeOfEvent == EventType.Job)
+                jobDetail = _jobSvc.GetJobByID(id);
+
             var model = new CalendarEventEdit
             {
                 CalEventID = detail.CalEventID,
@@ -118,28 +123,41 @@ namespace CRM.WebMVC.Controllers
                 Location = detail.Location,
                 ListOfEmployees = _empService.GetEmployees().ToList()
 
-        };
+            };
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CalendarEventEdit model)
         {
-            //need to catch job edits and send off to jobService
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                TempData["message"] = "Sorry there was a problem.";
+                return RedirectToAction("Index");
+            }
+            var jobEditModel = new JobEdit { };
+            if (model.EmployeeFullName != null)
+            {
+                jobEditModel.JobID = model.CalEventID;
+                jobEditModel.EmployeeID = model.EmployeeID;
+                jobEditModel.EmployeePay = model.EmployeePay;
+                jobEditModel.CustomerCharge = model.CustomerCharge;
+                _jobSvc.UpdateJob(jobEditModel);
+            }
+
             if (model.CalEventID != id)
             {
                 TempData["message"] = "Sorry there was a problem with the id";
                 ModelState.AddModelError("", "Id Mismatch");
                 return RedirectToAction("Index");
             }
-            if (_svc.UpdateCalendarEvent(model))
-            {
+            _svc.UpdateCalendarEvent(model);
+            
                 TempData["SaveResult"] = "Event was updated successfully!";
                 return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("", "Event could not be updated");
-            return View(model);
+            
+            //ModelState.AddModelError("", "Event could not be updated.  You must make at least one change");
+            //return View(model);
         }
     }
 }

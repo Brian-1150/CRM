@@ -9,7 +9,6 @@
         margin-left: 29%;
         font-weight: 700;
     }
-
 </style>
 <h2>Details</h2>
 
@@ -26,35 +25,24 @@
                 <dd>
                     @Html.DisplayFor(model => model.CalEventID)
                 </dd>
-
-
-
                 <dt>
                     @Html.DisplayNameFor(model => model.Location)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.Location)
                 </dd>
-
-
-
                 <dt>
                     @Html.DisplayNameFor(model => model.Start)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.Start)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.End)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.End)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.Title)
                 </dt>
@@ -62,51 +50,67 @@
                 <dd>
                     @Html.DisplayFor(model => model.Title)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.Details)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.Details)
                 </dd>
-
             </dl>
         </div>
-        <div class="col-sm-5 green">
+        @if (ViewBag.JobInfo != null)
+        {
+            <div class="col-sm-5 green">
 
-            <h4><u>Job Details</u></h4>
-            <dl class="dl-horizontal">
-                <dt>
-                    Job ID
-                </dt>
-                <dd>
-                    @ViewBag.JobInfo.JobID
-                </dd>
-                <dt>
-                    Employee ID
-                </dt>
-                <dd>
-                    @ViewBag.JobInfo.EmployeeID
-                </dd>
-                <dt>
-                    Employee
-                </dt>
-                <dd>
-                    @ViewBag.JobInfo.EmployeeFullName
-                </dd>
-                <dt>
-                    Customer ID
-                </dt>
-                <dd>
-                    @ViewBag.JobInfo.CustomerFullName
-                </dd>
-
-            </dl>
-        </div>
+                <h4><u>Job Details</u></h4>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Job ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.JobID
+                    </dd>
+                    <dt>
+                        Employee ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeeID
+                    </dd>
+                    <dt>
+                        Employee
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeeFullName
+                    </dd>
+                    <dt>
+                        Customer ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerID
+                    </dd>
+                    <dt>
+                        Customer
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerFullName
+                    </dd>
+                    <dt>
+                        Customer Charge
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerCharge
+                    </dd>
+                    <dt>
+                        Employee Pay
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeePay
+                    </dd>
+                </dl>
+            </div>
+        }
     </div>
 </div>
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CalEventID }) |
     @Html.ActionLink("Back to List", "Index")

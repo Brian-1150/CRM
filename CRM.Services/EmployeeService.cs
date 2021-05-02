@@ -20,6 +20,7 @@ namespace CRM.Services
         }
         public bool CreateEmployee(EmployeeCreate model)
         {
+            var color = GetColor();
             var entity = new Employee()
             {
                 FirstName = model.FirstName,
@@ -30,7 +31,8 @@ namespace CRM.Services
                 City = model.City,
                 StateOfPerson = model.StateOfPerson,
                 HireDate = model.HireDate,
-                Current = true
+                Current = true,
+                ColorOfEmployee = color,
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -39,6 +41,7 @@ namespace CRM.Services
             }
         }
 
+        
         public IEnumerable<EmployeeListItem> GetEmployees()
         {
             using (var ctx = new ApplicationDbContext())
@@ -124,6 +127,26 @@ namespace CRM.Services
                 entity.Current = false;
                 return ctx.SaveChanges() > 0;
             }
+        }
+        //Helper Methods
+        private Color GetColor()
+        {
+            int count = 1;
+            using (var ctx = new ApplicationDbContext())
+            {
+                count = ctx.Employees.Count();
+            }
+            switch (count % 6)
+            {
+                case 0: return Color.Red;
+                case 1: return Color.Orange;
+                case 2: return Color.Yellow;
+                case 3: return Color.Green;
+                case 4: return Color.Blue;
+                case 5: return Color.Violet;
+                default: return Color.Red;
+            }
+
         }
     }
 

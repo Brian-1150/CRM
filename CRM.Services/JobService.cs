@@ -52,8 +52,8 @@ namespace CRM.Services
 
         public bool CreateJob(JobCreate model)
         {
-            ChangeCustStatus(model.CustomerID);
-
+            ChangeCustStatus(model.CustomerID); //if customer happened to be inactive, scheduling a new job for them reactivates their status
+            _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
             var entity = new Job()
             {
                 CustomerID = model.CustomerID,

@@ -77,7 +77,7 @@ namespace CRM.WebMVC.Controllers
                 Paid = detail.Paid,
                 
             };
-            return View(model); // update not working.  not getting the job ids properly
+            return View(model); 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

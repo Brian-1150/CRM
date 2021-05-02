@@ -127,6 +127,27 @@ namespace CRM.Services
                 return query.ToArray();
             }
         }
+        public IEnumerable<JobListItem> GetJobsByCustomerID(int custID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Jobs
+                    .Where(e => e.EmployeeID == custID && e.InvoiceID == null)
+                    .Select(
+                        e =>
+                        new JobListItem
+                        {
+                            JobID = e.JobID,
+                            CalendarEventID = e.CalendarEventID,
+                            CustomerID = e.CustomerID,
+                            EmployeeID = e.EmployeeID,
+                           
+                        });
+                return query.ToArray();
+            }
+        }
 
         public JobDetail GetJobByID(int id)
         {

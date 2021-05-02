@@ -17,18 +17,32 @@ namespace CRM.Services
 
         public InvoiceService() { }
 
-        public InvoiceCreate GetInvoiceCreatView()
+        public InvoiceCreate GetInvoiceCreateView()
         {
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-            ICollection<JobListItem> listOfJobs = (ICollection<JobListItem>)_jobService.GetJobs();
-            //create filter for list of jobs to display as option for adding to invoice *see paycheck to mimic strategy
-            //ticket # 27
+
             return new InvoiceCreate
             {
                 ListOfCustomers = listOfCustomers,
-                ListOfJobs = listOfJobs
             };
         }
+        public InvoiceCreate GetInvoiceCreateView(int? customerID)
+        {
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            if(customerID.HasValue)
+            {
+                List<JobListItem> listOfJobs = _jobService.GetJobsByCustomerID((int)customerID).ToList();
+                return new InvoiceCreate
+                {
+                    ListOfCustomers = listOfCustomers,
+                    CustomerID = (int)customerID,
+                    ListOfJobs = listOfJobs
+                };
+            }
+            return GetInvoiceCreateView();
+        }
+
+
         public bool CreateInvoice(InvoiceCreate model)
         {
             bool saved;

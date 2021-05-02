@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CRM.Data
 {
 
-    public enum EventColor
+    public enum Color
     {
         Red, Orange, Yellow, Green, Blue, Violet
     }
@@ -30,7 +30,7 @@ namespace CRM.Data
         public DateTimeOffset End { get; set; }
         public string Title { get; set; }
         public string Details { get; set; }
-        public EventColor ColorOfEvent { get; set; }
+        public Color ColorOfEvent { get; set; }
         public EventType TypeOfEvent { get; set; }
 
 

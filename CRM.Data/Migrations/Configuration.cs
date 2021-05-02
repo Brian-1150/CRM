@@ -188,7 +188,7 @@
                     End = new DateTime(2021, 4, 21),
                     Location = "123 Zen Street",
                     Title = "HouseCleaning",
-                    ColorOfEvent = EventColor.Blue,
+                    ColorOfEvent = Color.Blue,
                 });
         }
 

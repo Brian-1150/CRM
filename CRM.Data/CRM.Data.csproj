@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202105020642332_ChangeStringBuilderBackToString.designer.cs">
       <DependentUpon>202105020642332_ChangeStringBuilderBackToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105022143152_AddColorPropToEmployee.cs" />
+    <Compile Include="Migrations\202105022143152_AddColorPropToEmployee.designer.cs">
+      <DependentUpon>202105022143152_AddColorPropToEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105020642332_ChangeStringBuilderBackToString.resx">
       <DependentUpon>202105020642332_ChangeStringBuilderBackToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105022143152_AddColorPropToEmployee.resx">
+      <DependentUpon>202105022143152_AddColorPropToEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

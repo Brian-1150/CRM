@@ -17,6 +17,7 @@ namespace CRM.Data
         public bool Current { get; set; }
 
         public DateTimeOffset HireDate { get; set; }
+        public Color ColorOfEmployee { get; set; }
 
         public virtual ICollection<Job> Jobs { get; set; }
         public virtual ICollection<PayCheck> Paychecks { get; set; }

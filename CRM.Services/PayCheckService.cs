@@ -18,7 +18,7 @@ namespace CRM.Services
 
         public PayCheckService() { }
 
-        public PayCheckCreate GetInvoiceCreateView()
+        public PayCheckCreate GetPayCheckCreateView()
         {
             List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
 
@@ -28,7 +28,7 @@ namespace CRM.Services
 
             };
         }
-        public PayCheckCreate GetInvoiceCreateView(int? employeeID)
+        public PayCheckCreate GetPayCheckCreateView(int? employeeID)
         {
             List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
             if (employeeID.HasValue)
@@ -42,7 +42,7 @@ namespace CRM.Services
                     ListOfJobs = listOfJobs
                 };
             }
-            return GetInvoiceCreateView();
+            return GetPayCheckCreateView();
         }
         public bool CreatePayCheck(PayCheckCreate model)
         {

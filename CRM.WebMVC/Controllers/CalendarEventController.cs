@@ -102,10 +102,16 @@ namespace CRM.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
+            var jobValues = _jobSvc.GetJobByID(id);
+            if (jobValues.InvoiceID.HasValue || jobValues.PayCheckID.HasValue)
+            {
+                TempData["message"] = "Job may not be edited once it has been added to invoice or paycheck";
+                return RedirectToAction("Index");
+            }
             var jobDetail = new JobDetail { };
             var detail = _svc.GetEventById(id);
             if (detail.TypeOfEvent == EventType.Job)
-                jobDetail = _jobSvc.GetJobByID(id);
+                jobDetail = jobValues;
 
             var model = new CalendarEventEdit
             {
@@ -136,6 +142,7 @@ namespace CRM.WebMVC.Controllers
                 TempData["message"] = "Sorry there was a problem.";
                 return RedirectToAction("Index");
             }
+            
             var jobEditModel = new JobEdit { };
             if (model.EmployeeFullName != null)
             {

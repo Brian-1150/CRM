@@ -1,5 +1,5 @@
 ﻿@model CRM.Models.CalendarEvent.CalendarEventDetail
-
+@using CRM.Data;
 @{
     ViewBag.Title = "Details";
 }
@@ -10,6 +10,60 @@
         font-weight: 700;
     }
 </style>
+
+@switch (Model.ColorOfEvent)
+{
+    case Color.Red:
+        <style>
+            .colors {
+                background-color: red;
+            }
+        </style>
+        break;
+    case Color.Orange:
+        <style>
+            .colors {
+                background-color: orange;
+            }
+        </style>
+        break;
+    case Color.Yellow:
+        <style>
+            .colors {
+                background-color: yellow;
+            }
+        </style>
+        break;
+    case Color.Green:
+        <style>
+            .colors {
+                background-color: green;
+            }
+        </style>
+        break;
+    case Color.Blue:
+        <style>
+            .colors {
+                background-color: blue;
+            }
+        </style>
+        break;
+    case Color.Violet:
+        <style>
+            .colors {
+                background-color: violet;
+            }
+        </style>
+        break;
+   
+    default:
+        <style>
+            .colors {
+                color: black
+            }
+        </style>
+        break;
+}
 <h2>Details</h2>
 
 <div>
@@ -42,6 +96,13 @@
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.End)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ColorOfEvent)
+                </dt>
+
+                <dd class="colors">
+                    @Html.DisplayFor(model => model.ColorOfEvent)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Title)
@@ -115,3 +176,13 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.CalEventID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".colors").bind(function () {
+            if ($(this).val() != '') {
+                $(this).css('background-color', $(this).val());
+            }
+        });
+    });
+</script>

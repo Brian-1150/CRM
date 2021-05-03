@@ -181,6 +181,7 @@ namespace CRM.Services
 
         public bool UpdateJob(JobEdit model)
         {
+            _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx

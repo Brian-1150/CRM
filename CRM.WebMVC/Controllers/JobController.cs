@@ -44,7 +44,7 @@ namespace CRM.WebMVC.Controllers
             if (_svc.CreateJob(model))
             {
                 TempData["SaveResult"] = "Event Added";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "CalendarEvent");
             }
             ModelState.AddModelError("", "Job create failed");
             return View(model);

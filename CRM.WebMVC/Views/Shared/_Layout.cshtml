@@ -18,16 +18,12 @@
 </head>
 <body>
 
-    @Html.Partial("~/Views/Shared/NavBarLayout.cshtml") 
-
+    @Html.Partial("~/Views/Shared/NavBarLayout.cshtml")
+    
     <div class="container body-content">
-        <div class="alert-danger">
-            @TempData["message"]
-        </div>
-        <div class="alert-success">
-            @TempData["SaveResult"]
-        </div>
+
         @RenderBody()
+
 
         <hr />
         <footer>

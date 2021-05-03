@@ -36,6 +36,7 @@ namespace CRM.WebMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
             //check for duplicate and ask for confirm before proceeding ticket # 38
+            var list = _svc.GetCustomers();
 
             if (_svc.CreateCustomer(model))
             {
@@ -98,10 +99,15 @@ namespace CRM.WebMVC.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(custList.ToPagedList(pageNumber, pageSize));
-            //Add button to show deleted customers ticket #39
-
+          
         }
 
+        //Show Deleted
+        public ActionResult CustomIndexView()
+        {
+            
+            return View(_svc.GetDeleted());
+        }
         //GET:  Customer Details
         public ActionResult Details(int id)
         {
@@ -109,7 +115,6 @@ namespace CRM.WebMVC.Controllers
             ViewBag.InvoiceList = _invoiceSvc.GetInvoices(id);
             return View(_svc.GetCustomerDetailByID(id));
         }
-
 
         //CR[U]D
         //Edit 
@@ -155,8 +160,8 @@ namespace CRM.WebMVC.Controllers
             return View(model);
         }
         //CRU[D]
-        //GET:  Customer Delete View
-        //Ticket # 16(NEED TO FIX ENTIRE DELETE METHOD)
+        //Delete
+                
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
@@ -190,9 +195,6 @@ namespace CRM.WebMVC.Controllers
                 TempData["SaveResult"] = "Customer has been placed on 'DO NOT CONTACT LIST' and status is changed to 'INACTIVE'";
                 return RedirectToAction("Index");
             
-
-            //TempData["Message"] = "Customer info could not be updated";
-            //return RedirectToAction("Index");
         }
     }
 }

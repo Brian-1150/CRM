@@ -16,7 +16,7 @@ namespace CRM.WebMVC.Controllers
         //CREATE
         public ActionResult Create()
         {
-             return View(_svc.GetInvoiceCreateView());
+             return View(_svc.GetPayCheckCreateView());
         }
 
         [HttpPost]
@@ -33,11 +33,11 @@ namespace CRM.WebMVC.Controllers
                 };
                 _svc.CreatePayCheck(model);
 
-                TempData["SaveResult"] = "Event Added";
+                TempData["SaveResult"] = "Paycheck Created";
                 return RedirectToAction("Index");
 
             }
-            return View(_svc.GetInvoiceCreateView(employeeID));
+            return View(_svc.GetPayCheckCreateView(employeeID));
 
         }
 
@@ -73,7 +73,7 @@ namespace CRM.WebMVC.Controllers
                 EmployeeID = detail.EmployeeID,
                 PayCheckAmount = detail.PayCheckAmount,
                 Paid = detail.Paid,
-                AdjustmentNotes = detail.AdjustmentNotes.ToString(),
+               
             };
             return View(model);
         }

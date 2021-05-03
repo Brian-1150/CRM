@@ -10,14 +10,8 @@ namespace CRM.Services
 {
     public class CustomerService
     {
-        private readonly Guid _userId;
 
         public CustomerService() { }
-        public CustomerService(Guid userId)
-        {
-            _userId = userId;
-
-        }
 
         public bool CreateCustomer(CustomerCreate model)
         {
@@ -30,6 +24,7 @@ namespace CRM.Services
                 StreetAddress = model.StreetAddress,
                 City = model.City,
                 StateOfPerson = model.StateOfPerson,
+                ZipCode = model.ZipCode,
                 InitialDateOfContact = DateTimeOffset.Now,
                 StatusOfCustomer = CustomerStatus.Prospect  //new Customer gets set to prospect by default
 
@@ -51,7 +46,7 @@ namespace CRM.Services
                 var query =
                     ctx
                        .Customers
-                       .Where(e => e.CustomerID >= 0)
+                       .Where(e => e.CustomerID >= 0 && !e.IsOnDoNotContactList)
                        .Select(
                           e =>
                               new CustomerListItem
@@ -63,7 +58,8 @@ namespace CRM.Services
                                   Email = e.Email,
                                   StreetAddress = e.StreetAddress,
                                   City = e.City,
-                                  InitialDateOfContact = e.InitialDateOfContact
+                                  InitialDateOfContact = e.InitialDateOfContact,
+                                  StatusOfCustomer = e.StatusOfCustomer
 
                               }
                    );
@@ -72,13 +68,14 @@ namespace CRM.Services
         }
         public CustomerDetail GetCustomerDetailByID(int id)
         {
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Customers
                     .Single(e => e.CustomerID == id);
-                return
+                            return
                     new CustomerDetail
                     {
                         CustomerID = entity.CustomerID,
@@ -89,6 +86,7 @@ namespace CRM.Services
                         StreetAddress = entity.StreetAddress,
                         City = entity.City,
                         StateOfPerson = entity.StateOfPerson,
+                        ZipCode = entity.ZipCode,
                         StatusOfCustomer = entity.StatusOfCustomer,
                         InitialDateOfContact = entity.InitialDateOfContact,
                         IsOnDoNotContactList = entity.IsOnDoNotContactList
@@ -119,19 +117,19 @@ namespace CRM.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteCustomer(CustomerDelete model)
+        public void DeleteCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Customers
-                    .Single(e => e.CustomerID == model.CustomerID);
+                    .Single(e => e.CustomerID == id);
 
-                entity.IsOnDoNotContactList = model.IsOnDoNotContactList;
-                entity.StatusOfCustomer = model.StatusOfCustomer;
+                entity.IsOnDoNotContactList = true;
+                entity.StatusOfCustomer = CustomerStatus.Inactive;
 
-                return ctx.SaveChanges() == 1;
+                ctx.SaveChanges();
             }
         }
 
@@ -148,7 +146,7 @@ namespace CRM.Services
                 return entity;
             }
         }
-        internal List<Customer>GetCustomerFromDB()
+        internal List<Customer> GetCustomerFromDB()
         {
             using (var ctx = new ApplicationDbContext())
             {

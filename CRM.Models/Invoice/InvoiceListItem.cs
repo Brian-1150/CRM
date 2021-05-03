@@ -11,8 +11,7 @@ namespace CRM.Models.Invoice
     {
 
         public int InvoiceID { get; set; }
-
-        
+                
         public int CustomerID { get; set; }
         
         public  List<int> JobIDs { get; set; }
@@ -20,5 +19,8 @@ namespace CRM.Models.Invoice
 
         [UIHint("Bool")]
         public bool Paid { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string AdjustmentNotes { get; set; }
     }
 }

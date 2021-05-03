@@ -16,17 +16,12 @@ namespace CRM.Services
 {
     public class JobService
     {
-        private readonly Guid _userId;
+
         private CustomerService _custService = new CustomerService();
         private EmployeeService _empService = new EmployeeService();
         private CalendarEventService _calEventService = new CalendarEventService();
 
         public JobService() { }
-        public JobService(Guid userId)
-        {
-            _userId = userId;
-        }
-
 
         public JobCreate GetJobCreateView()
         {
@@ -41,24 +36,25 @@ namespace CRM.Services
                 ListOfCalEvents = listOfCalEvents
             };
         }
+        public JobCreate GetJobCreateViewForCalEvent()
+        {
 
-        //internal void AddForeignKeyValue(InvoiceCreate model)
-        //{
-        //    for (int i = 0; i < model.ListOfSelectedJobs.Count; i++)
-        //    {
-        //        using (var ctx = new ApplicationDbContext())
-        //        {
-        //            var entity =
-        //            ctx.Jobs.Find(model.ListOfSelectedJobs.ElementAt(i));
-        //            entity.InvoiceID = model.
-        //        }
-        //    }
-        //}
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            List<EmployeeListItem> listOfEmployees = _empService.GetEmployees().ToList();
+            int id = _calEventService.GetLastCalEventID();
+            return new JobCreate
+            {
+                ListOfCustomers = listOfCustomers,
+                ListOfEmployees = listOfEmployees,
+                CalendarEventID = id
+            };
+        }
 
         public bool CreateJob(JobCreate model)
         {
-
-
+            ChangeCustStatus(model.CustomerID); //if customer happened to be inactive, scheduling a new job for them reactivates their status
+            _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
+            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
             var entity = new Job()
             {
                 CustomerID = model.CustomerID,
@@ -77,6 +73,13 @@ namespace CRM.Services
 
         }
 
+        public IEnumerable<Job> GetJobsFromDB()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Jobs.Include("Customer").Include("Employee").ToList();
+            }
+        }
         public IEnumerable<JobListItem> GetJobs()
         {
             using (var ctx = new ApplicationDbContext())
@@ -108,7 +111,7 @@ namespace CRM.Services
                 var query =
                     ctx
                     .Jobs
-                    .Where(e => e.EmployeeID == empID)
+                    .Where(e => e.EmployeeID == empID && e.PayCheckID == null)
                     .Select(
                         e =>
                         new JobListItem
@@ -121,6 +124,27 @@ namespace CRM.Services
                             CustomerCharge = e.CustomerCharge,
                             PayCheckID = e.PayCheckID,
                             InvoiceID = e.InvoiceID
+                        });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<JobListItem> GetJobsByCustomerID(int custID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Jobs
+                    .Where(e => e.CustomerID == custID && e.InvoiceID == null)
+                    .Select(
+                        e =>
+                        new JobListItem
+                        {
+                            JobID = e.JobID,
+                            CalendarEventID = e.CalendarEventID,
+                            CustomerID = e.CustomerID,
+                            EmployeeID = e.EmployeeID,
+                           
                         });
                 return query.ToArray();
             }
@@ -158,6 +182,8 @@ namespace CRM.Services
 
         public bool UpdateJob(JobEdit model)
         {
+            _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
+            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
@@ -203,32 +229,20 @@ namespace CRM.Services
             }
         }
 
+        //Helper Methods
 
-        //Helper Mehtods
-        //public IEnumerable<int> GetJobs(int id)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //            .Jobs
-        //            .Where(e => e.InvoiceID == id)
-        //            .Select(
-        //                e =>
-        //                new JobListItem
-        //                {
-        //                    JobID = e.JobID,
-        //                    CalendarEventID = e.CalendarEventID,
-        //                    CustomerID = e.CustomerID,
-        //                    EmployeeID = e.EmployeeID,
-        //                    EmployeePay = e.EmployeePay,
-        //                    CustomerCharge = e.CustomerCharge,
-        //                    PayCheckID = e.PayCheckID,
-        //                    InvoiceID = e.InvoiceID
-        //                });
-        //        return query.ToArray();
-        //    }
-        //}
+        private void ChangeCustStatus(int customerID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Customers.Find(customerID);
+                if(entity.StatusOfCustomer != CustomerStatus.Active)
+                {
+                    entity.StatusOfCustomer = CustomerStatus.Active;
+                    ctx.SaveChanges();
+                }
+            }
+        }
 
 
     }

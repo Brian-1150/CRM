@@ -13,7 +13,7 @@
         },
         selectable: true,
         select: function () {
-            showModal('Create an Event', 'Bind your information to navigate any page', null);
+            showModal('Create an Event', 'Create new Event feature coming soon.  For now, use create button in list view', null);
         },
         height: 'parent',
         events: function (start, end, timezone, callback) {

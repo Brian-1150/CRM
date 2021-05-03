@@ -18,14 +18,21 @@ namespace CRM.WebMVC.Controllers
         private EmployeeService _empSvc = new EmployeeService();
         private JobService _svc = new JobService();
 
-
-
         //CREATE
         public ActionResult Create()
         {
             if (_svc is null)
                 return View("Error");
             return View(_svc.GetJobCreateView());
+        }
+
+
+        [ActionName("CreateFromCalEvent")]
+        public ActionResult CreateFromCalEvent()
+        {
+            if (_svc is null)
+                return View("Error");
+            return View(_svc.GetJobCreateViewForCalEvent());
         }
 
         [HttpPost]
@@ -37,7 +44,7 @@ namespace CRM.WebMVC.Controllers
             if (_svc.CreateJob(model))
             {
                 TempData["SaveResult"] = "Event Added";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "CalendarEvent");
             }
             ModelState.AddModelError("", "Job create failed");
             return View(model);

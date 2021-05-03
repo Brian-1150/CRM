@@ -15,27 +15,34 @@ namespace CRM.Services
         private CustomerService _custService = new CustomerService();
         private JobService _jobService = new JobService();
 
+        public InvoiceService() { }
 
-
-        //Make this class without GUID constructor and see if we can still validate authorized user by using [Authorize] on controller
-        //ticket #24
-        public InvoiceService()
-        {
-
-        }
-
-        public InvoiceCreate GetInvoiceCreatView()
+        public InvoiceCreate GetInvoiceCreateView()
         {
             List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
-            ICollection<JobListItem> listOfJobs = (ICollection<JobListItem>)_jobService.GetJobs();
-            //create filter for list of jobs to display as option for adding to invoice *see paycheck to mimic strategy
-            //ticket # 27
+
             return new InvoiceCreate
             {
                 ListOfCustomers = listOfCustomers,
-                ListOfJobs = listOfJobs
             };
         }
+        public InvoiceCreate GetInvoiceCreateView(int? customerID)
+        {
+            List<CustomerListItem> listOfCustomers = _custService.GetCustomers().ToList();
+            if(customerID.HasValue)
+            {
+                List<JobListItem> listOfJobs = _jobService.GetJobsByCustomerID((int)customerID).ToList();
+                return new InvoiceCreate
+                {
+                    ListOfCustomers = listOfCustomers,
+                    CustomerID = (int)customerID,
+                    ListOfJobs = listOfJobs
+                };
+            }
+            return GetInvoiceCreateView();
+        }
+
+
         public bool CreateInvoice(InvoiceCreate model)
         {
             bool saved;
@@ -56,6 +63,7 @@ namespace CRM.Services
                 {
                     CustomerID = model.CustomerID,
                     InvoiceAmount = invoiceAmount,
+                   
 
                 };
                 ctx.Invoices.Add(entity);
@@ -84,15 +92,38 @@ namespace CRM.Services
                         new InvoiceListItem
                         {
                             InvoiceID = e.InvoiceID,
-                            CustomerID = e.CustomerID,
-                            //JobIDs = GetJobIDs(e.InvoiceID),
+                            CustomerID = e.CustomerID,                            
                             InvoiceAmount = e.InvoiceAmount,
-                            Paid = e.Paid
+                            Paid = e.Paid,
+                            
                         });
                 return query.ToArray();
             }
         }
+        //Get invoices for specific customerID
+        public IEnumerable<InvoiceListItem> GetInvoices(int id)
+        {
 
+            using (var ctx = new ApplicationDbContext())
+            {
+
+                var query =
+                    ctx
+                    .Invoices
+                    .Where(e => e.CustomerID == id)
+                    .Select(
+                        e =>
+                        new InvoiceListItem
+                        {
+                            InvoiceID = e.InvoiceID,
+                            CustomerID = e.CustomerID,
+                            InvoiceAmount = e.InvoiceAmount,
+                            Paid = e.Paid,
+                            
+                        });
+                return query.ToArray();
+            }
+        }
         public InvoiceListItem GetInvoiceByID(int id)
         {
             List<int> jobIDs = GetJobIDs(id);
@@ -110,17 +141,19 @@ namespace CRM.Services
                         CustomerID = entity.CustomerID,
                         JobIDs = jobIDs,
                         InvoiceAmount = entity.InvoiceAmount,
-                        Paid = entity.Paid
+                        Paid = entity.Paid,
+                        AdjustmentNotes = entity.AdjustmentNotes
                     };
             }
 
         }
         public bool UpdateInvoice(InvoiceEdit model, List<int> listOfJobsOnInvoice)
         {
-            
+
             double invoiceAmount = 0;
             using (var ctx = new ApplicationDbContext())
-            {   if (model.ListOfJobsAvailable != null)
+            {
+                if (model.ListOfJobsAvailable != null)
                 {
                     for (int i = 0; i < model.ListOfJobsAvailable.Count; i++)
                     {
@@ -134,10 +167,10 @@ namespace CRM.Services
                     .Find(model.InvoiceID);
 
                 entity.InvoiceAmount = invoiceAmount + model.Adjustments;
-                entity.AdjustmentNotes = model.AdjustmentNotes;
+                entity.AdjustmentNotes += "\n" + DateTime.Now.ToString("d") + " " + (model.AdjustmentNotes);
                 entity.Paid = model.Paid;  // make "mark paid" option in list view.  ticket # 28
                 if (ctx.SaveChanges() == 1)
-                { 
+                {
                     AddForeignKeyValueToJob(model, listOfJobsOnInvoice);
                     return true;
                 }
@@ -209,7 +242,8 @@ namespace CRM.Services
             return tempList.Last().InvoiceID;
         }
 
-        private void RemoveForeignKeyValueFromJobFirst(List<int> listOfJobsOnInvoice) {
+        private void RemoveForeignKeyValueFromJobFirst(List<int> listOfJobsOnInvoice)
+        {
             using (var ctx = new ApplicationDbContext())
             {
                 for (int i = 0; i < listOfJobsOnInvoice.Count; i++)

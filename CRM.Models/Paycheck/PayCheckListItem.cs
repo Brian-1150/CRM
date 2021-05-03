@@ -18,7 +18,7 @@ namespace CRM.Models.Paycheck
         [Display(Name ="Paycheck Amount"), DataType(DataType.Currency)]
         public double PayCheckAmount { get; set; }
 
-        public StringBuilder AdjustmentNotes { get; set; }
+        public string AdjustmentNotes { get; set; }
 
         [UIHint("Bool")]
         public bool Paid { get; set; }

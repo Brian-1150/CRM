@@ -3,24 +3,11 @@
 @{
     ViewBag.Title = "Details";
 }
-@*<style>
-    body {
-        background-color: powderblue;
-    }
 
-    div {
-        color: blue;
-    }
-
-    p {
-        width:max-content;
-        color: red;
-    }
-</style>*@
-<h2>Details</h2>
+<h2>Invoice Details</h2>
 
 <div>
-    <h4>InvoiceListItem</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -52,9 +39,9 @@
 
             <dd>
                 <div style="width: 10%; color: azure; background-color: cadetblue; font-size: large; border-radius: 90%">
-                  #
-                     @Html.DisplayFor(numbers => item)
-                    
+                    #
+                    @Html.DisplayFor(numbers => item)
+
                 </div>
             </dd>
 
@@ -77,6 +64,14 @@
         <dd>
             @Html.DisplayFor(model => model.Paid)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdjustmentNotes)
+        </dt>
+            <dd>
+        <span style="white-space: pre-line">
+                @Html.DisplayTextFor(model => model.AdjustmentNotes)
+        </span>
+            </dd>
 
     </dl>
 

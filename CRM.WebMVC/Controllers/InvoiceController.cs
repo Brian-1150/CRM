@@ -14,26 +14,30 @@ namespace CRM.WebMVC.Controllers
     {
         private InvoiceService _svc = new InvoiceService();
         private JobService _jobSvc = new JobService();
+
         //Create
         public ActionResult Create()
         {
-
-            var model = _svc.GetInvoiceCreatView();
-            return View(model);
+            return View(_svc.GetInvoiceCreateView());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(InvoiceCreate model)
+        public ActionResult Create(int? customerID, List<int> listOfSelectedJobs)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-            if (_svc.CreateInvoice(model))
+            if (customerID.HasValue && listOfSelectedJobs != null)
             {
-                TempData["SaveResult"] = "Event Added";
+                var model = new InvoiceCreate
+                {
+                    CustomerID = (int)customerID,
+                    ListOfSelectedJobs = listOfSelectedJobs
+                };
+                _svc.CreateInvoice(model);
+
+                TempData["SaveResult"] = "Invoice Created";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Job create failed");
-            return View(model);
+            return View(_svc.GetInvoiceCreateView(customerID));
         }
 
         // READ: List of Invoices
@@ -70,9 +74,10 @@ namespace CRM.WebMVC.Controllers
                 ListOfJobsAvailable = listOfJobsAvailable,
                 CustomerID = detail.CustomerID,
                 InvoiceAmount = detail.InvoiceAmount,
-                Paid = detail.Paid
+                Paid = detail.Paid,
+                
             };
-            return View(model);
+            return View(model); 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

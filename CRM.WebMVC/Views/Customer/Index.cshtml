@@ -1,47 +1,70 @@
-﻿@model IEnumerable<CRM.Models.CustomerListItem>
+﻿@model PagedList.IPagedList<CRM.Models.CustomerListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="margin: 3%;">Customer Database</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="right" style="float: right;">
+    @Html.ActionLink("Add Customer", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+
+
+{
+    <p class="text-success" style="font-weight: 800">
+        Search by any portion of first name, last name, phone number, or address: @Html.TextBox("search", ViewBag.Filter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerID)
+            @Html.ActionLink("Customer ID", "Index", new { sort = ViewBag.SortByID })
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name", "Index", new { sort = ViewBag.SortByName })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreetAddress)
+            Street
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            City
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InitialDateOfContact)
+            @Html.ActionLink("Status", "Index", new { sort = ViewBag.SortByStatus })
+           
+        </th>
+        <th>
+          
+            Initial Contact
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.CustomerID)
+        <a href="~/Customer/Details/@item.CustomerID">
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </a>
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.FirstName)
@@ -62,14 +85,19 @@
         @Html.DisplayFor(modelItem => item.City)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.InitialDateOfContact)
+        @Html.DisplayFor(modelItem => item.StatusOfCustomer)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+        @Html.DisplayFor(modelItem => item.InitialDateOfContact)
     </td>
+
 </tr>
-}
+    }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sort = ViewBag.Sort, filter = ViewBag.Filter }))

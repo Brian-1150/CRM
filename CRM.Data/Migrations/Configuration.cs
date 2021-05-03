@@ -12,7 +12,7 @@
         ApplicationDbContext _db = new ApplicationDbContext();
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(CRM.Data.ApplicationDbContext context)
@@ -21,8 +21,7 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            CreateSeedRoles();
-
+           
             context.Employees.AddOrUpdate(x => x.LastName,
                 new Employee()
                 {
@@ -167,7 +166,7 @@
                     InitialDateOfContact = new DateTime(2015, 12, 20),
                     StatusOfCustomer = CustomerStatus.Active
                 },
-                
+
                 new Customer()
                 {
                     FirstName = "Deepak",
@@ -189,63 +188,10 @@
                     End = new DateTime(2021, 4, 21),
                     Location = "123 Zen Street",
                     Title = "HouseCleaning",
-                    ColorOfEvent = EventColor.Blue,
+                    ColorOfEvent = Color.Blue,
                 });
         }
 
-        public void CreateSeedRoles()
-        {
-            CreateAdmin();
-            CreateEmployee();
-        }
-        public void CreateAdmin()
-        {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_db));
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_db));
-
-            IdentityRole role = new IdentityRole();
-
-            if (!roleManager.RoleExists("Admin"))
-            {
-                role.Name = "Admin";
-                roleManager.Create(role);
-
-                ApplicationUser user = new ApplicationUser
-                {
-                    UserName = "BusinessOwner",
-                    Email = "owner@myBusiness.com",
-                    EmailConfirmed = true
-                };
-
-                if (userManager.Create(user, "Test1!").Succeeded)
-                    userManager.AddToRole(user.Id, "Admin");
-
-            }
-        }
-        public void CreateEmployee()
-        {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_db));
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_db));
-
-            IdentityRole role = new IdentityRole();
-
-            if (!roleManager.RoleExists("Employee"))
-            {
-                role.Name = "Employee";
-                roleManager.Create(role);
-
-                ApplicationUser user = new ApplicationUser
-                {
-                    UserName = "Employee1",
-                    Email = "employee@yourBusiness.com",
-                    EmailConfirmed = true
-                };
-
-                if (userManager.Create(user, "Test1!").Succeeded)
-                    userManager.AddToRole(user.Id, "Employee");
-
-            }
-
-        }
+        
     }
 }

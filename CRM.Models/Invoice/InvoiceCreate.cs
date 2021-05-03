@@ -17,7 +17,7 @@ namespace CRM.Models.Invoice
 
         [Display(Name = "Choose the customer")]
 
-        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; }
-        public virtual ICollection<JobListItem> ListOfJobs { get; set; }
+        public virtual ICollection<CustomerListItem> ListOfCustomers { get; set; } = new List<CustomerListItem>();
+        public virtual ICollection<JobListItem> ListOfJobs { get; set; } = new List<JobListItem>();
     }
 }

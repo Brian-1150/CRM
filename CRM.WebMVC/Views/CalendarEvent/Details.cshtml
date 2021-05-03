@@ -1,70 +1,188 @@
 ﻿@model CRM.Models.CalendarEvent.CalendarEventDetail
-
+@using CRM.Data;
 @{
     ViewBag.Title = "Details";
 }
 
+<style>
+    h4 {
+        margin-left: 29%;
+        font-weight: 700;
+    }
+</style>
+
+@switch (Model.ColorOfEvent)
+{
+    case Color.Red:
+        <style>
+            .colors {
+                background-color: red;
+            }
+        </style>
+        break;
+    case Color.Orange:
+        <style>
+            .colors {
+                background-color: orange;
+            }
+        </style>
+        break;
+    case Color.Yellow:
+        <style>
+            .colors {
+                background-color: yellow;
+            }
+        </style>
+        break;
+    case Color.Green:
+        <style>
+            .colors {
+                background-color: green;
+            }
+        </style>
+        break;
+    case Color.Blue:
+        <style>
+            .colors {
+                background-color: blue;
+            }
+        </style>
+        break;
+    case Color.Violet:
+        <style>
+            .colors {
+                background-color: violet;
+            }
+        </style>
+        break;
+   
+    default:
+        <style>
+            .colors {
+                color: black
+            }
+        </style>
+        break;
+}
 <h2>Details</h2>
 
 <div>
-    <h4>CalendarEventDetail</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CalEventID)
-        </dt>
+    <div class="container">
+        <div class="col-sm-7">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CalEventID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CalEventID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CalEventID)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Start)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Start)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.End)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.End)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ColorOfEvent)
+                </dt>
 
-      
+                <dd class="colors">
+                    @Html.DisplayFor(model => model.ColorOfEvent)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Details)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Details)
+                </dd>
+            </dl>
+        </div>
+        @if (ViewBag.JobInfo != null)
+        {
+            <div class="col-sm-5 green">
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Start)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Start)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.End)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-
-    </dl>
+                <h4><u>Job Details</u></h4>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Job ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.JobID
+                    </dd>
+                    <dt>
+                        Employee ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeeID
+                    </dd>
+                    <dt>
+                        Employee
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeeFullName
+                    </dd>
+                    <dt>
+                        Customer ID
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerID
+                    </dd>
+                    <dt>
+                        Customer
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerFullName
+                    </dd>
+                    <dt>
+                        Customer Charge
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.CustomerCharge
+                    </dd>
+                    <dt>
+                        Employee Pay
+                    </dt>
+                    <dd>
+                        @ViewBag.JobInfo.EmployeePay
+                    </dd>
+                </dl>
+            </div>
+        }
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CalEventID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".colors").bind(function () {
+            if ($(this).val() != '') {
+                $(this).css('background-color', $(this).val());
+            }
+        });
+    });
+</script>

@@ -22,7 +22,7 @@ namespace CRM.Models
 
         public string StreetAddress { get; set; }
         public string City { get; set; }
-
+        public CustomerStatus StatusOfCustomer { get; set; }
         public PersonState StateOfPerson { get; set; }
         public DateTimeOffset InitialDateOfContact { get; set; }
     }

@@ -7,13 +7,13 @@ namespace CRM.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class RemoveNullableDatetimeFromCalEventData : IMigrationMetadata
+    public sealed partial class ChangeStringBuilderBackToString : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveNullableDatetimeFromCalEventData));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeStringBuilderBackToString));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104211620575_RemoveNullableDatetimeFromCalEventData"; }
+            get { return "202105020642332_ChangeStringBuilderBackToString"; }
         }
         
         string IMigrationMetadata.Source

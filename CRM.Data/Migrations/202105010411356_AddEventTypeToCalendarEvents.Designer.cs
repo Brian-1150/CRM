@@ -7,18 +7,18 @@ namespace CRM.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ChangeToStringBuilder : IMigrationMetadata
+    public sealed partial class AddEventTypeToCalendarEvents : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeToStringBuilder));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddEventTypeToCalendarEvents));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104180326313_ChangeToStringBuilder"; }
+            get { return "202105010411356_AddEventTypeToCalendarEvents"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

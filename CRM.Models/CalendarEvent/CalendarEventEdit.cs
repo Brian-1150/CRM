@@ -1,4 +1,5 @@
 ﻿using CRM.Data;
+using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ namespace CRM.Models.CalendarEvent
     public class CalendarEventEdit
     {
         public int CalEventID { get; set; }
-       
+        public int CustomerID { get; set; }
         public string Location { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
@@ -21,6 +22,13 @@ namespace CRM.Models.CalendarEvent
         public DateTimeOffset? End { get; set; }
         public string Title { get; set; }
         public string Details { get; set; }
-        public EventColor ColorOfEvent { get; set; }
+        public Color ColorOfEvent { get; set; }
+        public string CustomerFullName { get; set; }
+        public int EmployeeID { get; set; }
+        public string EmployeeFullName { get; set; }
+        public double EmployeePay { get; set; }
+        public double CustomerCharge { get; set; }
+        public virtual ICollection<EmployeeListItem> ListOfEmployees { get; set; }
+
     }
 }

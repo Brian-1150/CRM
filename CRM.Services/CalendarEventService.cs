@@ -12,16 +12,8 @@ namespace CRM.Services
 {
     public class CalendarEventService
     {
-        private readonly Guid _userId;
-        private CustomerService _custService = new CustomerService();
-        private EmployeeService _empService = new EmployeeService();
-
+        private CustomerService _custSvc = new CustomerService();
         public CalendarEventService() { }
-        public CalendarEventService(Guid userId)
-        {
-            _userId = userId;
-        }
-
 
         public CalendarEventCreate CalendarEventCreateView()
         {
@@ -35,7 +27,7 @@ namespace CRM.Services
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
 
-                DateTimeOffset? endDefault;
+            DateTimeOffset? endDefault;
             if (model.End != null)
                 endDefault = model.End;
             else endDefault = model.Start.AddDays(1);
@@ -47,6 +39,7 @@ namespace CRM.Services
                 End = (DateTimeOffset)endDefault,
                 Title = model.Title,
                 ColorOfEvent = model.ColorOfEvent,
+                TypeOfEvent = model.TypeOfEvent,
                 Details = model.Details
 
             };
@@ -57,8 +50,6 @@ namespace CRM.Services
             }
 
         }
-
-
 
         public IEnumerable<CalendarEventListItem> GetCalendarEvents()
         {
@@ -77,30 +68,35 @@ namespace CRM.Services
                             Location = e.Location,
                             Start = e.Start,
                             End = e.End,
-                            ColorOfEvent = e.ColorOfEvent
+                            ColorOfEvent = e.ColorOfEvent,
+                            TypeOfEvent = e.TypeOfEvent
                         });
                 return query.ToArray();
-                //tempList.Add((CalendarEventListItem)query);
-
-                //var query2 = ctx
-                //    .CalendarEvents
-                //    .Where(e => e.Job.CalendarEventID == e.CalEventID)
-                //    .Select(
-                //        e =>
-                //        new CalendarEventListItem
-                //        {
-                //            CalEventID = e.CalEventID,
-                //            JobID = e.Job.JobID,
-                //            Location = e.Location,
-                //            Start = e.Start,
-                //            End = e.End,
-                //            ColorOfEvent = e.ColorOfEvent
-                //        });
-                //tempList.Add((CalendarEventListItem)query);
-                //return tempList;
             }
         }
 
+        public IEnumerable<CalendarEventListItem> GetCalendarEvents(int id)
+        {
+            var tempList = new List<CalendarEventListItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .CalendarEvents
+                    .Where(e => e.Job.CalendarEventID >= id)
+                    .Select(
+                        e =>
+                        new CalendarEventListItem
+                        {
+                            CalendarEventID = e.CalEventID,
+                            Location = e.Location,
+                            Start = e.Start,
+                            End = e.End,
+                            ColorOfEvent = e.ColorOfEvent
+                        });
+                return query.ToArray();
+            }
+        }
         public bool UpdateCalendarEvent(CalendarEventEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -135,7 +131,8 @@ namespace CRM.Services
                         Details = entity.Details,
                         Location = entity.Location,
                         Title = entity.Title,
-                        ColorOfEvent = entity.ColorOfEvent
+                        ColorOfEvent = entity.ColorOfEvent,
+                        TypeOfEvent = entity.TypeOfEvent
                     };
             }
         }
@@ -163,6 +160,37 @@ namespace CRM.Services
                 return query.ToList();
             }
         }
+
+        internal int GetLastCalEventID()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CalendarEvents.OrderByDescending(c => c.CalEventID).FirstOrDefault();
+                return entity.CalEventID;
+
+            }
+        }
+
+        internal void AssignColorToCalEvent(int employeeID, int calEventID)
+        {
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.CalendarEvents.Find(calEventID).ColorOfEvent = ctx.Employees.Find(employeeID).ColorOfEmployee;
+                ctx.SaveChanges();
+            }
+        }
+
+        internal void SetCalEventLocation(int customerID, int calEventID)
+        {
+            var location = _custSvc.GetCustomerDetailByID(customerID).FullAddress;
+            using (var ctx = new ApplicationDbContext())
+            {
+                var calEntity = ctx.CalendarEvents.Find(calEventID).Location = location;                
+                ctx.SaveChanges();
+            }
+        }
+
     }
 }
 

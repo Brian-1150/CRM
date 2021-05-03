@@ -109,6 +109,7 @@ namespace CRM.WebMVC.Controllers
 
             var model = new CalendarEventEdit
             {
+                CustomerID = jobDetail.CustomerID,
                 CalEventID = detail.CalEventID,
                 Title = detail.Title,
                 Start = detail.Start,
@@ -138,6 +139,8 @@ namespace CRM.WebMVC.Controllers
             var jobEditModel = new JobEdit { };
             if (model.EmployeeFullName != null)
             {
+                jobEditModel.CustomerID = model.CustomerID;
+                jobEditModel.CalendarEventID = model.CalEventID;
                 jobEditModel.JobID = model.CalEventID;
                 jobEditModel.EmployeeID = model.EmployeeID;
                 jobEditModel.EmployeePay = model.EmployeePay;

@@ -54,6 +54,7 @@ namespace CRM.Services
         {
             ChangeCustStatus(model.CustomerID); //if customer happened to be inactive, scheduling a new job for them reactivates their status
             _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
+            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
             var entity = new Job()
             {
                 CustomerID = model.CustomerID,
@@ -182,6 +183,7 @@ namespace CRM.Services
         public bool UpdateJob(JobEdit model)
         {
             _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
+            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx

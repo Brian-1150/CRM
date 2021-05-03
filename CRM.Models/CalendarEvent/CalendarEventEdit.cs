@@ -12,7 +12,7 @@ namespace CRM.Models.CalendarEvent
     public class CalendarEventEdit
     {
         public int CalEventID { get; set; }
-       
+        public int CustomerID { get; set; }
         public string Location { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]

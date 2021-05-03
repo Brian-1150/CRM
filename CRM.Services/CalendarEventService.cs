@@ -12,6 +12,7 @@ namespace CRM.Services
 {
     public class CalendarEventService
     {
+        private CustomerService _custSvc = new CustomerService();
         public CalendarEventService() { }
 
         public CalendarEventCreate CalendarEventCreateView()
@@ -175,13 +176,21 @@ namespace CRM.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                var calEntity = ctx
-                    .CalendarEvents.Find(calEventID);
-                var color = ctx.Employees.Find(employeeID).ColorOfEmployee;
-                calEntity.ColorOfEvent = color;
+                ctx.CalendarEvents.Find(calEventID).ColorOfEvent = ctx.Employees.Find(employeeID).ColorOfEmployee;
                 ctx.SaveChanges();
             }
         }
+
+        internal void SetCalEventLocation(int customerID, int calEventID)
+        {
+            var location = _custSvc.GetCustomerDetailByID(customerID).FullAddress;
+            using (var ctx = new ApplicationDbContext())
+            {
+                var calEntity = ctx.CalendarEvents.Find(calEventID).Location = location;                
+                ctx.SaveChanges();
+            }
+        }
+
     }
 }
 

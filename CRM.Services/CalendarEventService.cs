@@ -110,7 +110,7 @@ namespace CRM.Services
                 entity.Details = model.Details;
                 entity.Title = model.Title;
                 entity.Location = model.Location;
-               
+
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -182,12 +182,16 @@ namespace CRM.Services
             }
         }
 
-        internal void SetCalEventLocation(int customerID, int calEventID)
+        internal void SetCalEventLocationAndTitle(int customerID, int calEventID)
         {
-            var location = _custSvc.GetCustomerDetailByID(customerID).FullAddress;
+            var cust = _custSvc.GetCustomerDetailByID(customerID);
+            var location = cust.FullAddress;
+            var title = cust.LastName;
             using (var ctx = new ApplicationDbContext())
             {
-                var calEntity = ctx.CalendarEvents.Find(calEventID).Location = location;
+                var entity = ctx.CalendarEvents.Find(calEventID);
+                entity.Location = location;
+                entity.Title = title;
                 ctx.SaveChanges();
             }
         }

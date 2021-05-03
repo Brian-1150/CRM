@@ -54,7 +54,7 @@ namespace CRM.Services
         {
             ChangeCustStatus(model.CustomerID); //if customer happened to be inactive, scheduling a new job for them reactivates their status
             _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
-            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
+            _calEventService.SetCalEventLocationAndTitle(model.CustomerID, model.CalendarEventID);
             var entity = new Job()
             {
                 CustomerID = model.CustomerID,
@@ -144,7 +144,7 @@ namespace CRM.Services
                             CalendarEventID = e.CalendarEventID,
                             CustomerID = e.CustomerID,
                             EmployeeID = e.EmployeeID,
-                           
+
                         });
                 return query.ToArray();
             }
@@ -165,13 +165,11 @@ namespace CRM.Services
                     {
                         JobID = entity.JobID,
                         CalendarEventID = entity.CalendarEventID,
-
                         CustomerID = entity.CustomerID,
                         CustomerFullName = entity.Customer.FullName,
                         CustomerFullAddress = entity.Customer.FullAddress,
                         EmployeeID = entity.EmployeeID,
                         EmployeeFullName = entity.Employee.FullName,
-
                         EmployeePay = entity.EmployeePay,
                         CustomerCharge = entity.CustomerCharge,
                         PayCheckID = entity.PayCheckID,
@@ -183,7 +181,6 @@ namespace CRM.Services
         public bool UpdateJob(JobEdit model)
         {
             _calEventService.AssignColorToCalEvent(model.EmployeeID, model.CalendarEventID);
-            _calEventService.SetCalEventLocation(model.CustomerID, model.CalendarEventID);
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
@@ -236,7 +233,7 @@ namespace CRM.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Customers.Find(customerID);
-                if(entity.StatusOfCustomer != CustomerStatus.Active)
+                if (entity.StatusOfCustomer != CustomerStatus.Active)
                 {
                     entity.StatusOfCustomer = CustomerStatus.Active;
                     ctx.SaveChanges();

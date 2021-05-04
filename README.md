@@ -54,7 +54,7 @@ Project is deployed on Azure [@here](https://crmlasttry.azurewebsites.net)
 In general, this project relied on StackOverflow, Microsoft DOCS, and Google searches for quick references.
 Below is a list of specific articles and blogs that were particularly useful:
 * [@A.J. Saulsberry](https://www.pluralsight.com/guides/asp.net-mvc-getting-default-data-binding-right-for-hierarchical-views)
-* [@Marghoob Suleman]http(://www.marghoobsuleman.com/jquery-image-dropdown)
+* [@Marghoob Suleman](http://www.marghoobsuleman.com/jquery-image-dropdown)
 * [@ Vithal Wadje](https://www.c-sharpcorner.com/article/managing-multiple-submit-buttons-on-single-view-in-asp-net-mvc-5/)
 * [@Krishna Jariwala](https://www.toshalinfotech.com/Blogs/ID/115/How-to-Integrate-Full-calendar-with-MVC-application)
 * [@ Mudassar Khan](https://www.aspsnippets.com/Articles/Populate-one-DropDownList-based-on-another-DropDownList-selected-value-in-ASPNet-MVC.aspx)

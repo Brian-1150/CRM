@@ -11,7 +11,7 @@ namespace CRM.Data
 
     public enum Color
     {
-        Red, Orange, Yellow, Green, Blue, Violet
+        Red, Orange, Yellow, Green, Blue, Violet, GreenYellow, Fuchsia
     }
     public enum EventType
     {

@@ -55,7 +55,21 @@
             }
         </style>
         break;
-   
+    case Color.Fuchsia:
+        <style>
+            .colors {
+                background-color: fuchsia;
+            }
+        </style>
+        break;
+    case Color.GreenYellow:
+        <style>
+            .colors {
+                background-color: greenyellow;
+            }
+        </style>
+        break;
+
     default:
         <style>
             .colors {
@@ -63,6 +77,7 @@
             }
         </style>
         break;
+
 }
 <h2>Details</h2>
 
@@ -179,7 +194,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".colors").bind(function () {
+        $('.colors').bind(function () {
             if ($(this).val() != '') {
                 $(this).css('background-color', $(this).val());
             }

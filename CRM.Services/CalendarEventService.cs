@@ -26,6 +26,8 @@ namespace CRM.Services
         }
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
+            //set color for estimate/communication.  Will get overridden later if event is type Job
+            var color = model.TypeOfEvent == EventType.Communication ? Color.Fuchsia : Color.GreenYellow;
 
             DateTimeOffset? endDefault;
             if (model.End != null)
@@ -38,8 +40,8 @@ namespace CRM.Services
                 Start = model.Start,
                 End = (DateTimeOffset)endDefault,
                 Title = model.Title,
-                ColorOfEvent = model.ColorOfEvent,
                 TypeOfEvent = model.TypeOfEvent,
+                ColorOfEvent = color,
                 Details = model.Details
 
             };
@@ -108,7 +110,6 @@ namespace CRM.Services
                 entity.Details = model.Details;
                 entity.Title = model.Title;
                 entity.Location = model.Location;
-                entity.ColorOfEvent = model.ColorOfEvent;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -181,12 +182,16 @@ namespace CRM.Services
             }
         }
 
-        internal void SetCalEventLocation(int customerID, int calEventID)
+        internal void SetCalEventLocationAndTitle(int customerID, int calEventID)
         {
-            var location = _custSvc.GetCustomerDetailByID(customerID).FullAddress;
+            var cust = _custSvc.GetCustomerDetailByID(customerID);
+            var location = cust.FullAddress;
+            var title = cust.LastName;
             using (var ctx = new ApplicationDbContext())
             {
-                var calEntity = ctx.CalendarEvents.Find(calEventID).Location = location;                
+                var entity = ctx.CalendarEvents.Find(calEventID);
+                entity.Location = location;
+                entity.Title = title;
                 ctx.SaveChanges();
             }
         }

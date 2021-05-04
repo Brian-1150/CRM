@@ -48,22 +48,6 @@ namespace CRM.WebMVC.Controllers
             ModelState.AddModelError("", "Event could not be created");
             return View(model);
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Job(CalendarEventCreate model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(model);
-        //    if (_svc.CreateCalendarEvent(model))
-        //    {
-        //        return Redirect("~/Job/CreateFromCalEvent");
-        //        //TempData["SaveResult"] = "Event Added Successfully with Job info";
-        //        //return RedirectToAction("Index");
-        //    }
-        //    ModelState.AddModelError("", "Event could not be created");
-        //    return View(model);
-
-        //}
 
         // READ:  list of events
         public ActionResult Index()
@@ -102,16 +86,18 @@ namespace CRM.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-            var jobValues = _jobSvc.GetJobByID(id);
-            if (jobValues.InvoiceID.HasValue || jobValues.PayCheckID.HasValue)
-            {
-                TempData["message"] = "Job may not be edited once it has been added to invoice or paycheck";
-                return RedirectToAction("Index");
-            }
             var jobDetail = new JobDetail { };
             var detail = _svc.GetEventById(id);
             if (detail.TypeOfEvent == EventType.Job)
+            {
+                var jobValues = _jobSvc.GetJobByID(id);
+                if (jobValues.InvoiceID.HasValue || jobValues.PayCheckID.HasValue)
+                {
+                    TempData["message"] = "Job may not be edited once it has been added to invoice or paycheck";
+                    return RedirectToAction("Index");
+                }
                 jobDetail = jobValues;
+            }
 
             var model = new CalendarEventEdit
             {
@@ -142,7 +128,7 @@ namespace CRM.WebMVC.Controllers
                 TempData["message"] = "Sorry there was a problem.";
                 return RedirectToAction("Index");
             }
-            
+
             var jobEditModel = new JobEdit { };
             if (model.EmployeeFullName != null)
             {
@@ -162,10 +148,10 @@ namespace CRM.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             _svc.UpdateCalendarEvent(model);
-            
-                TempData["SaveResult"] = "Event was updated successfully!";
-                return RedirectToAction("Index");
-            
+
+            TempData["SaveResult"] = "Event was updated successfully!";
+            return RedirectToAction("Index");
+
             //ModelState.AddModelError("", "Event could not be updated.  You must make at least one change");
             //return View(model);
         }

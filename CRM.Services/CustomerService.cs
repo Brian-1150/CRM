@@ -117,6 +117,34 @@ namespace CRM.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public IEnumerable<CustomerListItem> GetDeleted()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                       .Customers
+                       .Where(e => e.IsOnDoNotContactList)
+                       .Select(
+                          e =>
+                              new CustomerListItem
+                              {
+                                  CustomerID = e.CustomerID,
+                                  FirstName = e.FirstName,
+                                  LastName = e.LastName,
+                                  PhoneNumber = e.PhoneNumber,
+                                  Email = e.Email,
+                                  StreetAddress = e.StreetAddress,
+                                  City = e.City,
+                                  InitialDateOfContact = e.InitialDateOfContact,
+                                  
+                              }
+                   );
+                return query.ToArray();
+            }
+        }
+
         public void DeleteCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())

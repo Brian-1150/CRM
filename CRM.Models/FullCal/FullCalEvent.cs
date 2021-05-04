@@ -13,6 +13,7 @@ namespace CRM.Models.FullCal
         public DateTimeOffset start { get; set; }
         public DateTimeOffset end { get; set; }
         public string title { get; set; }
+        public string color { get; set; }
 
     }
 }

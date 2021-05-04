@@ -25,6 +25,7 @@ namespace CRM.Services
                      allDay = true,
                      start = e.Start,
                      end = (DateTimeOffset)e.End,
+                     color = e.ColorOfEvent.ToString(),
                      title = e.Title
 
                  });

@@ -31,6 +31,7 @@
                                 start: moment(data.start),
                                 end: moment(data.end),
                                 allDay: true,
+                                backgroundColor: data.color,
                                 id: data.id
                             });
                     });

@@ -49,6 +49,10 @@ may want to update the seed events in the configuration.cs to the current month 
 
 ## Status
 Project is deployed on Azure [@here](https://crmlasttry.azurewebsites.net)
+*Disclaimer* This project is still in the test phase and is not yet available for adding real data.  You may login:
+username:  BusinessOwner
+password:  Test1!
+But please do not add any sensitive data or any real customer info.  Feel free to add, edit, and delete.  
 
 ## Resources
 In general, this project relied on StackOverflow, Microsoft DOCS, and Google searches for quick references.

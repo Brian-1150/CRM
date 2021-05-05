@@ -18,7 +18,8 @@ namespace CRM.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.CalendarEvents.Where(e => e.CalEventID >= 0).Select(e =>
+
+                var query = ctx.CalendarEvents.Include("Job").Include("Employee").Where(e => e.CalEventID >= 0).Select(e =>
                  new FullCalEvent
                  {
                      id = e.CalEventID,
@@ -27,6 +28,9 @@ namespace CRM.Services
                      end = (DateTimeOffset)e.End,
                      color = e.ColorOfEvent.ToString(),
                      title = e.Title,
+                     details = e.Details,
+                     url = e.Location,
+                     employeeName = e.Job.Employee.FirstName,
                      textColor = "black"
 
                  });
@@ -36,7 +40,28 @@ namespace CRM.Services
 
         public FullCalEvent GetByID(int id)
         {
-            return GetFullCalEvents().Find(d => d.id == id);
+            using (var ctx = new ApplicationDbContext())
+            {
+                string emp = "";
+
+                var list = ctx.CalendarEvents.ToList();
+                var f = list.Find(e => e.CalEventID == id);
+                if (f.TypeOfEvent == EventType.Job)
+                    emp = f.Job.Employee.FullName;
+                return new FullCalEvent
+                {
+                    id = f.CalEventID,
+                    allDay = true,
+                    start = f.Start,
+                    end = (DateTimeOffset)f.End,
+                    color = f.ColorOfEvent.ToString(),
+                    title = f.Title,
+                    details = f.Details,
+                    url = f.Location,
+                    employeeName = emp,
+                    textColor = "black"
+                };
+            }
         }
 
         public void UpdateEvent(string id, DateTimeOffset start, DateTimeOffset end)

@@ -15,6 +15,10 @@ namespace CRM.Models.FullCal
         public string title { get; set; }
         public string color { get; set; }
         public string textColor { get; set; }
+        public string details { get; set; }
+        public string url { get; set; }
+        public string employeeName { get; set; }
+      
 
     }
 }

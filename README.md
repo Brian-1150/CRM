@@ -52,7 +52,7 @@ Project is deployed on Azure [@here](https://crmlasttry.azurewebsites.net)<br />
 *Disclaimer* This project is still in the test phase and is not yet available for adding real data.  You may login:<br />
 username:  BusinessOwner<br />
 password:  Test1!<br />
-But please do not add any sensitive data or any real customer info.  Feel free to add, edit, and delete.  
+But please do not add any sensitive data or any real customer info.  Feel free to add, edit, and delete fictional data for testing purposes.  
 
 ## Resources
 In general, this project relied on StackOverflow, Microsoft DOCS, and Google searches for quick references.

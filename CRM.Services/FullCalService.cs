@@ -26,7 +26,8 @@ namespace CRM.Services
                      start = e.Start,
                      end = (DateTimeOffset)e.End,
                      color = e.ColorOfEvent.ToString(),
-                     title = e.Title
+                     title = e.Title,
+                     textColor = "black"
 
                  });
                 return query.ToList();

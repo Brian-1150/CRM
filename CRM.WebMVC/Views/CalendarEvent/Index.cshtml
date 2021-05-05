@@ -116,7 +116,14 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.CalendarEventID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CalendarEventID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CalendarEventID })
+                @if (item.TypeOfEvent == CRM.Data.EventType.Job)
+                {
+                    @Html.ActionLink("Delete", "Delete", "Job", new { id = item.CalendarEventID }, null)
+                }
+                else
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CalendarEventID })
+                }
             </td>
         </tr>
     }

@@ -88,6 +88,14 @@
     <Compile Include="Migrations\202105031229006_AddTwoColorsToEnum.designer.cs">
       <DependentUpon>202105031229006_AddTwoColorsToEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105042350332_changes.cs" />
+    <Compile Include="Migrations\202105042350332_changes.designer.cs">
+      <DependentUpon>202105042350332_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105050241393_UpdateSeeds.cs" />
+    <Compile Include="Migrations\202105050241393_UpdateSeeds.designer.cs">
+      <DependentUpon>202105050241393_UpdateSeeds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -115,6 +123,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105031229006_AddTwoColorsToEnum.resx">
       <DependentUpon>202105031229006_AddTwoColorsToEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105042350332_changes.resx">
+      <DependentUpon>202105042350332_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105050241393_UpdateSeeds.resx">
+      <DependentUpon>202105050241393_UpdateSeeds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

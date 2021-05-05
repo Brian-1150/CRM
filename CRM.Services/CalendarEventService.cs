@@ -105,11 +105,13 @@ namespace CRM.Services
             {
                 var entity = ctx
                     .CalendarEvents.Find(model.CalEventID);
+                if (model.Location != null)
+                { entity.Location = model.Location; }
                 entity.Start = model.Start;
                 entity.End = (DateTimeOffset)model.End;
                 entity.Details = model.Details;
                 entity.Title = model.Title;
-                entity.Location = model.Location;
+
 
                 return ctx.SaveChanges() == 1;
             }
@@ -169,6 +171,16 @@ namespace CRM.Services
                 var entity = ctx.CalendarEvents.OrderByDescending(c => c.CalEventID).FirstOrDefault();
                 return entity.CalEventID;
 
+            }
+        }
+
+        public void DeleteEvent(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CalendarEvents.Find(id);
+                ctx.CalendarEvents.Remove(entity);
+                ctx.SaveChanges();
             }
         }
 

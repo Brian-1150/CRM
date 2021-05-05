@@ -541,6 +541,7 @@
     <Content Include="Views\CalendarEvent\CustomIndexView.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MultiLineText.cshtml" />
     <Content Include="Views\Customer\CustomIndexView.cshtml" />
+    <Content Include="Views\CalendarEvent\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

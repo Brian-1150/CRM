@@ -118,7 +118,14 @@ namespace CRM.WebMVC.Controllers
         {
             //prevent delete if job has FK of invoice or paycheck ticket # 29
 
-            return View(_svc.GetJobByID(id));
+            var model = _svc.GetJobByID(id);
+            if (model.InvoiceID.HasValue || model.PayCheckID.HasValue)
+            {
+                TempData["Message"] = "Job events cannot be deleted if they are assoicated with an invoice or paycheck";
+                return RedirectToAction("Index", "CalendarEvent");
+            }    
+
+            return View(model);
         }
 
         [HttpPost]
@@ -130,7 +137,7 @@ namespace CRM.WebMVC.Controllers
             _svc.DeleteJob(id);
             TempData["SaveResult"] = "Your Job was deleted";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "CalendarEvent");
         }
     }
 

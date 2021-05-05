@@ -205,6 +205,7 @@ namespace CRM.Services
                     ctx
                     .Jobs
                     .Find(id);
+                var calEventToDelete = ctx.CalendarEvents.Find(id);
 
                 var copyOfDeletedEntity = new JobDeleted
                 {
@@ -213,13 +214,16 @@ namespace CRM.Services
                     CustomerID = entityToDelete.CustomerID,
                     EmployeeID = entityToDelete.EmployeeID,
                     EmployeePay = entityToDelete.EmployeePay,
-                    CustomerCharge = entityToDelete.CustomerCharge
+                    CustomerCharge = entityToDelete.CustomerCharge,
+                    DateAsString = calEventToDelete.Start.ToString(),
+
                 };
                 ctx.JobsDeleted.Add(copyOfDeletedEntity);
                 if (ctx.SaveChanges() == 1)
                 {
                     ctx.Jobs.Remove(entityToDelete);
-                    return ctx.SaveChanges() == 1;
+                    ctx.CalendarEvents.Remove(calEventToDelete);
+                    return ctx.SaveChanges() > 0;
                 }
                 return false;
 

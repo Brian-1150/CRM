@@ -14,6 +14,7 @@ namespace CRM.Models.FullCal
         public DateTimeOffset end { get; set; }
         public string title { get; set; }
         public string color { get; set; }
+        public string textColor { get; set; }
 
     }
 }

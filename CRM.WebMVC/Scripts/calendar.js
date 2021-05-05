@@ -32,8 +32,12 @@
                                 end: moment(data.end),
                                 allDay: true,
                                 backgroundColor: data.color,
-                                id: data.id
-                            });
+                                id: data.id,
+                                textColor: data.textColor
+
+                                
+                            }
+                        ); 
                     });
                     callback(events);
                 }

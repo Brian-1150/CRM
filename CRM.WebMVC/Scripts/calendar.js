@@ -10,6 +10,7 @@
             month: 'Month',
             week: 'Week',
             day: 'Day'
+            
         },
         selectable: true,
         select: function () {

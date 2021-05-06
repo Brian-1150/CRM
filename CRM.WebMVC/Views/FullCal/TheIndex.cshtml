@@ -40,6 +40,7 @@
 <body>
     <div class="calendar-header">
         @Html.Partial("~/Views/Shared/NavBarLayout.cshtml")
+        <div style="padding: 1%; margin-left: 71%;">@Html.ActionLink("List View", "Index", "CalendarEvent")</div>
     </div>
     <div class="calendar-body">
         <div id="calendar"> </div>

@@ -77,7 +77,7 @@ namespace CRM.Services
             }
         }
 
-        public IEnumerable<CalendarEventListItem> GetCalendarEvents(int id)
+        public IEnumerable<CalendarEventListItem> GetCalendarEventsByCustomerID(int customerId)
         {
             var tempList = new List<CalendarEventListItem>();
             using (var ctx = new ApplicationDbContext())
@@ -85,7 +85,29 @@ namespace CRM.Services
                 var query =
                     ctx
                     .CalendarEvents
-                    .Where(e => e.Job.CalendarEventID >= id)
+                    .Where(e => e.Job.Customer.CustomerID == customerId)
+                    .Select(
+                        e =>
+                        new CalendarEventListItem
+                        {
+                            CalendarEventID = e.CalEventID,
+                            Location = e.Location,
+                            Start = e.Start,
+                            End = e.End,
+                            ColorOfEvent = e.ColorOfEvent
+                        });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<CalendarEventListItem> GetCalendarEventsByEmpID(int empId)
+        {
+            var tempList = new List<CalendarEventListItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .CalendarEvents
+                    .Where(e => e.Job.Employee.EmployeeID == empId)
                     .Select(
                         e =>
                         new CalendarEventListItem
@@ -105,11 +127,13 @@ namespace CRM.Services
             {
                 var entity = ctx
                     .CalendarEvents.Find(model.CalEventID);
+                if (model.Location != null)
+                { entity.Location = model.Location; }
                 entity.Start = model.Start;
                 entity.End = (DateTimeOffset)model.End;
                 entity.Details = model.Details;
                 entity.Title = model.Title;
-                entity.Location = model.Location;
+
 
                 return ctx.SaveChanges() == 1;
             }
@@ -169,6 +193,16 @@ namespace CRM.Services
                 var entity = ctx.CalendarEvents.OrderByDescending(c => c.CalEventID).FirstOrDefault();
                 return entity.CalEventID;
 
+            }
+        }
+
+        public void DeleteEvent(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CalendarEvents.Find(id);
+                ctx.CalendarEvents.Remove(entity);
+                ctx.SaveChanges();
             }
         }
 

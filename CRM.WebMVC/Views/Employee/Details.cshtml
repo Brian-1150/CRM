@@ -4,86 +4,105 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Employee Details</h2>
 
 <div>
-    <h4>EmployeeDetail</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <div class="container">
+        <div class="col-sm-7">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StreetAddress)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StreetAddress)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeID)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmployeeID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EmployeeID)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Current)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Current)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Current, "Current")
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Current, "Current")
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HireDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.HireDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HireDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.HireDate)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <div class="col-sm-5">
+            <div class="row">
+
+                @Html.DropDownList("PayChecks", new SelectList(ViewBag.PayCheckList, "PayCheckID", "PayCheckID"), "List of PayChecks", htmlAttributes:
+                new { @class = "form-control drop invoice_link" })
+
+            </div>
+
+            <div class="row">
+
+                @Html.DropDownList("CalEvents", new SelectList(ViewBag.CalEventList, "CalendarEventID", "CalendarEventID"), "List of Jobs", htmlAttributes:
+                new { @class = "form-control drop calendar_link" })
+            </div>
+        </div>
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
     @Html.ActionLink("Back to List", "Index")

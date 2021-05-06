@@ -12,14 +12,24 @@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <style>
     body {
-        background-color: lightsteelblue;
+        zoom: 110%;
+        background-image: url('../../Content/Assets/bgSubtle.jpg');
+        font-family: Consolas;
+      
     }
+    h2 {
+        
+        font-family: Dubai;
+    }
+
+    
 </style>
 </head>
 <body>
 
+
     @Html.Partial("~/Views/Shared/NavBarLayout.cshtml")
-    
+
     <div class="container body-content">
 
         @RenderBody()
@@ -50,5 +60,26 @@
             //jqueryUI docementation
         });
     </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.invoice_link').change(function () {
+                var id = $(this).val();
+                if (id != null && id != '') {
+                    window.location.href = window.location.origin + "/Invoice/Details/" + id;
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.calendar_link').change(function () {
+                var id = $(this).val();
+                if (id != null && id != '') {
+                    window.location.href = window.location.origin + "/CalendarEvent/Details/" + id;
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

@@ -31,7 +31,11 @@ namespace CRM.Models
 
         [Display(Name = "State")]
         public PersonState StateOfPerson { get; set; }
+
+        [Display(Name = "Initial Contact")]
         public DateTimeOffset InitialDateOfContact { get; set; }
+
+        [Display(Name = "Status")]
         public CustomerStatus StatusOfCustomer { get; set; }
     }
 }

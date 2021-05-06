@@ -21,7 +21,7 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-           
+
             context.Employees.AddOrUpdate(x => x.LastName,
                 new Employee()
                 {
@@ -29,11 +29,13 @@
                     LastName = "One",
                     Email = "employee@yourBusiness.com",
                     StreetAddress = "1234 Work Blvd",
+                    City = "Indianapolis",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46034,
                     PhoneNumber = "3171234567",
                     Current = true,
-                    HireDate = new DateTime(2020, 12, 20)
+                    HireDate = new DateTime(2020, 12, 20),
+                    ColorOfEmployee = Color.Red
                 },
                 new Employee()
                 {
@@ -41,11 +43,14 @@
                     LastName = "Two",
                     Email = "employee2@yourBusiness.com",
                     StreetAddress = "4321 Work Blvd",
+                    City = "Indianapolis",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46034,
                     PhoneNumber = "3173458888",
                     Current = true,
-                    HireDate = new DateTime(2019, 12, 19)
+                    HireDate = new DateTime(2019, 12, 19),
+                    ColorOfEmployee = Color.Orange
+
                 },
                 new Employee()
                 {
@@ -53,11 +58,14 @@
                     LastName = "Three",
                     Email = "employee3@yourBusiness.com",
                     StreetAddress = "9876 Street Rd",
+                    City = "Indianapolis",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46250,
                     PhoneNumber = "7659957878",
                     Current = true,
-                    HireDate = new DateTime(2020, 12, 20)
+                    HireDate = new DateTime(2020, 12, 20),
+                    ColorOfEmployee = Color.Yellow
+
                 },
                 new Employee()
                 {
@@ -65,11 +73,14 @@
                     LastName = "Employee",
                     Email = "employee4@yourBusiness.com",
                     StreetAddress = "555 Jackson Street",
+                    City = "Indianapolis",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46060,
                     PhoneNumber = "3171234567",
                     Current = true,
-                    HireDate = new DateTime(2015, 12, 20)
+                    HireDate = new DateTime(2015, 12, 20),
+                    ColorOfEmployee = Color.Green
+
                 });
             context.Customers.AddOrUpdate(x => x.LastName,
                 new Customer()
@@ -78,6 +89,7 @@
                     LastName = "Lincoln",
                     Email = "abe@customers.com",
                     StreetAddress = "123 Jackson Street",
+                    City = "Indianapolis",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46060,
                     PhoneNumber = "3191234567",
@@ -90,6 +102,7 @@
                 LastName = "Clinton",
                 Email = "bill@customers.com",
                 StreetAddress = "999 Clinton Street",
+                City = "Indianapolis",
                 StateOfPerson = PersonState.IN,
                 ZipCode = 46060,
                 PhoneNumber = "2191234565",
@@ -102,6 +115,7 @@
                 LastName = "Bush",
                 Email = "george@customers.com",
                 StreetAddress = "545 Washington Street",
+                City = "Indianapolis",
                 StateOfPerson = PersonState.IN,
                 ZipCode = 46060,
                 PhoneNumber = "2224564599",
@@ -114,6 +128,7 @@
                 LastName = "Teresa",
                 Email = "mother@customers.com",
                 StreetAddress = "2133 Jackson Street",
+                City = "Indianapolis",
                 StateOfPerson = PersonState.IN,
                 ZipCode = 46060,
                 PhoneNumber = "7774561234",
@@ -125,6 +140,7 @@
                 LastName = "Gandhi",
                 Email = "mgandhi@customers.com",
                 StreetAddress = "311 Fast Street",
+                City = "Fishers",
                 StateOfPerson = PersonState.IN,
                 ZipCode = 46060,
                 PhoneNumber = "1181239567",
@@ -138,6 +154,7 @@
                     LastName = "Mandela",
                     Email = "nelson@customers.com",
                     StreetAddress = "4567 S Africa Street",
+                    City = "Fishers",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46060,
                     PhoneNumber = "3199876567",
@@ -149,6 +166,7 @@
                     LastName = "Parks",
                     Email = "rosa@customers.com",
                     StreetAddress = "3232 Buster Blvd",
+                    City = "Fishers",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46060,
                     PhoneNumber = "7178985555",
@@ -160,6 +178,7 @@
                     LastName = "Winfrey",
                     Email = "oprah@customers.com",
                     StreetAddress = "920 Winding Lane",
+                    City = "Fishers",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46250,
                     PhoneNumber = "2224561234",
@@ -173,25 +192,15 @@
                     LastName = "Chopra",
                     Email = "deepak@customers.com",
                     StreetAddress = "123 Zen Street",
+                    City = "Fishers",
                     StateOfPerson = PersonState.IN,
                     ZipCode = 46060,
                     PhoneNumber = "9876543217",
                     InitialDateOfContact = new DateTime(2015, 12, 20),
                     StatusOfCustomer = CustomerStatus.Active
                 });
-
-            context.CalendarEvents.AddOrUpdate(x => x.CalEventID,
-                new CalendarEvent()
-                {
-                    CalEventID = 1001,
-                    Start = new DateTime(2021, 4, 20),
-                    End = new DateTime(2021, 4, 21),
-                    Location = "123 Zen Street",
-                    Title = "HouseCleaning",
-                    ColorOfEvent = Color.Blue,
-                });
         }
 
-        
+
     }
 }

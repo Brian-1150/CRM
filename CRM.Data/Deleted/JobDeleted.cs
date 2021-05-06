@@ -23,6 +23,7 @@ namespace CRM.Data.Deleted
        
         public double EmployeePay { get; set; }
         public double CustomerCharge { get; set; }
+        public string DateAsString { get; set; }
 
 
     }

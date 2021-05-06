@@ -189,7 +189,15 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CalEventID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @if (Model.TypeOfEvent == CRM.Data.EventType.Job)
+    {
+        @Html.ActionLink("Delete", "Delete", "Job", new { id = Model.CalEventID }, null)
+    }
+    else
+    {
+        @Html.ActionLink("Delete", "Delete", new { id = Model.CalEventID })
+    }
 </p>
 
 <script type="text/javascript">

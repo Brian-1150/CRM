@@ -12,12 +12,15 @@ namespace CRM.WebMVC.Controllers
     [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
+        private CalendarEventService _calSvc = new CalendarEventService();
         private EmployeeService _svc = new EmployeeService();
+        private PayCheckService _payCheckSvc = new PayCheckService();
+
         //[C]RUD
         //GET:  CreateEmployee View
         public ActionResult Create()
         {
-            return View();
+            return View(new EmployeeCreate());
         }
 
         [HttpPost]
@@ -45,6 +48,8 @@ namespace CRM.WebMVC.Controllers
         //GET:  Employee Details
         public ActionResult Details(int id)
         {
+            ViewBag.CalEventList = _calSvc.GetCalendarEventsByEmpID(id);
+            ViewBag.PayCheckList = _payCheckSvc.GetPayChecks(id);
             return View(_svc.GetEmployeeByID(id));
         }
 
@@ -88,5 +93,14 @@ namespace CRM.WebMVC.Controllers
             ModelState.AddModelError("", "Customer info could not be updated");
             return View(model);
         }
+        //Delete
+
+        [ActionName("Delete")]
+        public ActionResult Delete()
+        {
+            TempData["Message"] = "You may not remove employee from database.  Just set to inactive in edit menu.";
+            return RedirectToAction("Index");
+        }
+      
     }
 }

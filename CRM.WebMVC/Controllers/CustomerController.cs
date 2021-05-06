@@ -111,7 +111,7 @@ namespace CRM.WebMVC.Controllers
         //GET:  Customer Details
         public ActionResult Details(int id)
         {
-            ViewBag.CalEventList = _calSvc.GetCalendarEvents(id);
+            ViewBag.CalEventList = _calSvc.GetCalendarEventsByCustomerID(id);
             ViewBag.InvoiceList = _invoiceSvc.GetInvoices(id);
             return View(_svc.GetCustomerDetailByID(id));
         }

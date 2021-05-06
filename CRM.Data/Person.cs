@@ -19,6 +19,7 @@ namespace CRM.Data
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "A Last Name is required.")]
         public string LastName { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -37,7 +38,10 @@ namespace CRM.Data
         public PersonState StateOfPerson { get; set; }
 
         [DataType(DataType.PostalCode)]
+        [Display(Name = "Zip")]
         public int ZipCode { get; set; }
+
+        [Display(Name = "Name")]
         public string FullName
         {
             get
@@ -48,11 +52,12 @@ namespace CRM.Data
 
         }
 
+        [Display(Name = "Address")]
         public string FullAddress
         {
             get
             {
-                return StreetAddress + "\n" + City + " " + StateOfPerson + " " + ZipCode;
+                return StreetAddress + " " + City + " " + StateOfPerson + " " + ZipCode;
             }
 
         }

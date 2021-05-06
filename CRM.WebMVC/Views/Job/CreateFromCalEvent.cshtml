@@ -51,7 +51,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" <button type="submit" onclick="window.onbeforeunload = null;" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -63,9 +63,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-    $(function () { $('.drop').chosen(); });
-    </script>
-}
+<script>
+    
+    // Warning before leaving the page (back button, or outgoinglink)
+    window.onbeforeunload = function () {
+        return "you must stay"
+        //if we return nothing here (just calling return;) then there will be no pop-up question at all
+        //return;
+    };
+    
+</script>
+    }
 
 

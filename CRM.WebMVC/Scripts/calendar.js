@@ -10,6 +10,7 @@
             month: 'Month',
             week: 'Week',
             day: 'Day'
+            
         },
         selectable: true,
         select: function () {
@@ -31,8 +32,13 @@
                                 start: moment(data.start),
                                 end: moment(data.end),
                                 allDay: true,
-                                id: data.id
-                            });
+                                backgroundColor: data.color,
+                                id: data.id,
+                                textColor: data.textColor
+
+                                
+                            }
+                        ); 
                     });
                     callback(events);
                 }
@@ -88,13 +94,14 @@ function showModal(title, body, isEventDetail) {
         $("#MyPopup").modal("show");
     }
     else {
-        var eventDetail = 'Event Name: ' + body.title + '</br>';
-        var eventInfo = 'Event Info: ' + body.info + '</br>';
-        var eventStart = 'Event Start: ' + moment(body.start).format("M/D/YYYY") + '</br>';
-        var eventEnd = 'Event End: ' + moment(body.end).format("M/D/YYYY") + '</br>';
+        var title = 'Title: ' + body.title + '</br>';
+        var details = 'Details: ' + body.details + '</br>';
+        var date = 'Date: ' + moment(body.start).format("M/D/YYYY") + '</br>';
+        var empName = 'Employee: ' + body.employeeName + '</br>';
+         url = 'Location: ' + body.url + '</br>';
         var modalPop = $("#MyPopup .modal-body");
 
-        modalPop.html(eventDetail + eventInfo + eventStart + eventEnd);
+        modalPop.html(title + details + date + empName + url);
         $("#MyPopup.modal").modal("show");
     }
 }

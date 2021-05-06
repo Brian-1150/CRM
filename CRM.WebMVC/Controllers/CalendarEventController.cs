@@ -58,6 +58,7 @@ namespace CRM.WebMVC.Controllers
 
         public ActionResult CustomIndexView()
         {
+            ViewBag.JobInfo = _jobSvc.GetJobsFromDB();
             var list = _svc.GetCalendarEvents();
             var newList = new List<CalendarEventListItem>();
             foreach (var x in list)
@@ -129,6 +130,13 @@ namespace CRM.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (model.CalEventID != id)
+            {
+                TempData["message"] = "Sorry there was a problem with the id";
+                ModelState.AddModelError("", "Id Mismatch");
+                return RedirectToAction("Index");
+            }
+
             var jobEditModel = new JobEdit { };
             if (model.EmployeeFullName != null)
             {
@@ -141,19 +149,28 @@ namespace CRM.WebMVC.Controllers
                 _jobSvc.UpdateJob(jobEditModel);
             }
 
-            if (model.CalEventID != id)
-            {
-                TempData["message"] = "Sorry there was a problem with the id";
-                ModelState.AddModelError("", "Id Mismatch");
-                return RedirectToAction("Index");
-            }
+            
             _svc.UpdateCalendarEvent(model);
 
             TempData["SaveResult"] = "Event was updated successfully!";
             return RedirectToAction("Index");
 
-            //ModelState.AddModelError("", "Event could not be updated.  You must make at least one change");
-            //return View(model);
+        }
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            return View(_svc.GetEventById(id));
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteEvent(int id)
+        {
+            _svc.DeleteEvent(id);
+            TempData["SaveResult"] = "Your event was deleted";
+
+            return RedirectToAction("Index", "CalendarEvent");
         }
     }
 }

@@ -37,7 +37,10 @@ namespace CRM.Data
         public PersonState StateOfPerson { get; set; }
 
         [DataType(DataType.PostalCode)]
+        [Display(Name = "Zip")]
         public int ZipCode { get; set; }
+
+        [Display(Name = "Name")]
         public string FullName
         {
             get
@@ -48,6 +51,7 @@ namespace CRM.Data
 
         }
 
+        [Display(Name = "Address")]
         public string FullAddress
         {
             get

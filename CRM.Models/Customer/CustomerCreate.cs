@@ -17,6 +17,7 @@ namespace CRM.Models
         public string PhoneNumber { get; set; } 
 
         [RegularExpression(@"^(?!00000)[0-9]{5,5}$", ErrorMessage = "Please enter a valid 5 digit U.S. zip code")]
+        [Display(Name = "Zip")]
         public int ZipCode { get; set; }
         public TextColor TextColor => StateOfPerson == PersonState.IN ? TextColor.Primary : TextColor.Secondary;
     }

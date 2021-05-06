@@ -3,6 +3,7 @@ using CRM.Models.CalendarEvent;
 using CRM.Models.Employee;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,20 @@ namespace CRM.Models.Job
 {
     public class JobDetail
     {
+        [Display(Name = "Job ID")]
         public int JobID { get; set; }
+
+        [Display(Name = "Event ID")]
         public int CalendarEventID { get; set; }
+        [Display(Name = "Employee ID")]
         public int EmployeeID { get; set; }
+        [Display(Name = "Employee Name")]
         public string EmployeeFullName { get; set; }
+
+        
         public int CustomerID { get; set; }
+
+        [Display(Name = "Customer Name")]
         public string CustomerFullName { get; set; }
         public string CustomerFullAddress { get; set; }
 
@@ -32,7 +42,9 @@ namespace CRM.Models.Job
         
         public int? InvoiceID { get; set; }
 
+        [Display(Name = "Paycheck Amount"), DataType(DataType.Currency)]
         public double EmployeePay { get; set; }
+        [Display(Name = "Paycheck Amount"), DataType(DataType.Currency)]
         public double CustomerCharge { get; set; }
     }
 }

@@ -9,8 +9,11 @@ namespace CRM.Models.Paycheck
 {
      public class PayCheckListItem
     {
+
+        [Display(Name = "PayCheck ID")]
         public int PayCheckID { get; set; }
 
+        [Display(Name = "Employee ID")]
         public int EmployeeID { get; set; }
 
         public virtual ICollection<int> JobIDs  { get; set; }

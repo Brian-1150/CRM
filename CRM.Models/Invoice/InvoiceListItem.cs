@@ -20,6 +20,7 @@ namespace CRM.Models.Invoice
         public  List<int> JobIDs { get; set; }
 
         [DataType(DataType.Currency)]
+        [Display(Name = "Invoice Amount")]
         public double InvoiceAmount { get; set; }
 
         [UIHint("Bool")]

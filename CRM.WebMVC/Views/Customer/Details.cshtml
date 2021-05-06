@@ -127,24 +127,4 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
-<script type="text/javascript">
-    $(function () {
-        $('.invoice_link').change(function () {
-            var id = $(this).val();
-            if (id != null && id != '') {
-                window.location.href = window.location.origin + "/Invoice/Details/" + id;
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $('.calendar_link').change(function () {
-            var id = $(this).val();
-            if (id != null && id != '') {
-                window.location.href = window.location.origin + "/CalendarEvent/Details/" + id;
-            }
-        });
-    });
-</script>
 

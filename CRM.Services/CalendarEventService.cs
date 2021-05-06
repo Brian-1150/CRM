@@ -77,7 +77,7 @@ namespace CRM.Services
             }
         }
 
-        public IEnumerable<CalendarEventListItem> GetCalendarEventsByID(int id)
+        public IEnumerable<CalendarEventListItem> GetCalendarEventsByCustomerID(int customerId)
         {
             var tempList = new List<CalendarEventListItem>();
             using (var ctx = new ApplicationDbContext())
@@ -85,7 +85,29 @@ namespace CRM.Services
                 var query =
                     ctx
                     .CalendarEvents
-                    .Where(e => e.Job.CalendarEventID == id)
+                    .Where(e => e.Job.Customer.CustomerID == customerId)
+                    .Select(
+                        e =>
+                        new CalendarEventListItem
+                        {
+                            CalendarEventID = e.CalEventID,
+                            Location = e.Location,
+                            Start = e.Start,
+                            End = e.End,
+                            ColorOfEvent = e.ColorOfEvent
+                        });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<CalendarEventListItem> GetCalendarEventsByEmpID(int empId)
+        {
+            var tempList = new List<CalendarEventListItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .CalendarEvents
+                    .Where(e => e.Job.Employee.EmployeeID == empId)
                     .Select(
                         e =>
                         new CalendarEventListItem

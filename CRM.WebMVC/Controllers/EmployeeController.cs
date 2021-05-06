@@ -12,7 +12,10 @@ namespace CRM.WebMVC.Controllers
     [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
+        private CalendarEventService _calSvc = new CalendarEventService();
         private EmployeeService _svc = new EmployeeService();
+        private PayCheckService _payCheckSvc = new PayCheckService();
+
         //[C]RUD
         //GET:  CreateEmployee View
         public ActionResult Create()
@@ -45,6 +48,8 @@ namespace CRM.WebMVC.Controllers
         //GET:  Employee Details
         public ActionResult Details(int id)
         {
+            ViewBag.CalEventList = _calSvc.GetCalendarEventsByEmpID(id);
+            ViewBag.PayCheckList = _payCheckSvc.GetPayChecks(id);
             return View(_svc.GetEmployeeByID(id));
         }
 

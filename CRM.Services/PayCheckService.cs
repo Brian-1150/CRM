@@ -88,6 +88,28 @@ namespace CRM.Services
                 return query.ToList();
             }
         }
+        public IEnumerable<PayCheckListItem> GetPayChecks(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+
+                var query =
+                    ctx
+                    .PayChecks
+                    .Where(e => e.EmployeeID == id)
+                    .Select(
+                        e =>
+                        new PayCheckListItem
+                        {
+                            PayCheckID = e.PayCheckID,
+                            EmployeeID = e.EmployeeID,
+                            PayCheckAmount = e.PayCheckAmount,
+                            Paid = e.Paid
+                        });
+                return query.ToList();
+            }
+        }
+
 
         public PayCheckListItem GetPayCheckByID(int id)
         {

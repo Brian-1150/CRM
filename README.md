@@ -33,8 +33,8 @@ may want to update the seed events in the configuration.cs to the current month 
 
 ## Sample Views
 <img src="https://github.com/Brian-1150/CRM/blob/master/Img/landing.png" width="300" height="100">
-<img src="https://github.com/Brian-1150/CRM/blob/master/Img/emp.png" width="400" height="300">
-<img src="https://github.com/Brian-1150/CRM/blob/master/Img/cal.png" width="600" height="500">
+<img src="https://github.com/Brian-1150/CRM/blob/master/Img/emp.png" width="500" height="300">
+<img src="https://github.com/Brian-1150/CRM/blob/master/Img/cal.png" width="800" height="500">
 
 ## Highlights
 

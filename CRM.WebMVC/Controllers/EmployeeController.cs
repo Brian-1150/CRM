@@ -20,7 +20,7 @@ namespace CRM.WebMVC.Controllers
         //GET:  CreateEmployee View
         public ActionResult Create()
         {
-            return View();
+            return View(new EmployeeCreate());
         }
 
         [HttpPost]

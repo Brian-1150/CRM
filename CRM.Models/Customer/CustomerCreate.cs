@@ -12,9 +12,18 @@ namespace CRM.Models
     {
         //Attempt at highlighting IN in EnumDropDownList
         public new PersonState StateOfPerson { get; set; } = PersonState.IN;
+        [Required]
         public new string StreetAddress { get; set; }
-        public new string Email { get; set; } 
-        public string PhoneNumber { get; set; } 
+
+        [Required]
+
+        public new string Email { get; set; }
+
+        [Required]
+
+        public string PhoneNumber { get; set; }
+
+        [Required]
 
         [RegularExpression(@"^(?!00000)[0-9]{5,5}$", ErrorMessage = "Please enter a valid 5 digit U.S. zip code")]
         [Display(Name = "Zip")]

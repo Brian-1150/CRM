@@ -19,6 +19,7 @@ namespace CRM.Data
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "A Last Name is required.")]
         public string LastName { get; set; }
 
         [Display(Name = "Phone Number")]

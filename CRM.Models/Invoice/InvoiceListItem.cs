@@ -10,11 +10,16 @@ namespace CRM.Models.Invoice
    public class InvoiceListItem
     {
 
+        [Display(Name = "Invoice")]
         public int InvoiceID { get; set; }
-                
+
+        [Display(Name = "Customer")]
         public int CustomerID { get; set; }
-        
+
+        [Display(Name = "Jobs")]
         public  List<int> JobIDs { get; set; }
+
+        [DataType(DataType.Currency)]
         public double InvoiceAmount { get; set; }
 
         [UIHint("Bool")]

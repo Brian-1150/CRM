@@ -10,8 +10,10 @@ namespace CRM.Models.Invoice
 {
     public class InvoiceEdit
     {
+        [Display(Name = "Invoice")]
         public int InvoiceID { get; set; }
 
+        [Display(Name = "Customer")]
         public int CustomerID { get; set; }
 
         [Display(Name = "Jobs Currently on Invoice")]

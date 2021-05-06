@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202105050241393_UpdateSeeds.designer.cs">
       <DependentUpon>202105050241393_UpdateSeeds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105060234312_FixSpacingForFullAddress.cs" />
+    <Compile Include="Migrations\202105060234312_FixSpacingForFullAddress.designer.cs">
+      <DependentUpon>202105060234312_FixSpacingForFullAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105050241393_UpdateSeeds.resx">
       <DependentUpon>202105050241393_UpdateSeeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060234312_FixSpacingForFullAddress.resx">
+      <DependentUpon>202105060234312_FixSpacingForFullAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

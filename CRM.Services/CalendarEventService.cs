@@ -77,7 +77,7 @@ namespace CRM.Services
             }
         }
 
-        public IEnumerable<CalendarEventListItem> GetCalendarEvents(int id)
+        public IEnumerable<CalendarEventListItem> GetCalendarEventsByID(int id)
         {
             var tempList = new List<CalendarEventListItem>();
             using (var ctx = new ApplicationDbContext())
@@ -85,7 +85,7 @@ namespace CRM.Services
                 var query =
                     ctx
                     .CalendarEvents
-                    .Where(e => e.Job.CalendarEventID >= id)
+                    .Where(e => e.Job.CalendarEventID == id)
                     .Select(
                         e =>
                         new CalendarEventListItem

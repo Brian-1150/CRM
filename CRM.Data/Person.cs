@@ -52,7 +52,7 @@ namespace CRM.Data
         {
             get
             {
-                return StreetAddress + "\n" + City + " " + StateOfPerson + " " + ZipCode;
+                return StreetAddress + " " + City + " " + StateOfPerson + " " + ZipCode;
             }
 
         }

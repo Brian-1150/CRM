@@ -21,7 +21,7 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-           
+
             context.Employees.AddOrUpdate(x => x.LastName,
                 new Employee()
                 {
@@ -199,20 +199,8 @@
                     InitialDateOfContact = new DateTime(2015, 12, 20),
                     StatusOfCustomer = CustomerStatus.Active
                 });
-
-            context.CalendarEvents.AddOrUpdate(x => x.CalEventID,
-                new CalendarEvent()
-                {
-                    CalEventID = 1,
-                    Start = new DateTime(2021, 4, 20),
-                    End = new DateTime(2021, 4, 21),
-                    Location = "123 Zen Street",
-                    Title = "HouseCleaning",
-                    ColorOfEvent = Color.Fuchsia,
-                    TypeOfEvent = EventType.Communication
-                });
         }
 
-        
+
     }
 }

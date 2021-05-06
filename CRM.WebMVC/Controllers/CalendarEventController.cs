@@ -58,6 +58,7 @@ namespace CRM.WebMVC.Controllers
 
         public ActionResult CustomIndexView()
         {
+            ViewBag.JobInfo = _jobSvc.GetJobsFromDB();
             var list = _svc.GetCalendarEvents();
             var newList = new List<CalendarEventListItem>();
             foreach (var x in list)

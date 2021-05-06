@@ -93,5 +93,14 @@ namespace CRM.WebMVC.Controllers
             ModelState.AddModelError("", "Customer info could not be updated");
             return View(model);
         }
+        //Delete
+
+        [ActionName("Delete")]
+        public ActionResult Delete()
+        {
+            TempData["Message"] = "You may not remove employee from database.  Just set to inactive in edit menu.";
+            return RedirectToAction("Index");
+        }
+      
     }
 }

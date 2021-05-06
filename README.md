@@ -32,7 +32,7 @@ seed data includes a sample of fictional customers, employees, events, paychecks
 may want to update the seed events in the configuration.cs to the current month for ease of seeing and testing the data.  
 
 ## Sample Views
-![Home](https://github.com/Brian-1150/CRM/blob/master/Img/landing.png)
+<img src="https://github.com/Brian-1150/CRM/blob/master/Img/landing.png" width="100" height="100">
 ![Employee Page](https://github.com/Brian-1150/CRM/blob/master/Img/emp.png)
 ![Calendar View](https://github.com/Brian-1150/CRM/blob/master/Img/cal.png)
 

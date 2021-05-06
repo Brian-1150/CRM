@@ -11,7 +11,8 @@ namespace CRM.Models.Employee
     public class EmployeeEdit : Person
     {
         public int EmployeeID { get; set; }
-       
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
         public DateTimeOffset HireDate { get; set; }
         public bool Current { get; set; }
     }

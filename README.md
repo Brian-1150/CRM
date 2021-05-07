@@ -39,7 +39,7 @@ may want to update the seed events in the configuration.cs to the current month 
 ## Highlights
 
 * Calendar view color coordinated based on employee and type of event
-* Event dates can be edited direction in calendar view by with drag/drop feature
+* Event dates can be edited directly in calendar view by with drag/drop feature
 * Search and sort list view for customers
 
 ## Upcoming Features

@@ -22,7 +22,7 @@ invoices can be easily figured based on all of the connecting tables.
 
 
 ## Technologies used
-* ASP.NET WEB MVC, C#, jQuer, HTML, CSS, JavaScript, RazorPages
+* ASP.NET WEB MVC, C#, jQuery, HTML, CSS, JavaScript, RazorPages
 * Microsoft Entity Framework, Asp.Net Identity.Core, XML, Json, Linq
 * Third-party implementaion:  FullCalendar
 

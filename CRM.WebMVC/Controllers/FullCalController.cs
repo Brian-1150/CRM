@@ -14,6 +14,15 @@ namespace CRM.WebMVC.Controllers
         CalendarEventService _calEventSvc = new CalendarEventService();
 
 
+
+
+        //CREATE
+
+        public ActionResult CreateFullCalEvent(string start)
+        {
+            return View(_calEventSvc.FullCalendarEventCreateView(DateTime.Parse(start)));
+        }
+
         // GET: FullCal
         public ActionResult TheIndex()
         {

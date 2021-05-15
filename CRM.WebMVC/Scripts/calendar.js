@@ -23,6 +23,7 @@
             CreateFullCalEvent(start.toISOString());
             $('#calendar').fullCalendar('unselect');
         },
+
         height: 'parent',
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -70,15 +71,7 @@
 
 
 function CreateFullCalEvent(start) {
-    var object = {};
-    object.start = start;
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "CreateFullCalEvent/",
-        dataType: "JSON",
-        data: JSON.stringify(object)
-    });
+    window.location.href = "CreateFullCalEvent?start=" + encodeURIComponent(start);
 
 }
 

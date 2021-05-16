@@ -543,6 +543,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MultiLineText.cshtml" />
     <Content Include="Views\Customer\CustomIndexView.cshtml" />
     <Content Include="Views\CalendarEvent\Delete.cshtml" />
+    <Content Include="Views\FullCal\CreateFullCalEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

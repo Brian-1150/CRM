@@ -16,6 +16,7 @@ namespace CRM.WebMVC.Controllers
 
 
 
+
         //CREATE
         [HttpGet]
         public ActionResult CreateFullCalEvent(string start)
@@ -24,6 +25,19 @@ namespace CRM.WebMVC.Controllers
             var model = _calEventSvc.FullCalendarEventCreateView(DateTime.Parse(start));
             return View(model);
         }
+
+
+
+        ////CREATE
+        //[HttpGet]
+        //public ActionResult CreateFullCalEvent(string start)
+        //{
+        //    //return RedirectToAction("Create", "CalendarEvent");
+        //    var model = _calEventSvc.CalendarEventCreateView();
+        //    return View("myView", model);
+        //}
+
+
 
         // GET: FullCal
         public ActionResult TheIndex()

@@ -70,17 +70,23 @@
 }
 
 
+
 function CreateFullCalEvent(start) {
-    $.ajax({
-        type: "GET",
-        url: "CreateFullCalEvent/" + start,
-        dataType: "html",
-        contentType: "applicaton/json; charset=utf-8",
-        success: function (view) {
-            $('.myView').html(view);
-        }
-    });
+    window.location.href = "CreateFullCalEvent?start=" + encodeURIComponent(start);
+
 }
+
+//function CreateFullCalEvent(start) {
+//    $.ajax({
+//        type: "GET",
+//        url: "CreateFullCalEvent/" + start,
+//        dataType: "html",
+//        contentType: "applicaton/json; charset=utf-8",
+//        success: function (view) {
+//            $('.myView').html(view);
+//        }
+//    });
+//}
 
 
 

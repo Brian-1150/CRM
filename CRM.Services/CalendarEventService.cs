@@ -24,6 +24,17 @@ namespace CRM.Services
             {//remove unnecessary call to method to return view.  Method has been changed
             };
         }
+
+        public CalendarEventCreate FullCalendarEventCreateView(DateTime start)
+        {
+            var newEvent = new CalendarEventCreate
+            {
+                Start = start,
+                
+            };
+            return newEvent;
+        }
+
         public bool CreateCalendarEvent(CalendarEventCreate model)
         {
             //set color for estimate/communication.  Will get overridden later if event is type Job

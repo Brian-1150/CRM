@@ -10,12 +10,20 @@
             month: 'Month',
             week: 'Week',
             day: 'Day'
-            
+
         },
+
         selectable: true,
-        select: function () {
-            showModal('Create an Event', 'Create new Event feature coming soon.  For now, use create button in list view', null);
+        select: function (start) {
+            selectedEvent = {
+                eventID: 0,
+                start: start,
+                allDay: true,
+            };
+            CreateFullCalEvent(start.toISOString());
+            $('#calendar').fullCalendar('unselect');
         },
+
         height: 'parent',
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -36,9 +44,9 @@
                                 id: data.id,
                                 textColor: data.textColor
 
-                                
+
                             }
-                        ); 
+                        );
                     });
                     callback(events);
                 }
@@ -53,13 +61,20 @@
         },
         eventDrop: function (info) {
             console.log(info);
-            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString()); 
+            UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString());
         },
         eventResize: function (info) {
             UpdateFullCalEvent(info.id, info.start.toISOString(), info.end.toISOString());
         }
     })
 }
+
+
+function CreateFullCalEvent(start) {
+    window.location.href = "CreateFullCalEvent?start=" + encodeURIComponent(start);
+
+}
+
 function GetFullCalEventByID(eventinfo) {
 
     $.ajax({
@@ -98,7 +113,7 @@ function showModal(title, body, isEventDetail) {
         var details = 'Details: ' + body.details + '</br>';
         var date = 'Date: ' + moment(body.start).format("M/D/YYYY") + '</br>';
         var empName = 'Employee: ' + body.employeeName + '</br>';
-         url = 'Location: ' + body.url + '</br>';
+        url = 'Location: ' + body.url + '</br>';
         var modalPop = $("#MyPopup .modal-body");
 
         modalPop.html(title + details + date + empName + url);

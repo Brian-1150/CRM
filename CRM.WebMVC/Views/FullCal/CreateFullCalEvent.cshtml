@@ -1,10 +1,7 @@
 ﻿@model CRM.Models.CalendarEvent.CalendarEventCreate
 
-@{
-    ViewBag.Title = "CreateFullCalEvent";
-}
-
-<h2>CreateFullCalEvent</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 
 
 @using (Html.BeginForm()) 
@@ -66,7 +63,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

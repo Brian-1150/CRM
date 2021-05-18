@@ -184,6 +184,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FullCalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseCleaningEstimateController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -544,6 +545,7 @@
     <Content Include="Views\Customer\CustomIndexView.cshtml" />
     <Content Include="Views\CalendarEvent\Delete.cshtml" />
     <Content Include="Views\FullCal\CreateFullCalEvent.cshtml" />
+    <Content Include="Views\HouseCleaningEstimate\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

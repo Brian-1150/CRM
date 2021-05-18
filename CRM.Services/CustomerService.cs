@@ -174,17 +174,14 @@ namespace CRM.Services
                 return entity;
             }
         }
-        internal List<Customer> GetCustomerFromDB()
+        public List<Customer> GetCustomerFromDB()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                    .Customers
-                    .Where(e => e.CustomerID >= 0)
-                     .Select(
-                        e =>
-                        new Customer { });
+                    .Customers;
+                    
 
                 return query.ToList();
             }

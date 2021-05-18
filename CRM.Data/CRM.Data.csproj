@@ -61,6 +61,8 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Deleted\JobDeleted.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Estimate.cs" />
+    <Compile Include="HouseCleaningEstimate.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Job.cs" />
@@ -104,6 +106,10 @@
     <Compile Include="Migrations\202105062007319_updateToRequiredFieldsInPersonClass.designer.cs">
       <DependentUpon>202105062007319_updateToRequiredFieldsInPersonClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105170158022_AddEstimates.cs" />
+    <Compile Include="Migrations\202105170158022_AddEstimates.designer.cs">
+      <DependentUpon>202105170158022_AddEstimates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105062007319_updateToRequiredFieldsInPersonClass.resx">
       <DependentUpon>202105062007319_updateToRequiredFieldsInPersonClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105170158022_AddEstimates.resx">
+      <DependentUpon>202105170158022_AddEstimates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

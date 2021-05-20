@@ -34,5 +34,30 @@ namespace CRM.Services
                 return false;
             }
         }
+
+
+
+        public IEnumerable<HouseCleaningEstimateDetail> GetEstimates()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.HouseCleaningEstimates.Select(
+                    e => new HouseCleaningEstimateDetail
+                    {
+                        Basement = e.Basement,
+                        NumberOfBedrooms = e.NumberOfBedrooms,
+                        Notes = e.Notes,
+                        EstimatedCharge = e.EstimatedCharge,
+                        EstimatedCostOfMaterials = e.EstimatedCostOfMaterials,
+                        EstimatedHours = e.EstimatedHours,
+                        EstimateID = e.EstimateID,
+                        CustomerID = e.CustomerID,
+                        NumberOfFullBath = e.NumberOfFullBath,
+                        NumberOfHalfBath = e.NumberOfHalfBath
+                    });
+
+                return query.ToArray(); ;
+            }
+        }
     }
 }

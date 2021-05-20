@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CRM.Models.Estimate.HouseCleaningEstimateDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimateID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedCostOfMaterials)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfBedrooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfFullBath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfHalfBath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Basement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimateID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedCostOfMaterials)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfBedrooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfFullBath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfHalfBath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Basement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

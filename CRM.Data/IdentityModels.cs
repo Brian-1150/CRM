@@ -39,6 +39,9 @@ namespace CRM.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<PayCheck> PayChecks { get; set; }
         public DbSet<JobDeleted> JobsDeleted { get; set; }
+        public DbSet<HouseCleaningEstimate> HouseCleaningEstimates { get; set; }
+
+
 
 
 

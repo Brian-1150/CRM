@@ -110,6 +110,10 @@
     <Compile Include="Migrations\202105170158022_AddEstimates.designer.cs">
       <DependentUpon>202105170158022_AddEstimates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105200227038_AddHouseCleaningEstimate.cs" />
+    <Compile Include="Migrations\202105200227038_AddHouseCleaningEstimate.designer.cs">
+      <DependentUpon>202105200227038_AddHouseCleaningEstimate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PayCheck.cs" />
     <Compile Include="Person.cs" />
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105170158022_AddEstimates.resx">
       <DependentUpon>202105170158022_AddEstimates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105200227038_AddHouseCleaningEstimate.resx">
+      <DependentUpon>202105200227038_AddHouseCleaningEstimate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

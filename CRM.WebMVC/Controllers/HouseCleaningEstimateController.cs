@@ -1,4 +1,5 @@
-﻿using CRM.Services;
+﻿using CRM.Models.Estimate;
+using CRM.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,14 @@ namespace CRM.WebMVC.Controllers
         {
             ViewBag.CustomerList = _custSvc.GetCustomerFromDB();
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(HouseCleaningEstimateCreate model)
+        {
+            _svc.CreateEstimate(model);
+            return RedirectToAction("Details", "Customer", new { id = model.CustomerID });
         }
 
 

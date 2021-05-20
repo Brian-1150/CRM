@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CRM.Data;
+using CRM.Models.Estimate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,27 @@ namespace CRM.Services
     {
         public HouseCleaningEstimateService()  {}
 
-
+        public bool CreateEstimate(HouseCleaningEstimateCreate model)
+        {
+            var entity = new HouseCleaningEstimate
+            {
+                CustomerID = model.CustomerID,
+                EstimatedCharge = model.EstimatedCharge,
+                EstimatedCostOfMaterials = model.EstimatedCostOfMaterials,
+                EstimatedHours = model.EstimatedHours,
+                Basement = model.Basement,
+                NumberOfBedrooms = model.NumberOfBedrooms,
+                Notes = model.Notes,
+                NumberOfFullBath = model.NumberOfFullBath,
+                NumberOfHalfBath = model.NumberOfHalfBath
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.HouseCleaningEstimates.Add(entity);
+                if (ctx.SaveChanges() == 1)
+                    return true;
+                return false;
+            }
+        }
     }
 }

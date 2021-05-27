@@ -35,7 +35,25 @@ namespace CRM.Services
             }
         }
 
-
+        public HouseCleaningEstimateDetail GetEstimateById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {   var entity =  ctx.HouseCleaningEstimates.Find(id);
+                return new HouseCleaningEstimateDetail
+                {
+                    Basement = entity.Basement,
+                    CustomerID = entity.CustomerID,
+                    EstimateID = entity.EstimateID,
+                    EstimatedCharge = entity.EstimatedCharge,
+                    EstimatedCostOfMaterials = entity.EstimatedCostOfMaterials,
+                    EstimatedHours = entity.EstimatedHours,
+                    Notes = entity.Notes,
+                    NumberOfBedrooms = entity.NumberOfBedrooms,
+                    NumberOfFullBath = entity.NumberOfFullBath,
+                    NumberOfHalfBath = entity.NumberOfHalfBath
+                };
+            }
+        }
 
         public IEnumerable<HouseCleaningEstimateDetail> GetEstimates()
         {

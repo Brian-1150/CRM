@@ -35,5 +35,10 @@ namespace CRM.WebMVC.Controllers
         {
             return View(_svc.GetEstimates());
         }
+
+        public ActionResult Details(int id)
+        {
+            return View(_svc.GetEstimateById(id));
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace CRM.Models.Estimate
         public int NumberOfBedrooms { get; set; }
         public int NumberOfFullBath { get; set; }
         public int NumberOfHalfBath { get; set; }
+
+        [UIHint("OtherBool")]
         public bool Basement { get; set; }
         public string Notes { get; set; }
     }

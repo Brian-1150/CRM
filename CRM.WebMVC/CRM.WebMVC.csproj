@@ -547,6 +547,8 @@
     <Content Include="Views\FullCal\CreateFullCalEvent.cshtml" />
     <Content Include="Views\HouseCleaningEstimate\Create.cshtml" />
     <Content Include="Views\HouseCleaningEstimate\Index.cshtml" />
+    <Content Include="Views\HouseCleaningEstimate\Details.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\OtherBool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

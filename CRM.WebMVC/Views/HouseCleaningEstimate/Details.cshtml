@@ -1,0 +1,98 @@
+﻿@model CRM.Models.Estimate.HouseCleaningEstimateDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HouseCleaningEstimateDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimateID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimateID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedCostOfMaterials)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedCostOfMaterials)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfBedrooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfBedrooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfFullBath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfFullBath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfHalfBath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfHalfBath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Basement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Basement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

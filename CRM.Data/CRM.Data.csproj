@@ -64,6 +64,7 @@
     <Compile Include="Estimate.cs" />
     <Compile Include="HouseCleaningEstimate.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Interfaces\IEstimate.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Migrations\202104301648149_First.cs" />
@@ -161,6 +162,7 @@
       <DependentUpon>202105200227038_AddHouseCleaningEstimate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

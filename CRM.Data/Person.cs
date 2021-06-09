@@ -23,6 +23,7 @@ namespace CRM.Data
         public string LastName { get; set; }
 
         [Display(Name = "Phone Number")]
+        //[DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number. (10 digits no dashes) ex(317123456) ")]
         public string PhoneNumber { get; set; }
 

@@ -72,6 +72,8 @@
     <Compile Include="Employee\EmployeeListItem.cs" />
     <Compile Include="Estimate\HouseCleaningEstimateCreate.cs" />
     <Compile Include="Estimate\HouseCleaningEstimateDetail.cs" />
+    <Compile Include="Estimate\IEstimateDetail.cs" />
+    <Compile Include="Estimate\IEstimateCreate.cs" />
     <Compile Include="FullCal\FullCalEvent.cs" />
     <Compile Include="Invoice\InvoiceCreate.cs" />
     <Compile Include="Invoice\InvoiceEdit.cs" />

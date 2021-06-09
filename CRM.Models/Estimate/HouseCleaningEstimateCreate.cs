@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CRM.Models.Estimate
 {
-   public class HouseCleaningEstimateCreate
+   public class HouseCleaningEstimateCreate: IEstimateCreate
     {
         public int CustomerID { get; set; }
         public double EstimatedCharge { get; set; }

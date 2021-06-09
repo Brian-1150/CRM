@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace CRM.Services
 {
-  public  class HouseCleaningEstimateService
+    public class HouseCleaningEstimateService : IEstimateService
     {
-        public HouseCleaningEstimateService()  {}
+        public HouseCleaningEstimateService() { }
 
-        public bool CreateEstimate(HouseCleaningEstimateCreate model)
+        public bool CreateEstimate(IEstimateCreate model)
         {
+            var estModel = (HouseCleaningEstimateCreate)model;
             var entity = new HouseCleaningEstimate
             {
                 CustomerID = model.CustomerID,
                 EstimatedCharge = model.EstimatedCharge,
                 EstimatedCostOfMaterials = model.EstimatedCostOfMaterials,
                 EstimatedHours = model.EstimatedHours,
-                Basement = model.Basement,
-                NumberOfBedrooms = model.NumberOfBedrooms,
-                Notes = model.Notes,
-                NumberOfFullBath = model.NumberOfFullBath,
-                NumberOfHalfBath = model.NumberOfHalfBath
+                Basement = estModel.Basement,
+                NumberOfBedrooms = estModel.NumberOfBedrooms,
+                Notes = estModel.Notes,
+                NumberOfFullBath = estModel.NumberOfFullBath,
+                NumberOfHalfBath = estModel.NumberOfHalfBath
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -35,11 +36,13 @@ namespace CRM.Services
             }
         }
 
-        public HouseCleaningEstimateDetail GetEstimateById(int id)
+       
+        public IEstimateDetail GetEstimateById(int id)
         {
             using (var ctx = new ApplicationDbContext())
-            {   var entity =  ctx.HouseCleaningEstimates.Find(id);
-                return new HouseCleaningEstimateDetail
+            {
+                var entity = ctx.HouseCleaningEstimates.Find(id);
+                var est = new HouseCleaningEstimateDetail
                 {
                     Basement = entity.Basement,
                     CustomerID = entity.CustomerID,
@@ -52,10 +55,11 @@ namespace CRM.Services
                     NumberOfFullBath = entity.NumberOfFullBath,
                     NumberOfHalfBath = entity.NumberOfHalfBath
                 };
+                return (IEstimateDetail)est;
             }
         }
-
-        public IEnumerable<HouseCleaningEstimateDetail> GetEstimates()
+       
+        public IEnumerable<IEstimateDetail> GetEstimates()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -74,7 +78,7 @@ namespace CRM.Services
                         NumberOfHalfBath = e.NumberOfHalfBath
                     });
 
-                return query.ToArray(); ;
+                return (IEnumerable<IEstimateDetail>)query.ToArray(); ;
             }
         }
     }

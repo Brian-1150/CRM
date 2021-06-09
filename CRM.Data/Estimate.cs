@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace CRM.Data
 {
-    
-    public abstract class Estimate
+
+    public abstract class Estimate : IEstimate
     {
-       
 
         [Key]
         public int EstimateID { get; set; }
@@ -22,8 +21,6 @@ namespace CRM.Data
         public double EstimatedCharge { get; set; }
         public double EstimatedCostOfMaterials { get; set; }
         public double EstimatedHours { get; set; }
-
-
 
     }
 }

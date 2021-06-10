@@ -24,6 +24,7 @@ namespace CRM.WebMVC.Controllers
         {
             return View(_svc.CalendarEventCreateView());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CalendarEventCreate model)
@@ -149,7 +150,7 @@ namespace CRM.WebMVC.Controllers
                 _jobSvc.UpdateJob(jobEditModel);
             }
 
-            
+
             _svc.UpdateCalendarEvent(model);
 
             TempData["SaveResult"] = "Event was updated successfully!";

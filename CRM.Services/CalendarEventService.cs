@@ -15,14 +15,17 @@ namespace CRM.Services
         private CustomerService _custSvc = new CustomerService();
         public CalendarEventService() { }
 
-        public CalendarEventCreate CalendarEventCreateView()
+        public CalendarEventCreate CalendarEventCreateView(DateTime start)
         {
-
             return new CalendarEventCreate
 
-            //ticket #22
-            {//remove unnecessary call to method to return view.  Method has been changed
+            {
+                Start = start
             };
+        }
+        public CalendarEventCreate CalendarEventCreateView()
+        {
+            return new CalendarEventCreate();
         }
 
         public CalendarEventCreate FullCalendarEventCreateView(DateTime start)
@@ -30,7 +33,7 @@ namespace CRM.Services
             var newEvent = new CalendarEventCreate
             {
                 Start = start,
-                
+
             };
             return newEvent;
         }
